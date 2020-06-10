@@ -1,5 +1,5 @@
 ---
-title: "ixpantia: tidyr"
+title: "ixpantia sesion_4: tidyr"
 subtitle: "Ejercicios pizarra"
 output: learnr::tutorial
 runtime: shiny_prerendered

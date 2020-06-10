@@ -1,5 +1,5 @@
 ---
-title: "ixpantia: dplyr"
+title: "ixpantia sesion_4: dplyr"
 subtitle: "Ejercicios pizarra"
 output: learnr::tutorial
 runtime: shiny_prerendered

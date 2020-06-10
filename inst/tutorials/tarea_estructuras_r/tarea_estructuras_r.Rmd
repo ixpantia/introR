@@ -1,5 +1,5 @@
 ---
-title: "ixpantia: Estructuras en R"
+title: "ixpantia sesion_2: Estructuras en R"
 subtitle: "**Tarea**"
 output: learnr::tutorial
 runtime: shiny_prerendered
