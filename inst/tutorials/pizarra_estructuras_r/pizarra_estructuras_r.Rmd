@@ -1,5 +1,5 @@
 ---
-title: "ixpantia: Estructuras en R pizarra"
+title: "ixpantia: Estructuras en R"
 subtitle: "**Ejercicios pizarra**"
 output: learnr::tutorial
 runtime: shiny_prerendered
