@@ -1,8 +1,11 @@
 ---
-title: "Estructuras en R"
+title: "ixpantia: Estructuras en R tarea"
 subtitle: "**Tarea**"
 output: learnr::tutorial
 runtime: shiny_prerendered
+description: >
+  Ejercicios de tarea que se pueden practicar fuera de la sesión del curso. Esta
+  tarea tiene como objetivo repasar los conceptos de la sesión estructuras en R.
 ---
 
 ```{r setup, include=FALSE}

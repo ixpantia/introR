@@ -1,8 +1,11 @@
 ---
-title: "Estructuras en R"
+title: "ixpantia: Estructuras en R pizarra"
 subtitle: "**Ejercicios pizarra**"
 output: learnr::tutorial
 runtime: shiny_prerendered
+description: >
+  Ejercicios de pizarra que se realizan durante la sesión para aprender sobre
+  estructuras en R.
 ---
 
 ```{r setup, include=FALSE}
