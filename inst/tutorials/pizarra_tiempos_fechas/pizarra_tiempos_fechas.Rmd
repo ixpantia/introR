@@ -1,5 +1,5 @@
 ---
-title: "ixpantia: Tiempos y fechas"
+title: "ixpantia sesion_5: Tiempos y fechas"
 subtitle: "Ejercicios pizarra"
 output: learnr::tutorial
 runtime: shiny_prerendered
