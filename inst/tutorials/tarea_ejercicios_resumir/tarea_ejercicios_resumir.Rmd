@@ -1,0 +1,173 @@
+---
+title: "ixpantia: Ejercicios resumir datos"
+subtitle: "Tarea"
+output: learnr::tutorial
+runtime: shiny_prerendered
+description: >
+  Ejercicios de tarea que se pueden practicar fuera de la sesión del curso. Esta
+  tarea tiene como objetivo repasar los conceptos de la sesión resumir datos.
+  Combina elementos de cada todos los temas vistos durante la sesión.
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+library(dplyr)
+library(readr)
+library(janitor)
+library(lubridate)
+library(gradethis)
+
+superheroes <- tibble::tribble(
+       ~nombre,   ~bando,     ~sexo,               ~editor,
+   "Magneto",     "villano",   "hombre",            "Marvel",
+     "Storm",     "heroe",     "mujer",            "Marvel",
+  "Mystique",     "villano",   "mujer",            "Marvel",
+    "Batman",     "heroe",     "hombre",                "DC",
+     "Joker",     "villano",   "hombre",                "DC",
+  "Catwoman",     "villano",   "mujer",                 "DC",
+   "Hellboy",     "heroe",     "hombre",         "Dark Horse"
+  )
+
+editores <- tibble::tribble(
+     ~editor,      ~anio_fundacion,
+        "DC",       1934L,
+    "Marvel",       1939L,
+     "Image",       1992L
+  )
+
+tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
+```
+
+## Datos
+
+Para esta tarea usaremos 2 sets de datos distintos: 
+
+### **superheroes**
+
+Este set de datos contiene datos sobre distintos superheroes y villanos de distintas compañias. Contiene 7 observaciones y 4 variables. 
+```{r}
+glimpse(superheroes)
+```
+
+Descripción de las columnas:
+
+| Variable   | Descripción                      |
+|:----------:|:--------------------------------:|
+| `nombre`    | Nombre del superhéroe o villano  |
+| `bando`     | Indica si es un villano o un héroe   |
+| `sexo`      | Sexo del superhéroe o villano  |
+| `editor`    | Indica la compañia de donde proviene el personaje |
+
+
+### **editores**
+
+Contiene información sobre tres compañias de comics. Tiene 3 observaciones y 2 variables. 
+```{r}
+glimpse(editores)
+```
+
+Descripción de las columnas:
+
+| Variable   | Descripción                      |
+|:----------:|:--------------------------------:|
+| `editor`    | Nombre de la compañia |
+| `anio_fundacion`  | Año de fundación de la compañia |
+
+
+
+## Ejercicios 
+
+### Haga un join de forma que aparezca el editor y el año de fundacion de los superheroes, pero solo de aquellos que tienen un editor en la base editores
+
+En el set de datos **superheroes** tenemos datos sobre distintos superheroes, incluyendo la compañia de donde provienen, mientras que en **editores** tenemos información sobre las compañias en sí. Utilice alguno de los `joins` para unir ambas bases de datos de forma que se obtenga una nueva con la información de los superhéroes, su editor y el año de fundación de este. Si un superhéroe tiene un editor que no aparece en **editores** debe ser excluido.
+```{r inner, exercise = TRUE}
+
+```
+
+```{r inner-hint-1}
+"inner_join"
+```
+
+```{r inner-check}
+grade_result(
+  pass_if(~ identical(unlist(.result), unlist(inner_join(superheroes, editores))), "Excelente!")
+)
+```
+
+
+
+### Haga un join de forma que a los datos de **superheroes** se les agrege la columna `anio_fundacion' sin excluir ningún superhéore o villano
+
+Anteriormente hicimos un `join` que agregaba el año de fundacion de los editores, excluyendo a aquellos personajes que no tenían un editor con datos en **editores**, ahora debe hacer otro join que no excluya a ningún personaje al hacer el join y agregar la columna de `anio_fundacion`.
+
+```{r left, exercise = TRUE}
+
+```
+
+```{r left-hint-1}
+"left_join"
+```
+
+```{r left-check}
+grade_result(
+  pass_if(~ identical(unlist(.result), unlist(left_join(superheroes, editores))), "Muy bien!")
+)
+```
+
+
+
+### Haga un join de tal forma que resulte una base que excluya a los superheroes sin editor en **editores** pero que no agregue `anio_fundacion`
+
+En este ejercicio queremos obtener un conjunto de datos que solo contenga los personajes que tengan un editor dentro del set de datos **editores**, los demás deben dejarlos por fuera. 
+```{r semi, exercise = TRUE}
+
+```
+
+```{r semi-hint-1}
+"semi_join"
+```
+
+```{r semi-check}
+grade_result(
+  pass_if(~ identical(unlist(.result), unlist(semi_join(superheroes, editores))), "Muy bien!")
+)
+```
+
+
+### Haga un join de tal forma que resulte una base son aquellos superheores que tienen un editor que **NO** aparece en **editores**
+
+Anteriormente unimos los dos conjuntos de datos de tal forma de que el resultado excluyera a quellos personajes que tuvieran unn editor que no aparecía en **editores**, ahora debe hacer lo opuesto, el resultado debe incluir solo aquellos personajes que tienen un editor que no **NO** aparece en **editores**
+```{r anti, exercise = TRUE}
+
+```
+
+```{r anti-hint-1}
+"anti_join"
+```
+
+```{r anti-check}
+grade_result(
+  pass_if(~ identical(unlist(.result), unlist(anti_join(superheroes, editores))), "Muy bien!")
+)
+```
+
+
+### Haga un join de tal forma que resulte una base con la información de ambas bases, sin excluir nada
+
+En este ejercicio debe obtener un conjunto de datos que una la información de ambos conjuntos de datos sin excluir ninguna observación, aún si esto resulta en valores faltantes en algunas columnas. 
+```{r full, exercise = TRUE}
+
+```
+
+```{r full-hint-1}
+"full_join"
+```
+
+```{r full-check}
+grade_result(
+  pass_if(~ identical(unlist(.result), unlist(full_join(superheroes, editores))), "Muy bien!")
+)
+```
+
+
