@@ -1,0 +1,137 @@
+---
+title: "ixpantia sesion_4: tidyr"
+subtitle: "Tarea"
+output: learnr::tutorial
+runtime: shiny_prerendered
+description: >
+  Ejercicios de tarea que se pueden practicar fuera de la sesión del curso. Esta
+  tarea tiene como objetivo repasar los conceptos de la sesión resumir datos,
+  específicamente lo que corresponde a tidyr.
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(tidyr)
+library(untidydata)
+library(dplyr)
+
+spirantization2 <- spirantization %>% 
+  select(-cIntensity)
+
+separado <- separate(spirantization2, id, into = c("participante", "numero"), sep = "_")
+
+ancho <- spread(separado, key = participante, value = vIntensity)
+
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Datos: **spirantization2**
+Este conjunto de datos proviene del paquete **untidydata** y contiene informacion sobre datos simulado que contiene medidas de intensidad de una palabra inicial o secuencia de vocales obstruentes intervocalicas para dos grupos de estudiantes y hablantes nativos de español.
+
+```{r}
+glimpse(spirantization2)
+```
+
+Descripcion de las variables
+
+| Variable | Descripcion |
+|:--------:|:-----------:|
+| `id` | Identificación del participante y repeticion |
+| `position` | Inicial o intervocálica|
+| `vIntensity` | Intensidad en dB de la siguiente vocal |
+
+
+## Ejercicios
+
+### ¿Cuál es el problema del conjunto de datos?
+
+El set de datos que vamos a utilizar no cumple con las caracteristicas de la *tidy data*, ¿por qué?
+```{r check2, echo=FALSE}
+question("¿Cuál es el problema del conjunto de datos?",
+  answer("Las variables no están bien identificadas"),
+  answer("No todas las columnas identifican una sola variable", correct = TRUE),
+  answer("Las variables tienen nombres incorrectos"),
+  answer("Los números son muy largos"),
+  incorrect = "Incorrecto",
+  correct = "Correcto!")
+```
+
+
+### Separe la columa `id` en dos columnas distintas: `paricipante` y `numero`
+
+La columna `id` en **spirantization2** identifica dos variables distintas, por lo que es necesario separarla en dos. Usando una herramienta de `tidyr`, separe esta columna.
+
+```{r separate, exercise = TRUE}
+
+```
+
+```{r separate-hint-1}
+"into = c("participante", "numero"), sep = "_")"
+```
+
+```{r separate-check}
+grade_result(
+  pass_if(~ identical(unlist(.result), unlist(separate(spirantization2, id, into = c("participante", "numero"), sep = "_"))), "Buenísimo!")
+)
+```
+
+
+
+### Cree un nuevo conjunto de datos que cree una columna para cada participante
+
+En el ejercicio anterior separamos la columna `id` de **spirantization2**, esto quedó guardado en un nuevo set de datos llamado **separado**. Sin embargo, es un set de datos largo, ahora debe convertirlo en un set ancho, donde cada participante represente una columna.
+
+```{r spread, exercise = TRUE}
+
+```
+
+```{r spread-hint-1}
+"key = participante"
+```
+
+```{r spread-check}
+grade_result(
+  pass_if(~ identical(unlist(.result), unlist(spread(separado, key = participante, value = vIntensity))), "Excelente!")
+)
+```
+
+
+### Regrese al set de datos original partiendo desde el set de datos ancho
+
+En el ejercicio anterior creamo un set de datos ancho donde cada participante representaba una columna, este nuevo set se llama **ancho**. Partiendo de este nuevo set, regrese al conjunto de datos original. 
+
+```{r gather, exercise = TRUE}
+
+```
+
+```{r gather-hint-1}
+"value = vIntensity"
+```
+
+```{r gather-check}
+grade_result(
+  pass_if(~ identical(unlist(.result), unlist(gather(ancho, participante, value = vIntensity, adv:nat))), "Excelente!")
+)
+```
+
+
+### Una las columnas `participante` y `numero` para volver a la columna original `id`
+
+EN el primer ejercicio separamos la columna `id` en dos columnas nuevas: `participante` y `numero` para tener un set de datos más ordenado. Sin embargo, a veces queremos volver a la variable original para hacer algún análisis. Ahora debe unir estas dos columnas nuevas para lograr llegar a la columna original pero esta vez use un "/" para separar los valores de las columnas. 
+
+```{r unite, exercise = TRUE}
+
+```
+
+```{r unite-hint-1}
+"sep = "/""
+```
+
+```{r unite-check}
+grade_result(
+  pass_if(~ identical(unlist(.result), unlist(unite(data = separado, col = id, participante, numero, sep = "/"))), "Excelente!")
+)
+```
+

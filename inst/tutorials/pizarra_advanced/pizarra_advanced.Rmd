@@ -1,0 +1,285 @@
+---
+title: "ixpantia: Ejercicios sesión R avanzado"
+output: learnr::tutorial
+runtime: shiny_prerendered
+description: >
+  Ejercicios de pizarra que se realizan durante la sesión para aprender sobre
+  temas de R más avanzados.
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+library(readr)
+library(dplyr)
+library(GGally)
+library(lubridate)
+library(tm)
+library(wordcloud)
+library(tidyr)
+
+url <- "https://storage.googleapis.com/datos_cursos/properati-AR-2017-08-01-properties-sell-six_months.csv"
+temp = tempfile(fileext = ".csv")
+download.file(url, destfile=temp, mode='wb')
+sell_0217 <- read.csv(temp)
+
+
+propiedades <- sell_0217 %>% 
+  select(-c(operation, country_name, geonames_id, lat.lon))
+
+
+sell_0217 %>%
+  rename(id_nuevo = id)
+
+rm(sell_0217)
+
+
+prueba <- propiedades %>%
+  select(property_type, currency, price, surface_total_in_m2, surface_covered_in_m2) %>%
+  sample_frac(0.1)
+
+
+prueba <- propiedades %>%
+  sample_frac(0.01) %>%
+  mutate(mes = month(created_on)) %>%
+  mutate(property_factor = as.factor(property_type)) %>%
+  select(property_factor, mes, price_aprox_usd, surface_total_in_m2, surface_covered_in_m2)
+```
+
+
+## Datos: **propiedades**
+
+Este set de datos incluye consta de información sobre propiedades en venta en Argentina en el 2017 de la compañía **Properati**. 
+```{r}
+glimpse(propiedades)
+```
+Descripción de las variables
+
+| Variable | Descripción |
+|:--------:|:-----------:|
+| `id` | Identificador |
+| `created_on` | Fecha de construccion de la propiedad |
+| `property_type` | Tipo de propiedad |
+| `place_name` | Nombre del lugar donde se ubica la propiedad |
+| `place_with_parent_names` | Nombre completo del lugar donde se ubica la propiedad |
+| `state_name` | Nombre del estado donde se ubica la propiedad |
+| `lat` | Latitud |
+| `lon` | Longitud |
+| `price` | Precio de la propiedad |
+| `currency` | Moneda en la que está el precio |
+| `price_aprox_local_currency` | Precio aproximado en la moneda local (peso argentino)  |
+| `price_aprox_usd` | Precio aproximado en dólares estadounidenses |
+| `surface_total_in_m2 ` | Superficie total en m2 |
+| `surface_covered_in_m2 ` | Superficie cubierta por la construcción en m2 |
+| `price_usd_per_m2 ` | Precio en dólares por m2 |
+| `price_per_m2` | Precio por m2 |
+| `floor` | Cantidad de pisos en la propiedad |
+| `rooms` | Cantidad de habitaciones |
+| `expenses` | Dinero invertido en la propiedad |
+| `properati_url` | URL de la información de la propiedad |
+| `description` | Descripción de la propiedad |
+| `title` | Título de la propiedad |
+| `image_thumbnail` | Foto de la propiedad |
+
+
+## Preguntas
+
+### Cuanta superficie tienen casa y apartamentes en promedio?
+
+En el set de datos **propiedades** hay una variable llamada `urface_total_in_m2` que describe la superficie total de la propiedad y otra variable, `property_type` que contiene describe el tipo de propiedad: apartamento, casa, PH o tienda. Ahora descubra cuanta superficie tienen casa y apartamento en promedio.
+```{r prom, exercise = TRUE}
+propiedades %>% 
+  
+```
+
+```{r prom-hint-1}
+"summarize(promedio = mean(surface_total_in_m2, na.rm = TRUE))"
+```
+
+```{r prom-check}
+grade_result(
+  pass_if(~ identical(unlist(.result), unlist(propiedades %>%
+                                                group_by(property_type) %>%
+                                                summarize(promedio = mean(surface_total_in_m2, na.rm = TRUE)))), "Excelente!")
+)
+```
+
+
+
+
+### Cual es el estado mas costoso en Argentina en dólares?
+
+En el set de datos **propiedades** hay una variable llamada `price_aprox_usd` que contiene el precio aproximado en dólares de la propiedad. Utilizando esta variable, descubra cuál es el estado (`state_name`) más costoso en Argentina basado en propiedades. 
+
+```{r costo, exercise = TRUE}
+propiedades %>% 
+  
+```
+
+```{r costo-hint-1}
+"summarise(precio_promedio = mean(price_aprox_usd, na.rm = TRUE))"
+```
+
+```{r prom-check}
+grade_result(
+  pass_if(~ identical(unlist(.result), unlist(propiedades %>%
+                                            group_by(state_name) %>%
+                                            summarise(precio_promedio = mean(price_aprox_usd, na.rm = TRUE)) %>%
+                                            arrange(desc(precio_promedio)))), "Excelente!")
+)
+```
+
+
+
+### Las casas que se venden en dolares son mas o menos costosas que las que se venden en pesos argentinos?
+
+En el set de datos que estamos trabajando hay una columna que se llama `price_aprox_usd` con el precio al que se vendió la propiedad estandarizado a dólares y otra llamada `currency` con la moneda en la que se encuentra ese precio. Utilizando estas dos columnas y otras herramientas descubra si las casas que se venden en dólares son mas costosas que las que se vendes en la moneda local, pesos argentinos. 
+```{r pesos, exercise = TRUE}
+propiedades %>% 
+  
+```
+
+```{r pesos-hint-1}
+"summarise(promedio = mean(price_aprox_usd))"
+```
+
+```{r prom-check}
+grade_result(
+  pass_if(~ identical(unlist(.result), unlist(propiedades %>%
+                                             group_by(currency) %>% 
+                                             summarise(promedio = mean(price_aprox_usd)))), "Excelente!")
+)
+```
+
+
+
+### Cual es la cantidad optima de cuartos en una casa para optimizar el valor por m2?
+
+En **propiedades** tenemos una variables `rooms` que describe cuantas habitaciones tiene la propiedad y otra, `price_usd_per_m2` donde se dice el precio por m2 ,en dólares, de la propiedad. Utilizando estas columnas y otras herramientas averigue cual es la cantidad optima de cuartos en una casa para optimizar el valor por m2, es decir, para que este valor promedio sea el mayor psoible. 
+
+```{r vent, exercise = TRUE}
+propiedades %>% 
+  
+```
+
+```{r vent-hint-1}
+"summarise(promedio = mean(price_usd_per_m2, na.rm = TRUE))"
+```
+
+```{r vent-check}
+grade_result(
+  pass_if(~ identical(unlist(.result), unlist(propiedades %>% 
+                                                group_by(rooms) %>% 
+                                                summarise(promedio = mean(price_usd_per_m2, na.rm = TRUE)) %>% 
+                                                arrange(desc(promedio)))), "Bien hecho!")
+)
+```
+
+
+
+
+REVISAAAAAAAAAAAR
+### Tener una casa de multiples pisos es una ventaja para obtener más dinero por la venta?
+
+En el conjunto de datos que estamos trabajando hay una variable llamada `floor` con el número de pisos de cada propiedad y otra `price_aprox_usd` con el precio al que se vendió la propiedad en dólares. Ahora averigue si tener múltiples pisos ayuda a que ese precio de venta en dólares sea mayor.
+
+```{r multi, exercise = TRUE}
+propiedades %>% 
+  
+```
+
+```{r multi-hint-1}
+"summarise(promedio = mean(price_aprox_usd, na.rm = TRUE))"
+```
+
+```{r multi-check}
+grade_result(
+  pass_if(~ identical(unlist(.result), unlist(propiedades %>% 
+                                                group_by(rooms) %>% 
+                                                summarise(promedio = mean(price_aprox_usd, na.rm = TRUE)) %>% 
+                                                arrange(desc(promedio)))), "Bien hecho!")
+)
+```
+
+
+
+### Cual mes del año es el mas propicio para poner obtener mayor ganancia con la venta de una propiedad?
+
+EN los datos utilizados hay una variable llamada `created_on` con la fecha en la que se hizo el anuncio de la propiedad por primera vez y además, hay una columna llamada `price_aprox_usd` con el precio en el que se vendió la propiedad. Averigue cuál es el mes de anuncio de la propiedad que resulta en mayores ganancias.
+
+```{r mes, exercise = TRUE}
+propiedades %>% 
+  
+```
+
+```{r mes-hint-1}
+separate(created_on, into = c("anio", "mes", "dia"), sep = "-")
+```
+
+```{r mes-hint-2}
+"summarise(promedio = mean(price_aprox_usd, na.rm = TRUE))"
+```
+
+```{r mes-check}
+grade_result(
+  pass_if(~ identical(unlist(.result), unlist(propiedades %>% 
+                                                separate(created_on, into = c("anio", "mes", "dia"), sep = "-") %>%
+                                                group_by(mes) %>% 
+                                                summarise(promedio = mean(price_aprox_usd, na.rm = TRUE)))), "Bien hecho!")
+)
+```
+
+### Que diferencias hay en el tamaño/tipo de propiedad si miramos la fecha del año?
+
+```{r dif, exercise = TRUE}
+
+```
+
+```{r dif-hint-1}
+
+```
+
+```{r dif-check}
+
+```
+
+### Cuales palabras en la descripcion parecen que mejor ayudan la venta?
+```{r descr, exercise = TRUE}
+
+```
+
+```{r descr-hint-1}
+
+```
+
+```{r descr-check}
+
+```
+
+### Cuales palabras en el titulo parecen que mejor ayudan la venta?
+```{r titulo, exercise = TRUE}
+
+```
+
+```{r titulo-hint-1}
+
+```
+
+```{r titulo-check}
+
+```
+
+### Que costos (expenses) hay en promedio y como afecta el precio de venta por m2?
+```{r expenses, exercise = TRUE}
+
+```
+
+```{r expenses-hint-1}
+
+```
+
+```{r expenses-check}
+
+```
+
+

@@ -1,0 +1,128 @@
+---
+title: "ixpantia sesion_4: tidyr"
+subtitle: "Ejercicios pizarra"
+output: learnr::tutorial
+runtime: shiny_prerendered
+description: >
+  Ejercicios de pizarra que se realizan durante la sesión para aprender sobre
+  el proceso de resumir datos, específicamente aquellos que involucran el uso
+  de tidyr.
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+library(readr)
+library(dplyr)
+library(tidyr)
+
+gap_ancho <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder_wide.csv')
+
+gapminder <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv')
+
+gap_largo <- gather(gap_ancho, 
+                    key = obstype_year,
+                    value = obs_values,
+                    -continent, -country)
+```
+
+
+## Datos: **gap_ancho**
+
+Este set de datos contiene informacion sobre distintos paises, como caracteristicas demograficas o económicas. Se conforma de 38 variables y 142 observaciones. Como podrán ver, la base está un poco desordenada y parece tener mucho espacio para mejoras. 
+```{r}
+glimpse(gap_ancho)
+```
+ 
+Descripción de las variables: 
+ 
+Nota: algunas variables comparten la primera palabra de su nombre con otras, por lo que solo se describen estos inicios de nombres ya que son muchas variables y describir todas resultaría muy largo y repetitivo. 
+
+| Variable | Descripción |
+|:--------:|:-----------:|
+| `continent` | Continente al que pertenece el país |
+| `country` | Nombre del país |
+| `gdpPercap_` | PIB per cápita del país para el año indicado | 
+| `lifeExp_` | Esperanza de vida del país para el año indicado |
+| `pop_` | Población del país para le año indicado |
+
+
+## Ejercicios 
+
+### Acomode el connjunto de datos de utlizando `gather()`
+
+El set de datos *gap_ancho* no está ordenado, es más ancho de lo que debería. Utilizando la función `gather` convierta en *gap_ancho* en un set de datos más ordenado. Como consejo, quite las columnas continent y country del gather para que el resultado sea una base de datos útil )la tercera pista muestra como hacer esto). 
+```{r gather, exercise = TRUE}
+gather(gap_ancho,  )
+```
+
+```{r gather-hint-1}
+"key = obstype_year"
+```
+
+```{r gather-hint-2}
+"value = obs_values"
+```
+
+```{r gather-hint-3}
+"-continent, -country"
+```
+
+```{r gather-check}
+grade_result(
+  pass_if(~ identical(unlist(.result), unlist(gather(gap_ancho, 
+                    key = obstype_year,
+                    value = obs_values,
+                    -continent, -country))), "Buenísimo!")
+)
+```
+
+
+### Vuelva al conjunto de datos original usando `spread()`
+
+Anteriormente acomodamos el conjunto de datos original utilizando `gather()`, este set de datos quedó guardado como **gap_largo**. Ahora utilice spread para volver al formato original de los datos. 
+```{r spread, exercise = TRUE}
+spread(gap_largo, )
+```
+
+```{r spread-hint-1}
+"key = obstype_year"
+```
+
+```{r spread-hint-2}
+"value = obs_values"
+```
+
+```{r spread-check}
+grade_result(
+  pass_if(~ identical(unlist(.result), unlist(spread(gap_largo,  
+                       key = obstype_year, 
+                       value = obs_values))), "Excelente!")
+)
+```
+
+
+### Separe la columna `obstype_type` en dos columnas: `obsetype` y `year`
+
+En el set de datos de *gap_largo*  hay una columna llamada `obsetype_year` que contiene la característica demográfica o económica y el año de registro de la misma. Utilizando la función `separate()` para separar esta columna en dos nuevas: `obsetype` y `year`. 
+```{r separate, exercise = TRUE}
+separate(data = gap_largo, )
+```
+
+```{r separate-hint-1}
+"into = c('obstype', 'year')"
+```
+
+```{r separate-hint-2}
+"sep = '_'"
+```
+
+```{r separate-check} 
+grade_result(
+  pass_if(~ identical(unlist(.result), unlist(separate(data = gap_largo,
+                     col = obstype_year, 
+                     into = c('obstype', 'year'),
+                     sep = '_'))), "Bien hecho!")
+)
+```
+
