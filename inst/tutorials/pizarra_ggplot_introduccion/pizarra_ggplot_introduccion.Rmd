@@ -1,8 +1,11 @@
 ---
-title: "Introduccion a ggplot"
+title: "ixpantia sesion_7: Introduccion a ggplot"
 subtitle: "Ejercicios pizarra"
 output: learnr::tutorial
 runtime: shiny_prerendered
+description: >
+  Ejercicios de pizarra que se realizan durante la sesión para aprender sobre
+  introducción a visualización de datos con ggplot2.
 ---
 
 ```{r setup, include=FALSE}
