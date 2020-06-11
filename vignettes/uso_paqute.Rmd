@@ -1,0 +1,70 @@
+---
+title: "Uso del paquete ixpantia.introR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Uso del paquete ixpantia.introR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Preparando el computador para los tutoriales:
+
+Para usar los ejercicios del paquete, debemos primero contar una versión 
+de RStudio igual o mayor a 1.3.959
+
+Si no contamos con una versión actualizada, podemos ir a la página
+oficial de [RStudio](https://rstudio.com/products/rstudio/download/#download)
+
+Al tener esta versión, lograremos tener una ventana nueva en el panel
+llamada "Tutorial"
+
+Los paquetes que necesitamos para los tutoriales principalmente son:
+
+```{r setup, eval = FALSE}
+library(ixpantia.introR)
+library(learnr)
+library(gradethis)
+```
+
+Estos son los necesarios para que podamos tener los tutoriales
+corriendo en nuestro computador.
+
+Ahora bien, cada uno de los tutoriales pueden echar mano de otros 
+paquetes que si no los tenemos instalados, nos podrá dar un error para 
+la instalación y el uso del tutorial.
+
+Si es así, revisamos el mensaje del error y el paquete que nos falta
+para instalarlo con la función:
+
+```{r, eval = FALSE}
+install.packages("nombre_paquete")
+```
+
+## Usar los tutoriales
+
+Ya con los paquetes necesarios en nuestra computadora, podemos ir a la
+pestaña de tutorial y allí nos aparecerá un menú Tutorial.
+
+Los nombres de los tutoriales nos darán idea de a cuál sesión pertenecen
+y además nos dirán si son ejercicios de **pizarra** o **tarea**.
+
+**pizarra** son ejercicios que vamos a trabajar durante la sesión del 
+curso con el fin de entender el nivel de comprensión del grupo en
+los conceptos de R que se van presentando.
+
+Esto no es excluyente de que el participante pueda volver a practicarlos
+fuera del tiempo de la sesión o bien, que se dejen de tarea como 
+ejercicio para crear dudas que puedan ser atendidas en una siguiente
+sesión.
+
+**tarea** son ejercicios cuyo objetivo es que los participantes 
+realicen la práctica en su tiempo de estudio fuera de las sesiones.
+Igualmente esto no excluyente a que estos puedan ser utilizados para
+demostrar conceptos durante el tiempo de la sesión.

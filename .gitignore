@@ -39,3 +39,4 @@ rsconnect/
 # Archivos de renderización
 
 *.html
+inst/doc
