@@ -99,7 +99,7 @@ grade_result(
 
 ### Obtenga los peajes de la ruta 27
 
-En el set de datos hay una columna llamada `Número de ruta` que indica el número de carretera en la que se encuentra cada peaje. Ahora obtenga la información referente a aquellos peajes que se encuentran en la ruta 27. 
+En el set de datos hay una columna llamada `Numero_de_ruta` que indica el número de carretera en la que se encuentra cada peaje. Ahora obtenga la información referente a aquellos peajes que se encuentran en la ruta 27. 
 
 ```{r 27, exercise=TRUE, exercise.eval = FALSE}
 
@@ -111,7 +111,7 @@ En el set de datos hay una columna llamada `Número de ruta` que indica el núme
 
 ```{r 27-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(subset(peajes, `Número de ruta` == "27"))), "Excelente!")
+  pass_if(~ identical(unlist(.result), unlist(subset(peajes, Numero_de_ruta == "27"))), "Excelente!")
 )
 ```
 
@@ -128,6 +128,11 @@ En el set de datos hay una columna que se llama `2015` que contiene los montos r
 ">="
 ```
 
+```{r 16mil-hint-2}
+`2015`
+```
+
+
 ```{r 16mil-check}
 grade_result(
   pass_if(~ identical(unlist(.result), unlist(subset(peajes, `2015` >= 16000))), "Excelente!")
@@ -135,9 +140,9 @@ grade_result(
 ```
 
 
-### Cambie el nombre "Ubicación de la estación" a "ubicacion"
+### Cambie el nombre `"Ubicacion_de_la_estacion"` a `"ubicacion"`
 
-En el set de datos hay una columna que se llama `Ubicación de la estación`, cambiele el nombre por "ubicacion" para que sea más fácil de manejar. 
+En el set de datos hay una columna que se llama `Ubicacion_de_la_estacion`, cambiele el nombre por `"ubicacion"` para que sea más fácil de manejar. 
 ```{r col_names, exercise=TRUE, exercise.eval = FALSE}
 
 ```
@@ -146,9 +151,9 @@ En el set de datos hay una columna que se llama `Ubicación de la estación`, ca
 "colnames()"
 ```
 
-```{r col_names-check}
+```{r col_names-check, message = FALSE, warning = FALSE}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(colnames(peajes)[3] <- "ubicacion_estacion")), "Excelente!")
+  pass_if(~ identical(unlist(.result), unlist(colnames(peajes)[3] <- "ubicacion")), "Excelente!")
 )
 ```
 
@@ -181,7 +186,7 @@ En el set de datos hay tres columnas referentes a los montos recolectados en los
 ```
 
 ```{r suma-hint-1}
-"Es la suma de las tres columnas"
+peajes$suma
 ```
 
 ```{r suma-check}
