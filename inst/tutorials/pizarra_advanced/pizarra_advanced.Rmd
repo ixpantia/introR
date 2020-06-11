@@ -120,7 +120,7 @@ propiedades %>%
 "summarise(precio_promedio = mean(price_aprox_usd, na.rm = TRUE))"
 ```
 
-```{r prom-check}
+```{r costo-check}
 grade_result(
   pass_if(~ identical(unlist(.result), unlist(propiedades %>%
                                             group_by(state_name) %>%
@@ -143,7 +143,7 @@ propiedades %>%
 "summarise(promedio = mean(price_aprox_usd))"
 ```
 
-```{r prom-check}
+```{r pesos-check}
 grade_result(
   pass_if(~ identical(unlist(.result), unlist(propiedades %>%
                                              group_by(currency) %>% 
