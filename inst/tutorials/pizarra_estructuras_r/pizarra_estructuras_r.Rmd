@@ -88,7 +88,7 @@ grade_code("¡Muy bien!")
 
 ### 3. ¿Cómo obtener lo referente a la región NORTE únicamente?
 
-En el set de datos hay una columna llamada *region* que se refiere al punto cardinal al que pertenece la región: NORTE, SUR, ESTE u OESTE. Ahora obtenga la información referente a aquellas regiones que pertenezcan a la region NORTE solamente. 
+En el set de datos hay una columna llamada `region` que se refiere al punto cardinal al que pertenece la región: NORTE, SUR, ESTE u OESTE. Ahora obtenga la información referente a aquellas regiones que pertenezcan a la region NORTE solamente. 
 ```{r NORTE, exercise=TRUE, exercise.eval = FALSE}
 
 ```
@@ -106,7 +106,7 @@ grade_result(
 
 ### 4. ¿Cómo obtener lo referente a aquellas regiones donde los montos son mayores 3000?
 
-En el set de datos hay una columna llamada valor, donde se encuentra el monto recolectado en cada región. Ahora obtenga la información referente a las regiones que tienen montos recolectados mayores de 3000. 
+En el set de datos hay una columna llamada `valor`, donde se encuentra el monto recolectado en cada región. Ahora obtenga la información referente a las regiones que tienen montos recolectados mayores de 3000. 
 ```{r 3000, exercise=TRUE, exercise.eval = FALSE}
 
 ```
@@ -125,13 +125,13 @@ grade_result(
 
 ### ¿Cómo obtener lo referente a las regiones que **NO** son de tipo B?
 
-En el set de datos hay una variable llamada tipo, que describe si la región es tipo A, B o C. Ahora obtenga la información referente a aquellas regiones que NO son de tipo B, es decir, A o C. 
+En el set de datos hay una variable llamada `tipo`, que describe si la región es tipo A, B o C. Ahora obtenga la información referente a aquellas regiones que NO son de tipo B, es decir, A o C. 
 ```{r difB, exercise=TRUE, exercise.eval = FALSE}
 regiones
 ```
 
 ```{r difB-hint-1}
-""
+"!="
 ```
 
 ```{r difB-check}
@@ -154,7 +154,7 @@ Descripción de las variables:
 |:----------:|:--------------------------------:|
 | `sr`        | razón de ahorros (savings ratio) |
 | `pop15`      | % de población con menos de 15 años |
-| `pop75`      | % de poblacio con más de 75 años    |
+| `pop75`      | % de población con más de 75 años    |
 | `dpi`        | ingreso disponible per cápita       |
 | `ddpi`       | % de cambio del ingreso disponible per cápita |
 
@@ -162,7 +162,7 @@ Descripción de las variables:
 
 ### 1. Obtener media de variable dpi
 
-En el set de datos hay una variable llamada dpi, obtenga la media o el promedio de esta.
+En el set de datos hay una variable llamada `dpi`, obtenga la media o el promedio de esta.
 
 ```{r med_dpi, exercise=TRUE, exercise.eval = FALSE}
 LifeCycleSavings$dpi
@@ -174,14 +174,14 @@ LifeCycleSavings$dpi
 
 ```{r med_dpi-check}
 grade_result(
-  pass_if(~ identical(unlist(round(.result, 0), 1107)), "Custom message for value 2.")
+  pass_if(~ identical(unlist(.result), unlist(mean(LifeCycleSavings$dpi))), "¡Genial!")
 )
 ```
 
 
 ### 2. ¿Cuál país tiene mayor porcentaje de población menor a 15? 
 
-En el set de datos hay una variable que representa el porcentaje de pblación que es menor de 15 años, descubra cuál país tiene un mayor porcentaje de esta población. 
+En el set de datos hay una variable que representa el porcentaje de población que es menor de 15 años, descubra cuál país tiene un mayor porcentaje de esta población. 
 
 ```{r pob15, exercise=TRUE, exercise.eval = FALSE}
 LifeCycleSavings$pop15
@@ -200,7 +200,7 @@ grade_result(
 
 ### 3. ¿Cuál país tiene menor porcentaje de población mayor a 75? 
 
-En el set de datos hay una variable que representa el porcentaje de pblación que es mayor de 75 años, descubra cuál país tiene un menor porcentaje de esta población. 
+En el set de datos hay una variable que representa el porcentaje de población que es mayor de 75 años, descubra cuál país tiene un menor porcentaje de esta población. 
 ```{r pob15_2, exercise=TRUE, exercise.eval = FALSE}
 
 ```
@@ -211,7 +211,7 @@ En el set de datos hay una variable que representa el porcentaje de pblación qu
 
 ```{r pob15_2-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(min(life_savings$pop15))), "Muy bien!")
+  pass_if(~ identical(unlist(.result), unlist(min(LifeCycleSavings$pop75))), "Muy bien!")
 )
 ```
 
@@ -237,7 +237,7 @@ grade_result(
 
 ### 5. Cambiar nombre dpi a disposable_income
 
-En el set de datos hay una variable que se llama dpi, que representa el ingreso disponible per cápita, ahora cambie el nombre de esta variable a "diposable_income" 
+En el set de datos hay una variable que se llama dpi, que representa el ingreso disponible per cápita, ahora cambie el nombre de esta variable a `diposable_income` 
 
 ```{r col_names, exercise=TRUE, exercise.eval = FALSE}
 LifeCycleSavings$dpi
@@ -270,14 +270,14 @@ question("¿Por qué no es recomendable hacer subsets por posición?",
 
 ### 7. Generar nueva columna que contenga la suma de pop15 y pop75 
 
-En el set de datos hay una variable llamada pop15, el porcentaje de población menor de 15 años y otra denominada pop75, el porcentaje de población mayor a 75 años, ahora cree una nueva columna que sume, para cada país, estos dos porcentajes. Llame a esta nueva columna "suma". 
+En el set de datos hay una variable llamada `pop15`, el porcentaje de población menor de 15 años y otra denominada `pop75`, el porcentaje de población mayor a 75 años, ahora cree una nueva columna que sume, para cada país, estos dos porcentajes. Llame a esta nueva columna "suma". 
 
 ```{r suma, exercise=TRUE, exercise.eval = FALSE}
 
 ```
 
 ```{r suma-hint-1}
-"LifeCycleSavings$suma o mutate"
+"LifeCycleSavings$suma"
 ```
 
 ```{r suma-check}
@@ -289,7 +289,7 @@ grade_result(
 
 ### 8. Subset con países que tengan porcentajes de población menores a 15 años  menor 23% y mayor a 47%
 
-El set de datos incluye información de 50 países, cada uno con un porcentaje de población menor de 15 años (pop15) y un porcentaje de población mayor 75 años (pop75). Ahora obtenga un subconjunto donde solo se encuentren los países en los que pop15 sea menor a 23% y pop75 mayor a 47%.
+El set de datos incluye información de 50 países, cada uno con un porcentaje de población menor de 15 años (`pop15`) y un porcentaje de población mayor 75 años (`pop75`). Ahora obtenga un subconjunto donde solo se encuentren los países en los que `pop15` sea menor a 23% o `pop75` mayor a 47%.
 
 ```{r porc, exercise=TRUE, exercise.eval = FALSE}
 subset
@@ -301,28 +301,30 @@ subset
 
 ```{r porc-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(subset(LifeCycleSavings, LifeCycleSavings$pop15 < 23 | LifeCycleSavings$pop15> 47))), "Bien hecho!")
+  pass_if(~ identical(unlist(.result), unlist(subset(LifeCycleSavings, LifeCycleSavings$pop15 < 23 | LifeCycleSavings$pop75 > 47))), "Bien hecho!")
 )
 ```
 
 
 ### 9. Obtener un subset de los 6 países con mayor porcentaje de población mayor a 75 
 
-El set de datos contiene información de 50 países, cada uno con un porcentaje de población mayor de 75 años (pop75). Ahora obtenga un subconjunto que solo contenga los 6 países con mayor porcentaje de población mayor a 75 años. 
+El set de datos contiene información de 50 países, cada uno con un porcentaje de población mayor de 75 años (`pop75`). Ahora obtenga un subconjunto que solo contenga los 6 países con mayor porcentaje de población mayor a 75 años. 
 
 ```{r 6pai, exercise=TRUE, exercise.eval = FALSE}
 
 ```
 
 ```{r 6pai-hint-1}
-"top_n u order"
+"usa arrange u order"
 ```
 
 ```{r 6pai-check}
 grade_result(
   pass_if(~ identical(unlist(.result), unlist(top_n(LifeCycleSavings, 6 , pop75) %>% 
-                                                arrange(desc(pop75)))), "Bien hecho!")
-)
+                                                arrange(desc(pop75)))),"Bien hecho!"),
+  pass_if(~ identical(unlist(.result),  unlist(LifeCycleSavings[order(LifeCycleSavings$pop75,decreasing = TRUE)[1:6],])),
+                      "Bien hecho!")
+  )
 ```
 
 
