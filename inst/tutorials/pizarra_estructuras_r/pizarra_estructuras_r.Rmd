@@ -10,9 +10,11 @@ description: >
 
 ```{r setup, include=FALSE}
 library(learnr)
-knitr::opts_chunk$set(echo = FALSE)
 library(dplyr)
 library(gradethis)
+
+knitr::opts_chunk$set(echo = FALSE)
+
 tutorial_options(exercise.checker = gradethis::grade_learnr)
 
 regiones <- data.frame(id = c(254, 369, 147, 852),

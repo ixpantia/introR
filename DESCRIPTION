@@ -1,7 +1,7 @@
 Package: ixpantia.introR
 Type: Package
 Title: What the Package Does (Title Case)
-Version: 0.1.0
+Version: 0.0.1
 Author: Who wrote it
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line)
@@ -9,3 +9,17 @@ Description: More about what it does (maybe more than one line)
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    learnr,
+    gradethis,
+    ggplot2,
+    dplyr,
+    tidyr,
+    mosaicData,
+    visdat,
+    plotly,
+    readxl,
+    janitor,
+    lubridate,
+    readr,
+    hflights
