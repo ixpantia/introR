@@ -18,6 +18,7 @@ library(lubridate)
 library(readr)
 library(readxl)
 library(gradethis)
+tutorial_options(exercise.checker = gradethis::grade_learnr)
 
 directores <- data.frame(   
     director =  c("Spielberg",
@@ -63,7 +64,7 @@ premios <- data.frame(
 
 ## Datos
 
-Para la sesion utilizaremos tres conjuntos de datos distintos:
+Para la sesión utilizaremos tres conjuntos de datos distintos:
 
 ### **directores**
 
@@ -114,9 +115,9 @@ Descripción de las columnas:
 
 ## Ejercicios
 
-### Ejercicio A: Una el conjunto de datos **directores** con **peliculas** y cuente cuantas peliculas tiene cada director
+### Ejercicio A: Una el conjunto de datos **directores** con **peliculas** y cuente cuántas películas tiene cada director
 
-En el set de datos **directores** tenemos informacion sobre directores de cine famosos y su nacionalidad, mientras que en **peliculas** tenemos información sobre películas conocidas y su director. Ahora una estos dos sets de forma que podamos calcular el número de películas de cada director. 
+En el set de datos **directores** tenemos información sobre directores de cine famosos y su nacionalidad, mientras que en **peliculas** tenemos información sobre películas conocidas y su director. Ahora una estos dos sets de forma que podamos calcular el número de películas de cada director. 
 ```{r A, exercise = TRUE}
 
 ```
@@ -125,7 +126,7 @@ En el set de datos **directores** tenemos informacion sobre directores de cine f
 "inner_join"
 ```
 
-```{r A-solution}
+```{r A-check}
 grade_result(
   pass_if(~ identical(unlist(.result), unlist(inner_join(directores, peliculas) %>% 
   group_by(director) %>% 
@@ -153,7 +154,7 @@ question("¿Cuál es la diferencia entre `right_join` y `left_join`?",
 
 ### Ejercicio C: Hacer unión de unicamente las observaciones que concuerdan en conjuntos de datos `peliculas` con `premios`
 
-Utilizando alguno de los joins vistos, obtenga un set de datos que tenga las observaciones que concuerdan en conjuntos de datos `peliculas` con `premios`, las demás las debe excluir
+Utilizando alguno de los *joins* vistos, obtenga un set de datos que tenga las observaciones que concuerdan en conjuntos de datos `peliculas` con `premios`, las demás las debe excluir
 ```{r C, exercise = TRUE}
 
 ```
@@ -164,9 +165,8 @@ Utilizando alguno de los joins vistos, obtenga un set de datos que tenga las obs
 
 ```{r C-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(inner_join(peliculas, premios) %>% 
-  group_by(director) %>% 
-  tally())), "Excelente!")
+  pass_if(~ identical(unlist(.result), 
+                      unlist(inner_join(peliculas, premios))) , "Excelente!")
 )
 ```
 
@@ -178,9 +178,9 @@ El resultado de hacer un `full_join` entre **directores** y **peliculas** sería
 ```{r D, echo=FALSE}
 question("¿Qué resulta de un `full_join` entre directores y peliculas?",
   answer("Un set de datos con solo las observaciones que coinciden en ambos casos"),
-  answer("Un set de datos con las observaciones de directores que coinciden en peliculas"),
-  answer("Un set de datos con las observaciones de peliculas que coinciden en directores"),
-  answer("Un set de datos que contiene la informacion de ambos sets", correct = TRUE),
+  answer("Un set de datos con las observaciones de directores que coinciden en películas"),
+  answer("Un set de datos con las observaciones de películas que coinciden en directores"),
+  answer("Un set de datos que contiene la información de ambos sets", correct = TRUE),
   incorrect = "Incorrecto",
   correct = "Correcto")
 ```
