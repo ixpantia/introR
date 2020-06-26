@@ -36,7 +36,7 @@ editores <- tibble::tribble(
      "Image",       1992L
   )
 
-tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
+tutorial_options(exercise.checker = gradethis::grade_learnr)
 ```
 
 ## Datos
@@ -45,7 +45,7 @@ Para esta tarea usaremos 2 sets de datos distintos:
 
 ### **superheroes**
 
-Este set de datos contiene datos sobre distintos superheroes y villanos de distintas compañias. Contiene 7 observaciones y 4 variables. 
+Este set de datos contiene datos sobre distintos superhéroes y villanos de distintas compañías. Contiene 7 observaciones y 4 variables. 
 ```{r}
 glimpse(superheroes)
 ```
@@ -78,9 +78,9 @@ Descripción de las columnas:
 
 ## Ejercicios 
 
-### Haga un join de forma que aparezca el editor y el año de fundacion de los superheroes, pero solo de aquellos que tienen un editor en la base editores
+### Haga un join de forma que aparezca el editor y el año de fundación de los superhéroes, pero solo de aquellos que tienen un editor en la base editores
 
-En el set de datos **superheroes** tenemos datos sobre distintos superheroes, incluyendo la compañia de donde provienen, mientras que en **editores** tenemos información sobre las compañias en sí. Utilice alguno de los `joins` para unir ambas bases de datos de forma que se obtenga una nueva con la información de los superhéroes, su editor y el año de fundación de este. Si un superhéroe tiene un editor que no aparece en **editores** debe ser excluido.
+En el set de datos **superheroes** tenemos datos sobre distintos superhéroes, incluyendo la compañía de donde provienen, mientras que en **editores** tenemos información sobre las compañías en sí. Utilice alguno de los `joins` para unir ambas bases de datos de forma que se obtenga una nueva con la información de los superhéroes, su editor y el año de fundación de este. Si un superhéroe tiene un editor que no aparece en **editores** debe ser excluido.
 ```{r inner, exercise = TRUE}
 
 ```
@@ -97,9 +97,9 @@ grade_result(
 
 
 
-### Haga un join de forma que a los datos de **superheroes** se les agrege la columna `anio_fundacion' sin excluir ningún superhéore o villano
+### Haga un join de forma que a los datos de **superheroes** se les agrege la columna `anio_fundacion' sin excluir ningún superhéroe o villano
 
-Anteriormente hicimos un `join` que agregaba el año de fundacion de los editores, excluyendo a aquellos personajes que no tenían un editor con datos en **editores**, ahora debe hacer otro join que no excluya a ningún personaje al hacer el join y agregar la columna de `anio_fundacion`.
+Anteriormente hicimos un `join` que agregaba el año de fundación de los editores, excluyendo a aquellos personajes que no tenían un editor con datos en **editores**, ahora debe hacer otro join que no excluya a ningún personaje al hacer el join y agregar la columna de `anio_fundacion`.
 
 ```{r left, exercise = TRUE}
 
@@ -117,7 +117,7 @@ grade_result(
 
 
 
-### Haga un join de tal forma que resulte una base que excluya a los superheroes sin editor en **editores** pero que no agregue `anio_fundacion`
+### Haga un join de tal forma que resulte una base que excluya a los superhéroes sin editor en **editores** pero que no agregue `anio_fundacion`
 
 En este ejercicio queremos obtener un conjunto de datos que solo contenga los personajes que tengan un editor dentro del set de datos **editores**, los demás deben dejarlos por fuera. 
 ```{r semi, exercise = TRUE}
@@ -135,9 +135,9 @@ grade_result(
 ```
 
 
-### Haga un join de tal forma que resulte una base son aquellos superheores que tienen un editor que **NO** aparece en **editores**
+### Haga un join de tal forma que resulte una base con aquellos superhéroes que tienen un editor que **NO** aparece en **editores**
 
-Anteriormente unimos los dos conjuntos de datos de tal forma de que el resultado excluyera a quellos personajes que tuvieran unn editor que no aparecía en **editores**, ahora debe hacer lo opuesto, el resultado debe incluir solo aquellos personajes que tienen un editor que no **NO** aparece en **editores**
+Anteriormente unimos los dos conjuntos de datos de tal forma de que el resultado excluyera aquellos personajes que tuvieran un editor que no aparecía en **editores**, ahora debe hacer lo opuesto, el resultado debe incluir solo aquellos personajes que tienen un editor que no **NO** aparece en **editores**
 ```{r anti, exercise = TRUE}
 
 ```
