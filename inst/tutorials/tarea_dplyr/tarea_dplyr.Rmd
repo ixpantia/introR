@@ -20,37 +20,18 @@ temporadas <- data.frame(anio = c(2015, 2016, 2017, 2018),
            primavera = c(46, 40, 50, 48),
            verano = c(70, 62, 81, 76),
            otono = c(52, 46, 54, 56))
-alargado <- gather(data = temporadas, key = temporada, value = temperatura, -anio)
+estaciones <- gather(data = temporadas, key = temporada, value = temperatura, -anio)
 
-tutorial_options(exercise.timelimit = 60, exercise.checker = gradethis::grade_learnr)
+tutorial_options(exercise.checker = gradethis::grade_learnr)
 ```
 
 
-## Datos: **temporadas** y **alargado**
+## Datos: **estaciones**
 
-
-### temporadas
-Este set de datos contiene información sobre las 4 estaciones del año: invierno, primavera, verano y otoño. Tiene 4 observaciones y 5 variables. Como podrás ver, este set de datos no cumple con algunas caracteristicas de la "tidy data".
+Este set de datos contiene la temperatura promedio por estación.
+Contiene 16 observaciones y 3 variables. 
 ```{r}
-glimpse(temporadas)
-```
-
-Descripcion de las variables:
-
-| Variable | Descripcion |
-|:--------:|:-----------:|
-| `anio` | Año en estudio | 
-| `invierno` | Temperaturas en invierno |
-| `primavera`| Temperaturas en primavera | 
-| `verano` | Temperaturas en verano |
-| `otono` | Temperaturas en otoño |
-
-
-### alargado
-
-Este set de datos convierte el set anterior (*temporadas*) en un set más ordenado. Ahora esta base de datos tiene 16 observaciones y 3 variables. 
-```{r}
-glimpse(alargado)
+glimpse(estaciones)
 ```
 
 Descripcion de las variables:
@@ -58,16 +39,16 @@ Descripcion de las variables:
 | Variable | Descripcion |
 |:--------:|:-----------:|
 | `anio` | Año en estudio |
-| `temporada` | Estacion en estudio, 4 categorias |
+| `temporada` | Estación en estudio, 4 categorías |
 | `temperatura` | Temperatura percibida | 
 
 ## Ejercicios
 
 ### Muestre las observaciones que se refieran a "invierno" solamente 
 
-En la base *alargado* hay una columna llamada `temporada`, es una variable categórica con 4 categorias: invierno, verano, primavera y otoño. Ahora obtenga la informacion referente a "invierno" solamente.
+En la base *estaciones* hay una columna llamada `temporada`, una variable categórica con 4 categorías: invierno, verano, primavera y otoño. Obtenga la información referente a "invierno" solamente.
 ```{r filter, exercise=TRUE}
-alargado %>% 
+estaciones %>% 
 ```
 
 ```{r filter-hint-1}
@@ -76,37 +57,46 @@ alargado %>%
 
 ```{r filter-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(alargado %>% filter(temporada == "invierno"))), "Buenísimo!")
+  pass_if(~ identical(unlist(.result), unlist(estaciones %>% filter(temporada == "invierno"))), "Buenísimo!")
 )
 ```
 
 
-### Cree una nueva variable que sea el promedio de las temperaturas de todas las temporadas cada año
+### Obtenga la temperatura promedio por temporada
 
-En el set de datos *temporadas* hay 4 columnas, referentes a las temperaturas de las 4 estaciones. Ahora cree una nueva variable que sea el promedio de las temperaturas de las 4 estaciones para cada fila. Llame a esa nueva variable "temp_promedio". Utilice las funciones `mutate()` y `rowMeans()`. 
+En el conjunto de datos hay varios años por temporada. Obtenga la
+temperatura promedio de todos los años para cada una de las estaciones.
+Llame a esa nueva variable "temp_promedio". Utilice las funciones `group_by()` y `summarise()`. 
 ```{r mutate, exercise=TRUE}
-temporadas %>% 
+estaciones %>% 
   
 ```
 
 ```{r mutate-hint-1}
-"rowMeans(cbind(invierno, otono, primavera, verano))"
+"group_by(temporada)"
 ```
+
+```{r mutate-hint-2}
+"summarise(temp_promedio = )"
+```
+
 
 ```{r mutate-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(temporadas %>% 
-  mutate(temp_promedio = rowMeans(cbind(invierno, otono, primavera, verano))))), "Excelente!")
+  pass_if(~ identical(unlist(.result), unlist(estaciones %>% 
+  group_by(temporada) %>% 
+  summarize(temp_promedio = mean(temperatura))
+)), "Excelente!")
 )
 ```
 
 
-### Ordene de forma descendiente las temporadas segun la temperatura 
+### Ordene de forma descendiente las temporadas según la temperatura 
 
-En el set de datos *alargado* podemos ver las estaciones en una columna y su respectiva temperatura para cada año. Ahora obtenga un tibble (estructrura de un set de datos en el `tidyverse`) donde las temporadas estén ordenadas según la temperatura reportada, de forma descendiente.
+Ordene las observaciones en *estaciones* de manera que las temporadas estén ordenadas según la temperatura reportada de mayor a menor, es decir, en forma descendiente.
 
 ```{r arrange, exercise=TRUE}
-alargado %>% 
+estaciones %>% 
   group_by() %>% 
 ```
 
@@ -114,15 +104,16 @@ alargado %>%
 "group_by(temporada)"
 ```
 
-```{r mutate-hint-2}
+```{r arrange-hint-2}
 "arrange(desc())"
 ```
 
 ```{r arrange-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(alargado %>% 
+  pass_if(~ identical(unlist(.result), unlist(estaciones %>% 
   group_by(temporada) %>% 
-  arrange(desc(temperatura)))), "Bien hecho!")
+  arrange(desc(temperatura))
+  )), "Bien hecho!")
 )
 ```
 
