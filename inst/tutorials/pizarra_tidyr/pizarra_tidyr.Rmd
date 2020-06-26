@@ -15,6 +15,8 @@ knitr::opts_chunk$set(echo = FALSE)
 library(readr)
 library(dplyr)
 library(tidyr)
+library(gradethis)
+tutorial_options(exercise.checker = gradethis::grade_learnr)
 
 gap_ancho <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder_wide.csv')
 
@@ -29,7 +31,7 @@ gap_largo <- gather(gap_ancho,
 
 ## Datos: **gap_ancho**
 
-Este set de datos contiene informacion sobre distintos paises, como caracteristicas demograficas o económicas. Se conforma de 38 variables y 142 observaciones. Como podrán ver, la base está un poco desordenada y parece tener mucho espacio para mejoras. 
+Este set de datos contiene información sobre distintos países, como características demográficas y económicas. Se conforma de 38 variables y 142 observaciones. Como podrán ver, la base está un poco desordenada y parece tener mucho espacio para mejoras. 
 ```{r}
 glimpse(gap_ancho)
 ```
@@ -44,16 +46,16 @@ Nota: algunas variables comparten la primera palabra de su nombre con otras, por
 | `country` | Nombre del país |
 | `gdpPercap_` | PIB per cápita del país para el año indicado | 
 | `lifeExp_` | Esperanza de vida del país para el año indicado |
-| `pop_` | Población del país para le año indicado |
+| `pop_` | Población del país para el año indicado |
 
 
 ## Ejercicios 
 
 ### Acomode el connjunto de datos de utlizando `gather()`
 
-El set de datos *gap_ancho* no está ordenado, es más ancho de lo que debería. Utilizando la función `gather` convierta en *gap_ancho* en un set de datos más ordenado. Como consejo, quite las columnas continent y country del gather para que el resultado sea una base de datos útil )la tercera pista muestra como hacer esto). 
+El set de datos *gap_ancho* no está ordenado, es más ancho de lo que debería. Utilizando la función `pivot_longer` convierta *gap_ancho* en un set de datos más ordenado.
 ```{r gather, exercise = TRUE}
-gather(gap_ancho,  )
+pivot_longer(gap_ancho,  )
 ```
 
 ```{r gather-hint-1}
@@ -78,11 +80,11 @@ grade_result(
 ```
 
 
-### Vuelva al conjunto de datos original usando `spread()`
+### Vuelva al conjunto de datos original usando `pivot_wider`
 
-Anteriormente acomodamos el conjunto de datos original utilizando `gather()`, este set de datos quedó guardado como **gap_largo**. Ahora utilice spread para volver al formato original de los datos. 
+Anteriormente acomodamos el conjunto de datos original utilizando `pivot_longer()`, este set de datos quedó guardado como **gap_largo**. Ahora utilice `pivot_wider()`  para volver al formato original de los datos. 
 ```{r spread, exercise = TRUE}
-spread(gap_largo, )
+pivot_wider(gap_largo, )
 ```
 
 ```{r spread-hint-1}
