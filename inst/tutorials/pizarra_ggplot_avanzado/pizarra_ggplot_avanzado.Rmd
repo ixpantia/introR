@@ -1,0 +1,230 @@
+---
+title: "ixpantia sesion_7: ggplot avanzado"
+subtitle: "Ejercicios pizarra"
+output: learnr::tutorial
+runtime: shiny_prerendered
+description: >
+  Ejercicios de pizarra que se realizan durante la sesión para aprender sobre
+  visualización de datos avanzado con ggplot2.
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(plotly)
+library(hflights)
+library(janitor)
+library(lubridate)
+library(visdat)
+
+data <- hflights %>% 
+  clean_names()
+data <- data %>% 
+  unite(year, month, dayof_month, col = "fecha", sep = "-") %>% 
+  mutate(fecha = ymd(fecha))
+
+mayores_atrasos <- data %>%
+  group_by(dest) %>% 
+  summarise(
+    promedio = mean(arr_delay, na.rm = TRUE)
+  ) %>% 
+  arrange(desc(promedio)) %>% 
+  slice(1:10) %>% 
+  select(dest) %>% 
+  pull()
+
+destinos_atrasos <- data %>% 
+  filter(dest %in% mayores_atrasos)
+
+sfo <- data %>% 
+  filter(dest ==  "SFO")
+
+vuelos_cancelados <- data %>% 
+  group_by(unique_carrier) %>% 
+  summarise(
+    total = sum(cancelled, na.rm = TRUE)
+  ) %>% 
+  arrange(desc(total)) %>% 
+  slice(1:5) %>% 
+  select(unique_carrier) %>% 
+  pull()
+
+vuelos_cancelados <- data %>% 
+  filter(unique_carrier %in% vuelos_cancelados) 
+
+vuelos_por_aerolinea <- vuelos_cancelados %>% 
+  mutate(mes = month(fecha)) %>% 
+  group_by(unique_carrier, mes) %>% 
+  tally()
+
+vuelos_cancelados_mes <- vuelos_cancelados %>% 
+  mutate(mes = month(fecha))
+
+aerolineas_vuelos <- left_join(vuelos_cancelados_mes, vuelos_por_aerolinea, 
+                               by = c("unique_carrier", "mes"))
+
+cancelaciones_por_aerolinea <- vuelos_cancelados %>% 
+                                                mutate(mes = month(fecha)) %>% 
+                                                group_by(unique_carrier, mes) %>% 
+                                                summarise(total_cancelaciones = sum(cancelled)
+  )
+
+aerolineas_vuelos <- left_join(aerolineas_vuelos, cancelaciones_por_aerolinea,
+                               by = c("unique_carrier", "mes"))
+
+aerolineas_vuelos <- aerolineas_vuelos %>% 
+                                                mutate(cancelaciones_proporcional = total_cancelaciones / n) 
+```
+
+## Datos: **hfligths** -> **data**
+
+### `data`
+
+Los datos de la sesión provienen del set de datos **hflights**, el cual coniene los vuelos que salieron de los aeropuertos de Houston, Estados Unidos (IAH y HOU) en el 2011. Usaremos **data** para los ejercicios ya que a este se le hicieron unos pequeños cambios que facilitan el uso de los datos. **data** tiene 19 variables y 227496 observaciones. 
+
+```{r}
+glimpse(data)
+```
+
+Descripción de las variables:
+
+| Variable   | Descripción           |
+|:----------:|:---------------------:|
+| `fecha`     | Fecha en la que se dió el vuelo |
+| `day_of_week`  | Día de la semana en el que ocurrió el vuelo |
+| `dep_time` | Hora de salida |
+| `arr_time` | Hora de llegada |
+| `unique_carrier` | Abreviación de la aerolínea |
+| `flight_num` | Número de vuelo |
+| `tail_num` | Número de la cola del avión |
+| `actual_elapsed_time` | Tiempo transcurrido en minutos |
+| `air_time` | Tiempo de vuelo en minutos |
+| `arr_delay` | Retraso de llegada en minutos  |
+| `dep_delay` | Retraso de selida en minutos |
+| `origin` | Lugar de donde salió el vuelo | 
+| `dest` | Destino del vuelo |
+| `distance` | Distancia del vuelo en millas |
+| `taxi_in` | Tiempo desde que el avión aterriza hasta que llega a su ala  |
+| `taxi_out` | Tiempo que dura el avión es despegar desde que empieza a impulsarse  |
+| `cancelled` | Indicador de si el vuelo fue cancelado o no |
+| `cancellation_code` | Razón de cancelación: A = aerolínea, B = clima, C = sistema, D = seguridad |
+| `diverted` | Indicador de si el vuelo fue desviado o no |
+
+
+## Ejercicios
+
+
+Queremos responder las preguntas: 
+
+### ¿Qué puede estar pasando en el gráfico? ¿Qué patrón se ve a través de los meses?
+
+Para responder esto, vamos a dividir el proceso en pasos:
+
+
+#### 1. Saque cantidad de vuelos cancelados por aerolinea 
+
+Cree un nueo set de datos que , partiendo de **vuelos_cancelados**, tenga una nueva variable llamada `mes` que represente el mes dentro de `fecha` y luego agrupe por aerolinea (`unique_carrier`) y por `mes`. Por último debe "contar" los vuelos que resultan usando `tally()`.
+```{r vpa, exercise = TRUE}
+vuelos_por_aerolinea <- vuelos_cancelados %>% 
+ 
+```
+
+```{r vpa-solution}
+vuelos_por_aerolinea <- vuelos_cancelados %>% 
+  mutate(mes = month(fecha)) %>% 
+  group_by(unique_carrier, mes) %>% 
+  tally()
+```
+
+#### 2. Agregue la columna `mes` a **vuelos_cancelados** en un nuevo set de datos
+
+Cree un nuevo conjunto de datos que le agregue la columna `mes` creada en el ejercicio anterior a **vuelos_cancelados**
+```{r vcm, exercise = TRUE}
+vuelos_cancelados_mes <- vuelos_cancelados %>% 
+  
+```
+
+```{r vcm-solution}
+vuelos_cancelados_mes <- vuelos_cancelados %>% 
+  mutate(mes = month(fecha))
+```
+
+
+
+#### 3. Una los dos conjuntos de datos anteriores 
+
+Anteriormente creamos dos sets de datos: **vuelos_por_aerolinea** y **vuelos_cancelados_mes**. Ahora unalos para obtener un conjunto de datos con el mes y la cantidad de vuelos cancelados por aerolínea. 
+
+```{r av, exercise = TRUE}
+aerolineas_vuelos <- 
+```
+
+```{r av-solution}
+aerolineas_vuelos <- left_join(vuelos_cancelados_mes, vuelos_por_aerolinea, 
+                               by = c("unique_carrier", "mes"))
+```
+
+
+#### 4. Saque cantidad de cancelaciones por aerolinea
+
+Partiendo de **vuelos cancelados**, cree u nuevo conjunto de datos donde hayan 3 columnas: la aerolínea (`unique_carrier`), `mes`, y el total de cancelaciones (`total_cancelaciones`).
+
+```{r cancelaciones, exercise = TRUE}
+cancelaciones_por_aerolinea <- vuelos_cancelados %>% 
+
+```
+
+```{r cancelaciones-solution}
+cancelaciones_por_aerolinea <- vuelos_cancelados %>% 
+                                                mutate(mes = month(fecha)) %>% 
+                                                group_by(unique_carrier, mes) %>% 
+                                                summarise(total_cancelaciones = sum(cancelled))
+
+```
+
+#### 5. Una **aerolineas_vuelos** y **cancelaciones_por_aerolinea**
+
+Anteriormente creamos dos sets de datos: **aerolineas_vuelos** y **cancelaciones_por_aerolinea**. Ahora unalos para obtener un conjunto de datos con lo que tenia **aerolineas_vuelos** más el total de cancelaciones por aerolinea. Llamelo **aerolineas_vuelos** nuevamente. 
+
+```{r av2, exercise = TRUE}
+aerolineas_vuelos <- 
+```
+
+```{r av2-solution}
+aerolineas_vuelos <- left_join(aerolineas_vuelos, cancelaciones_por_aerolinea,
+                               by = c("unique_carrier", "mes"))
+```
+
+#### 6. A **aerolineas_vuelos** agreguele una columna con la proporción que representa cada total de cancelaciones 
+
+Hemos estado trabajando en el set de datos **aerolineas_vuelos** pero aun falta aguegarle una columna que sea la proporcion del total de cancelaciones para cada aerolinea. Llame a esta nueva variable `cancelaciones_proporcional`.
+
+```{r av3, exercise = TRUE}
+aerolineas_vuelos <- aerolineas_vuelos %>% 
+
+```
+
+```{r av3-solution}
+aerolineas_vuelos <- aerolineas_vuelos %>% 
+  mutate(cancelaciones_proporcional = total_cancelaciones / n)
+```
+
+#### 7. Grafique la proporción de cancelaciones para cada mes por aerolínea
+
+Usando el set de datos **aerolineas_vuelos** cree un gráfico donde el eje y sea `cancelaciones_proporcional` y el eje x `mes` y que además permite diferenciar por aerolínea (`unique_carrier`). Puede hacer `as.factor(mes)` para que sea visualmente más placentero el gráfico. 
+
+```{r graf, exercise = TRUE}
+ggplot(aerolineas_vuelos)
+```
+
+```{r graf-solution}
+ggplot(aerolineas_vuelos, aes(x = as.factor(mes), y = cancelaciones_proporcional, 
+                                     group = unique_carrier,
+                                     fill = unique_carrier)) +
+  geom_bar(stat = "summary", fun.y = "mean", position = "dodge") 
+```
+
