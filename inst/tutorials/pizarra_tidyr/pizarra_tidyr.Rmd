@@ -31,7 +31,7 @@ gap_largo <- gather(gap_ancho,
 
 ## Datos: **gap_ancho**
 
-Este set de datos contiene información sobre distintos países, como características demográficas y económicas. Se conforma de 38 variables y 142 observaciones. Como podrán ver, la base está un poco desordenada y parece tener mucho espacio para mejoras. 
+Este conjunto de datos contiene información sobre distintos países, como características demográficas y económicas. Se conforma de 38 variables y 142 observaciones. Como podrán ver, la base está un poco desordenada y parece tener mucho espacio para mejoras. 
 ```{r}
 glimpse(gap_ancho)
 ```
@@ -51,15 +51,15 @@ Nota: algunas variables comparten la primera palabra de su nombre con otras, por
 
 ## Ejercicios 
 
-### Acomode el connjunto de datos de utlizando `gather()`
+### Ordene el conjunto de datos de utilizando `pivot_longer()`
 
-El set de datos *gap_ancho* no está ordenado, es más ancho de lo que debería. Utilizando la función `pivot_longer` convierta *gap_ancho* en un set de datos con una nueva columna *obstype_year* con los nombres de las variables y *obs_values* con sus valores 
+El conjunto de datos *gap_ancho* no está ordenado, es más ancho de lo que debería. Utilizando la función `pivot_longer` convierta *gap_ancho* en un conjunto de datos con una nueva columna *obstype_year* con los nombres de las variables y *obs_values* con sus valores 
 ```{r gather, exercise = TRUE}
 pivot_longer(gap_ancho,  )
 ```
 
 ```{r gather-hint-1}
- names_to =  "obstype_year"
+names_to =  "obstype_year"
 ```
 
 ```{r gather-hint-2}
@@ -73,14 +73,14 @@ grade_result(
                       unlist(pivot_longer(gap_ancho,cols= gdpPercap_1952:pop_2007, 
                       names_to =  "obstype_year",
                       values_to = "obs_values")))
-                      , "Buenísimo!")
+                      , "¡Buenísimo!")
         )
 ```
 
 
 ### Vuelva al conjunto de datos original usando `pivot_wider`
 
-Anteriormente acomodamos el conjunto de datos original utilizando `pivot_longer()`, este set de datos quedó guardado como **gap_largo**. Ahora utilice `pivot_wider()`  para volver al formato original de los datos. 
+Anteriormente acomodamos el conjunto de datos original utilizando `pivot_longer()`, este conjunto de datos quedó guardado como **gap_largo**. Ahora utilice `pivot_wider()`  para volver al formato original de los datos. 
 ```{r spread, exercise = TRUE}
 pivot_wider(gap_largo, )
 ```
@@ -102,14 +102,14 @@ cols= gdpPercap_1952:pop_2007
 grade_result(
   pass_if(~ identical(unlist(.result), unlist(pivot_wider(gap_largo,  
                        names_from = obstype_year, 
-                       values_from = obs_values))), "Excelente!")
+                       values_from = obs_values))), "¡Excelente!")
 )
 ```
 
 
 ### Separe la columna `obstype_type` en dos columnas: `obstype` y `year`
 
-En el set de datos de *gap_largo*  hay una columna llamada `obstype_year` que contiene la característica demográfica o económica y el año de registro de la misma. Utilizando la función `separate()` para separar esta columna en dos nuevas: `obstype` y `year`. 
+En el conjunto de datos de *gap_largo*  hay una columna llamada `obstype_year` que contiene la característica demográfica o económica y el año de registro de la misma. Utilice la función `separate()` para separar esta columna en dos nuevas: `obstype` y `year`. Recuerde observar el símbolo que hay como patrón para separar cada uno de los valores
 ```{r separate, exercise = TRUE}
 separate(data = gap_largo, )
 ```
@@ -127,7 +127,7 @@ grade_result(
   pass_if(~ identical(unlist(.result), unlist(separate(data = gap_largo,
                      col = obstype_year, 
                      into = c('obstype', 'year'),
-                     sep = '_'))), "Bien hecho!")
+                     sep = '_'))), "¡Bien hecho!")
 )
 ```
 
