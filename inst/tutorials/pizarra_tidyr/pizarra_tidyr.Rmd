@@ -53,30 +53,28 @@ Nota: algunas variables comparten la primera palabra de su nombre con otras, por
 
 ### Acomode el connjunto de datos de utlizando `gather()`
 
-El set de datos *gap_ancho* no está ordenado, es más ancho de lo que debería. Utilizando la función `pivot_longer` convierta *gap_ancho* en un set de datos más ordenado.
+El set de datos *gap_ancho* no está ordenado, es más ancho de lo que debería. Utilizando la función `pivot_longer` convierta *gap_ancho* en un set de datos con una nueva columna *obstype_year* con los nombres de las variables y *obs_values* con sus valores 
 ```{r gather, exercise = TRUE}
 pivot_longer(gap_ancho,  )
 ```
 
 ```{r gather-hint-1}
-"key = obstype_year"
+ names_to =  "obstype_year"
 ```
 
 ```{r gather-hint-2}
-"value = obs_values"
+values_to = "obs_values"
 ```
 
-```{r gather-hint-3}
-"-continent, -country"
-```
 
 ```{r gather-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(gather(gap_ancho, 
-                    key = obstype_year,
-                    value = obs_values,
-                    -continent, -country))), "Buenísimo!")
-)
+  pass_if(~ identical(unlist(.result), 
+                      unlist(pivot_longer(gap_ancho,cols= gdpPercap_1952:pop_2007, 
+                      names_to =  "obstype_year",
+                      values_to = "obs_values")))
+                      , "Buenísimo!")
+        )
 ```
 
 
@@ -88,25 +86,30 @@ pivot_wider(gap_largo, )
 ```
 
 ```{r spread-hint-1}
-"key = obstype_year"
+cols= gdpPercap_1952:pop_2007
 ```
 
+
 ```{r spread-hint-2}
-"value = obs_values"
+"names_from = obstype_year"
+```
+
+```{r spread-hint-3}
+"values_from = obs_values"
 ```
 
 ```{r spread-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(spread(gap_largo,  
-                       key = obstype_year, 
-                       value = obs_values))), "Excelente!")
+  pass_if(~ identical(unlist(.result), unlist(pivot_wider(gap_largo,  
+                       names_from = obstype_year, 
+                       values_from = obs_values))), "Excelente!")
 )
 ```
 
 
-### Separe la columna `obstype_type` en dos columnas: `obsetype` y `year`
+### Separe la columna `obstype_type` en dos columnas: `obstype` y `year`
 
-En el set de datos de *gap_largo*  hay una columna llamada `obsetype_year` que contiene la característica demográfica o económica y el año de registro de la misma. Utilizando la función `separate()` para separar esta columna en dos nuevas: `obsetype` y `year`. 
+En el set de datos de *gap_largo*  hay una columna llamada `obstype_year` que contiene la característica demográfica o económica y el año de registro de la misma. Utilizando la función `separate()` para separar esta columna en dos nuevas: `obstype` y `year`. 
 ```{r separate, exercise = TRUE}
 separate(data = gap_largo, )
 ```
