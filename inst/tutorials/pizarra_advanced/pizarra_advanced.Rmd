@@ -1,5 +1,5 @@
 ---
-title: "ixpantia: Ejercicios sesión R avanzado"
+title: "ixpantia sesion_5: Ejercicios sesión R avanzado"
 output: learnr::tutorial
 runtime: shiny_prerendered
 description: >

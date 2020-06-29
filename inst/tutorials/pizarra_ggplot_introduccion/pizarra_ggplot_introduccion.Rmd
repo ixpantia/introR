@@ -1,0 +1,135 @@
+---
+title: "ixpantia sesion_7: Introduccion a ggplot"
+subtitle: "Ejercicios pizarra"
+output: learnr::tutorial
+runtime: shiny_prerendered
+description: >
+  Ejercicios de pizarra que se realizan durante la sesión para aprender sobre
+  introducción a visualización de datos con ggplot2.
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+library(dplyr)
+library(ggplot2)
+library(readxl)
+library(readr)
+library(janitor)
+library(lubridate)
+
+temp = tempfile(fileext = ".xlsx")
+dataURL <- "https://storage.googleapis.com/datos_cursos/SICOP_2.xlsx"
+download.file(dataURL, destfile=temp, mode='wb')
+SICOP_2 <- readxl::read_excel(temp)
+
+SICOP <- SICOP_2[1:1000,] %>% 
+  mutate(Fecha_Hora = dmy_hms(Fecha_notificacion)) %>% 
+  tidyr::separate(Fecha_Hora, c("fecha", "hora"), sep = " ") %>% 
+  mutate(fecha = as.Date(fecha)) %>% 
+  mutate(mes_dia = format(fecha, '%m-%d')) %>% 
+  janitor::clean_names() 
+
+```
+
+## Datos: **SICOP**
+
+El conjunto de datos que se usaran en la sesion e llama **SICOP** y contiene informacion de compras publicas en Costa Rica en el 2019. Tiene 1000 observaciones y 21 variables.
+```{r}
+glimpse(SICOP)
+```
+
+Descripción de las columnas:
+
+| Variable   | Descripción           |
+|:----------:|:---------------------:|
+| `no`         | Número de compra |
+| `fecha_notificacion`  | Fecha y hora en la que se publica la posible compra |
+| `descripcion`  | Descripcion de la compra realizada |
+| `numero_procedimiento`  | Identificador del procedimiento |
+| `institucion` | Institución pública que realizó la compra |
+| `numero_contrato` | Identificador del contrato |
+| `adjudicatario` | Proveedor del producto |
+| `cedula_adjudicatario` | Cédla jurídica o física del proveedor |
+| `moneda` | Moneda en la que se hizo la compra |
+| `monto` | Monto cancelado por la compra |
+| `modificaciones` | Indica si se hicieron modificaciones a la compra original |
+| `vigencia_contrato` | Meses de vigencia del contrato |
+| `clasificacion_objeto` | Clasificacion del producto comprado |
+| `tipo_modalidad` | Tipo de la modalidad de la compra |
+| `tipo_procedimiento` | Tipo de |procedimiento de la compra |
+| `firma_contrato` | Fecba en la que se firmó el contrato de la compra |
+| `moneda_monto_estimado` | Moneda en la que está el monto estimado de la compra |
+| `monto_estimado` | Monto estimado de la compra |
+| `fecha` | Fecha en la que se realiza la compra |
+| `hora` | Hora a la que se realiza la compra |
+| `mes_dia` | Mes y dia donde se realiza la compra |
+
+
+## Ejercicios 
+
+### 1. ¿Cuál es la diferencia entre `geom_point()` y `geom_jitter()`?
+
+Dos de los `geom` que hemos visto son `geom_point()` y `geom_jitter()`, ambos parecen hacer gráficos de puntos, sin embargo, hay algo que los hace completamente diferentes. Viendo el siguiente gráfico, cuál diría que es esta diferencia?
+```{r check, exercise = TRUE}
+check <- ggplot(data = SICOP, 
+                aes(x = tipo_procedimiento, y = fecha)) +
+  coord_flip()
+
+check + geom_point()
+
+check + geom_jitter()
+```
+
+```{r check2, echo=FALSE}
+question("¿Cuál es la diferencia entre `geom_point()` y `geom_jitter()`?",
+  answer("geom_jitter hace columnas no puntos"),
+  answer("geom_jitter agrega un poco de variacion aleatoria entre los puntos para evitar la sobreposicion", correct = TRUE),
+  answer("geom_point es más ordenado ya que hace un espaciamiento uniforme entre los puntos"),
+  answer("geom_point se ve mejor"),
+  incorrect = "Incorrecto.")
+```
+
+### 2. ¿Cómo podemos hacer para que el abline nos aparezca con los puntos?
+
+Haga un gráfico de puntos donde en el eje x esté la variable `mes_dia` y en el eje y: `monto` y luego agreguele un abline. 
+
+```{r abline, exercise = TRUE}
+ggplot(data = SICOP)
+```
+
+```{r abline-solution}
+ggplot(data = SICOP, aes(x = mes_dia, y = monto)) +
+                        geom_point() +
+                        geom_abline()
+```
+
+
+### 3. Cambie el argumento position por fill y por stack en el gráfico de barras
+
+Hemos trabajado con `geom_bar()` anteriormente para hacer gráficos de barras. Ahora haga un gráfico de barras con `clasificacion_objeto` en el eje x y `tipo_modalidad` en el `fill` y en `position` primero utilice "fill" y luego haga otro con position = "stack" para ver la diferencia entre ambos. 
+
+#### fill
+```{r fill, exercise = TRUE}
+ggplot(SICOP)
+
+```
+
+```{r fill-solution}
+ggplot(SICOP,aes(x = clasificacion_objeto, fill = tipo_modalidad)) +
+                        geom_bar(position = "fill")
+```
+
+
+#### stack
+```{r stack, exercise = TRUE}
+ggplot(SICOP)
+
+```
+
+```{r stack-solution}
+ggplot(SICOP,aes(x = clasificacion_objeto, fill = tipo_modalidad)) +
+                        geom_bar(position = "stack")
+```
+
+

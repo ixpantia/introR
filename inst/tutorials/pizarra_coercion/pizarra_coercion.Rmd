@@ -1,5 +1,5 @@
 ---
-title: "ixpantia: coerciones"
+title: "ixpantia sesion_5: coerciones"
 output: learnr::tutorial
 runtime: shiny_prerendered
 description: >
