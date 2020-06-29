@@ -25,15 +25,15 @@ tutorial_options(exercise.checker = gradethis::grade_learnr)
 
 ## Datos: **gapminder**
 
-Este set de datos contiene informacion sobre distintos paises, como caracteristicas demográficas o económicas. Incluye 1704 observaciones y 6 variables. 
+Este set de datos contiene información sobre distintos países, como características demográficas o económicas. Incluye 1704 observaciones y 6 variables. 
 
 ```{r}
 glimpse(gapminder)
 ```
 
-Descripcion de las variables:
+Descripción de las variables:
 
-| Variable | Descripcion |
+| Variable | Descripción |
 |:--------:|:-----------:|
 | `country` | Nombre del país | 
 | `year` | Año de registro |
@@ -46,7 +46,7 @@ Descripcion de las variables:
 
 ### Utilice `filter()` para mostrar solo los datos de Oceania
 
-En el set de datos **gapminder** hay una columna que se llama `continent` que muestra el continente al que pertenece cada país, en total tiene 5 categorias ya que agrupa toda Ámerica en una sola categoría. Filtre a base de forma que solo muestre los datos correspondientes a Oceania usando `filter()`.
+En el set de datos **gapminder** hay una columna que se llama `continent` que muestra el continente al que pertenece cada país, en total tiene 5 categorías ya que agrupa toda América en una sola categoría. Filtre de forma que solo muestre los datos correspondientes a Oceanía usando `filter()`.
 ```{r filter, exercise = TRUE}
 gapminder %>% 
   filter()
@@ -66,7 +66,7 @@ grade_result(
 
 ### Utilice `select()` para seleccionar las columnas `country`, `year` y `pop`
 
-El set de datos **gapminder** tiene en total 6 columnas o variables, sin embargo, en ocasiones interesa utilizar una base con solamente algunas variables. Po rjemeplo podría interesa analizar solamente la población de los distintos país a los años registrados. Para lograr esto, seleccione las columnas `country`, `year` y `pop` utilizando `select()`.
+El set de datos **gapminder** tiene en total 6 columnas o variables. Sin embargo, en ocasiones interesa utilizar una base con solamente algunas variables. Por ejemplo podría interesar analizar solamente la población de los distintos país en los años registrados. Para lograr esto, seleccione las columnas `country`, `year` y `pop` utilizando `select()`.
 ```{r select, exercise = TRUE}
 gapminder %>% 
   select()
@@ -82,7 +82,7 @@ grade_result(
 
 ### Calcule el promedio del PIB per cápita de cada país usando `summarise()` y `group_by()` 
 
-EL set de datos **gapminder** tiene una variable que se llama `gdpPercap` que describe el PIB per cápita de los países para distintos años. Ahora utilice esa variable y agrupe por pais (`country`) y use `summarise()` para cacular el promedio de gdpPercap por pais  y llamelo `promedio_pib`.
+EL set de datos **gapminder** tiene una variable que se llama `gdpPercap` que describe el PIB per cápita de los países para distintos años. Ahora utilice esa variable y agrupe por país (`country`) y use `summarise()` para calcular el promedio de gdpPercap por país  y llámelo `promedio_pib`.
 ```{r summarise, exercise = TRUE}
 gapminder %>% 
   group_by() %>% 
@@ -105,7 +105,7 @@ grade_result(
 
 ### Ordene de menor a mayor los países según `promedio_pib` utilizando `arrange()`
 
-Anteriormente creamos una variable llamada `promedio_pib` que representa el promedio del PIB per cápita de cada país, esto quedó guradado en un nuevo set de datos llamadp **promedio**. Ahora, partiendo de este nuevo conjunto de datos, ordene de de menor a mayor segun el PIB promedio de cada país. 
+Anteriormente creamos una variable llamada `promedio_pib` que representa el promedio del PIB per cápita de cada país. Esto quedó guardado en un nuevo set de datos llamado **promedio**. Ahora, partiendo de este nuevo conjunto de datos, ordene de de menor a mayor según el PIB promedio de cada país. 
 ```{r arrange, exercise = TRUE}
 promedio %>% 
   arrange()
@@ -123,9 +123,9 @@ grade_result(
 ```
 
 
-### Cree una nueva columna que sea la multiplicacion de la poblacion por el PIB per capita usando `mutate()`
+### Cree una nueva columna que sea la multiplicación de la población por el PIB per cápita usando `mutate()`
 
-En el set de datos **gapminder** hay una columna que se llama `pop` que se refiere a la población del país y otra que se llama `gdpPercap` que se refiere al PIB per cápita de los países en cada año. Ahora cree una nueva variable llamada `multiplicacion` que sea la multiplicacion de estas dos columnas mencionadas. 
+En el set de datos **gapminder** hay una columna que se llama `pop` que se refiere a la población del país y otra que se llama `gdpPercap` que se refiere al PIB per cápita de los países en cada año. Ahora, cree una nueva variable llamada `multiplicacion` que sea la multiplicación de las dos columnas mencionadas. 
 ```{r mutate, exercise = TRUE}
 gapminder %>% 
   mutate(multiplicacion = )
