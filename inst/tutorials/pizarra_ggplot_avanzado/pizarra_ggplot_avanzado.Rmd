@@ -104,7 +104,7 @@ Descripción de las variables:
 | `actual_elapsed_time` | Tiempo transcurrido en minutos |
 | `air_time` | Tiempo de vuelo en minutos |
 | `arr_delay` | Retraso de llegada en minutos  |
-| `dep_delay` | Retraso de selida en minutos |
+| `dep_delay` | Retraso de salida en minutos |
 | `origin` | Lugar de donde salió el vuelo | 
 | `dest` | Destino del vuelo |
 | `distance` | Distancia del vuelo en millas |
@@ -120,14 +120,14 @@ Descripción de las variables:
 
 Queremos responder las preguntas: 
 
-### ¿Qué puede estar pasando en el gráfico? ¿Qué patrón se ve a través de los meses?
+### ¿Cómo es la distribución del número de vuelos cancelados por aerolínea? ¿Qué patrón se ve a través de los meses?
 
 Para responder esto, vamos a dividir el proceso en pasos:
 
 
 #### 1. Saque cantidad de vuelos cancelados por aerolinea 
 
-Cree un nueo set de datos que , partiendo de **vuelos_cancelados**, tenga una nueva variable llamada `mes` que represente el mes dentro de `fecha` y luego agrupe por aerolinea (`unique_carrier`) y por `mes`. Por último debe "contar" los vuelos que resultan usando `tally()`.
+Cree un nuevo set de datos que , partiendo de **vuelos_cancelados**, tenga una nueva variable llamada `mes` que represente el mes dentro de `fecha` y luego agrupe por aerolínea (`unique_carrier`) y por `mes`. Por último debe "contar" los vuelos que resultan usando `tally()`.
 ```{r vpa, exercise = TRUE}
 vuelos_por_aerolinea <- vuelos_cancelados %>% 
  
@@ -188,7 +188,7 @@ cancelaciones_por_aerolinea <- vuelos_cancelados %>%
 
 #### 5. Una **aerolineas_vuelos** y **cancelaciones_por_aerolinea**
 
-Anteriormente creamos dos sets de datos: **aerolineas_vuelos** y **cancelaciones_por_aerolinea**. Ahora unalos para obtener un conjunto de datos con lo que tenia **aerolineas_vuelos** más el total de cancelaciones por aerolinea. Llamelo **aerolineas_vuelos** nuevamente. 
+Anteriormente creamos dos sets de datos: **aerolineas_vuelos** y **cancelaciones_por_aerolinea**. Ahora unalos para obtener un conjunto de datos con lo que tenia **aerolineas_vuelos** más el total de cancelaciones por aerolínea. Llámelo **aerolineas_vuelos** nuevamente. 
 
 ```{r av2, exercise = TRUE}
 aerolineas_vuelos <- 
@@ -201,7 +201,7 @@ aerolineas_vuelos <- left_join(aerolineas_vuelos, cancelaciones_por_aerolinea,
 
 #### 6. A **aerolineas_vuelos** agreguele una columna con la proporción que representa cada total de cancelaciones 
 
-Hemos estado trabajando en el set de datos **aerolineas_vuelos** pero aun falta aguegarle una columna que sea la proporcion del total de cancelaciones para cada aerolinea. Llame a esta nueva variable `cancelaciones_proporcional`.
+Hemos estado trabajando en el set de datos **aerolineas_vuelos** pero aun falta agregarle una columna que sea la proporción del total de cancelaciones para cada aerolínea. Llame a esta nueva variable `cancelaciones_proporcional`.
 
 ```{r av3, exercise = TRUE}
 aerolineas_vuelos <- aerolineas_vuelos %>% 

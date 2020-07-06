@@ -94,7 +94,7 @@ geom_smooth(se = FALSE)
 
 ### 3. Cree un gráfico de barras donde se muestre la velocidad promedio del viento por día para cada ciudad 
 
-Al variable `avg_wind` en **Weather** muestra le velocidad promedio del viento para cada fecha (`date`), además, tenemos en `cuty` el nombre de la ciudad donde se recolectó cada dato. Utilizando estas tres variables cree un gráfico que muestra la velocidad promedio del viento a traves del tiempo, en cada ciudad. Las etiquetas de la fecha deben mostrar solo el mes y el año y para que se vea más ordenado, "corte" la fecha cada 5 meses.
+Al variable `avg_wind` en **Weather** muestra le velocidad promedio del viento para cada fecha (`date`), además, tenemos en `city` el nombre de la ciudad donde se recolectó cada dato. Utilizando estas tres variables cree un gráfico que muestra la velocidad promedio del viento a través del tiempo, en cada ciudad. Las etiquetas de la fecha deben mostrar solo el mes y el año y para que se vea más ordenado, "corte" la fecha cada 5 meses.
 
 ```{r bar, exercise = TRUE}
 ggplot(Weather)
