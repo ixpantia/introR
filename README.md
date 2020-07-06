@@ -46,9 +46,21 @@ siguiente comando para hacerlo:
 remotes::install_github("rstudio-education/gradethis")
 ```
 
+Necesitamos además tener las versiones más recientes de **R ( \>=4.0.2)
+y RStudio (\>=1.3.959)** para tener la funcionalidad de los tutoriales
+dinámicos.
+
 ## Usando los tutoriales dinámicos
+
+Una vez instalado el paquete podemos encontrar que tenemos una pestaña
+en la interfaz de RStudio llamada **Tutorial**. Al abrirla vamos a
+encontrar distintos tutoriales, entre estos los de ixpantia. Deberíamos
+de poder visualizar algo similar a la imagen siguiente:
+
+![](man/figures/tutoriales_ixpantia.png)
 
 ## Ayuda o sugerencias
 
 Si tenés dudas sobre el uso del paquete o sugerencias para mejorarlo,
-por favor escríbanos a <hola@ixpantia.com>
+por favor escríbanos a *<hola@ixpantia.com>* o bien podés abrirnos un
+[tiquete](https://github.com/ixpantia/ixpantia.introR/issues)
