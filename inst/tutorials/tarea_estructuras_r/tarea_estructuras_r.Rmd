@@ -8,27 +8,29 @@ description: >
   tarea tiene como objetivo repasar los conceptos de la sesión estructuras en R.
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include = FALSE, warning = FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
 library(dplyr)
 library(readr)
 library(gradethis)
+library(janitor)
 tutorial_options(exercise.checker = gradethis::grade_learnr)
 
 url <- "https://storage.googleapis.com/datos_cursos/peajes%20(1).xlsx"
 temp = tempfile(fileext = ".xlsx")
 download.file(url, destfile=temp, mode='wb')
-peajes <- readxl::read_xlsx(temp)
-
-peajes$`2016` <- as.numeric(peajes$`2016`)
-peajes$`2017` <- as.numeric(peajes$`2017`)
+peajes <- readxl::read_xlsx(temp) %>% 
+  clean_names() %>% 
+  mutate(x2016 = as.numeric(x2016),
+         x2017 = as.numeric(x2017))
 ```
 
 
 ## Datos: **peajes** 
 
-Este set de datos contiene información sobre peajes de Costa Rica. Tiene 36 observaciones y 6 variables. 
+Este conjunto de datos contiene información sobre peajes de Costa Rica. Consiste
+de 36 observaciones y 6 variables. 
 ```{r}
 glimpse(peajes)
 ```
@@ -38,17 +40,16 @@ Descripción de las variables:
 
 | Variable   | Descripción                      |
 |:----------:|:--------------------------------:|
-| `Estacion_de_conteo` | nombre del peaje  |
-| `Numero_de_ruta`     | número de ruta en la que se encuentra el peaje |
-| `Ubicacion_de_la_estacion`   | dirección donde se encuentra el peaje    |
-| `2015`        | cantidad de dinero recolectado en el 2015 en ese peaje      |
-| `2016`      | cantidad de dinero recolectado en el 2016 en ese peaje |
-| `2017`      | cantidad de dinero recolectado en el 2017 en ese peaje | 
-
+| `estacion_de_conteo` | Nombre de la estación de peaje  |
+| `numero_de_ruta`     | Número de ruta en la que se encuentra el peaje |
+| `ubicacion_de_la_estacion`   | Dirección donde se encuentra el peaje  |
+| `x2015`     | Cantidad de dinero recolectado en el 2015 en ese peaje  |
+| `x2016`      | Cantidad de dinero recolectado en el 2016 en ese peaje |
+| `x2017`      | Cantidad de dinero recolectado en el 2017 en ese peaje | 
 
 ## General
 
-### ¿Qué tipo de objeto es "peajes"?
+### ¿Qué tipo de objeto es "peajes"? (Responda la pregunta a través de código)
 ```{r peajes, exercise=TRUE, exercise.eval = FALSE}
 
 ```
@@ -63,10 +64,9 @@ grade_result(
 )
 ```
 
-
-### ¿Cuáles son los requisitos de la tidy data?
+### ¿Cuáles son los requisitos de datos ordenados (tidy data)?
 ```{r sub2, echo=FALSE}
-question("¿Cuáles son los requisitos de la tidy data? (Marque todas las necesarias)",
+question("¿Cuáles son los requisitos de tidy data? (Marque todas las opciones correctas)",
   answer("Cada Variable debe de tener su propia columna", correct = TRUE),
   answer("Cada Observación debe de tener su propia fila", correct = TRUE),
   answer("Cada Variable debe tener su propia fila "),
@@ -76,13 +76,17 @@ question("¿Cuáles son los requisitos de la tidy data? (Marque todas las necesa
   incorrect = "Incorrecto.")
 ```
 
-
 ## Acceder valores
+
+En este segmento vamos a trabajar con **base R**. Las respuestas serán evaluadas
+con código que sea con base R en lugar del tidyverse. Si querés practicar con
+el tidyverse recomendamos usar los tutoriales dinámicos de ixpantia a partir del
+tercero.
 
 ### Obtenga la quinta fila del data frame "peajes"
 
 En el set de datos peajes hay 36 filas, ahora obtenga la información de la quinta fila solamente.
-```{r quinta, exercise=TRUE, exercise.eval = FALSE}
+```{r quinta, exercise = TRUE, exercise.eval = FALSE}
 
 ```
 
@@ -92,16 +96,15 @@ En el set de datos peajes hay 36 filas, ahora obtenga la información de la quin
 
 ```{r quinta-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(peajes[5,])), "Buenísimo!")
+  pass_if(~ identical(unlist(.result), unlist(peajes[5,])), "¡Buenísimo!")
 )
 ```
 
-
 ### Obtenga los peajes de la ruta 27
 
-En el set de datos hay una columna llamada `Numero_de_ruta` que indica el número de carretera en la que se encuentra cada peaje. Ahora obtenga la información referente a aquellos peajes que se encuentran en la ruta 27. 
+En el set de datos hay una columna llamada `numero_de_ruta` que indica el número de carretera en la que se encuentra cada peaje. Obtenga la información referente a aquellos peajes que se encuentran únicamente en la ruta 27. 
 
-```{r 27, exercise=TRUE, exercise.eval = FALSE}
+```{r 27, exercise = TRUE, exercise.eval = FALSE}
 
 ```
 
@@ -111,16 +114,14 @@ En el set de datos hay una columna llamada `Numero_de_ruta` que indica el númer
 
 ```{r 27-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(subset(peajes, Numero_de_ruta == "27"))), "Excelente!")
+  pass_if(~ identical(unlist(.result), unlist(subset(peajes, numero_de_ruta == "27"))), "¡Excelente!")
 )
 ```
 
-
-
 ### Obtenga los peajes que en el 2015 recogieron más de 16000
 
-En el set de datos hay una columna que se llama `2015` que contiene los montos recolectados por cada peaje en este año. Ahora obtenga aquellos peajes que en este año recolectaron más de 16000
-```{r 16mil, exercise=TRUE, exercise.eval = FALSE}
+En el set de datos hay una columna que se llama `x2015` que contiene los montos recolectados por cada peaje en este año. Ahora obtenga aquellos peajes que en este año recolectaron más de 16000
+```{r 16mil, exercise = TRUE, exercise.eval = FALSE}
 
 ```
 
@@ -129,40 +130,21 @@ En el set de datos hay una columna que se llama `2015` que contiene los montos r
 ```
 
 ```{r 16mil-hint-2}
-`2015`
+`x2015`
 ```
 
 
 ```{r 16mil-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(subset(peajes, `2015` >= 16000))), "Excelente!")
+  pass_if(~ identical(unlist(.result), unlist(subset(peajes, `x2015` >= 16000))), "¡Excelente!")
 )
 ```
 
+### Subset con peajes que en el 2016 recogieran más de 14000 y menos de 38000 
 
-### Cambie el nombre `"Ubicacion_de_la_estacion"` a `"ubicacion"`
+En el conjunto de datos hay una columna que se llama `x2016` que contiene los montos recolectados por cada peaje en este año. Obtenga aquellos peajes que ese año recolectaron más de 14000 pero menos de 38000.
 
-En el set de datos hay una columna que se llama `Ubicacion_de_la_estacion`, cambiele el nombre por `"ubicacion"` para que sea más fácil de manejar. 
-```{r col_names, exercise=TRUE, exercise.eval = FALSE}
-
-```
-
-```{r col_names-hint-1}
-"colnames()"
-```
-
-```{r col_names-check, message = FALSE, warning = FALSE}
-grade_result(
-  pass_if(~ identical(unlist(.result), unlist(colnames(peajes)[3] <- "ubicacion")), "Excelente!")
-)
-```
-
-
-### Subset con peajes que en el 2016 recogieran mas de 14000 y menos de 38000 
-
-En el set de datos hay una columna que se llama `2016`que contiene los montos recolectados por cada peaje en este año. Ahora obtenga aquellos peajes que en este año recolectaron más de 14000 pero menos de 38000.
-
-```{r sub, exercise=TRUE, exercise.eval = FALSE}
+```{r sub, exercise = TRUE, exercise.eval = FALSE}
 
 ```
 
@@ -172,16 +154,18 @@ En el set de datos hay una columna que se llama `2016`que contiene los montos re
 
 ```{r sub-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(subset(peajes, peajes$`2016` >  14000 & peajes$`2016` < 38000))), "Muy bien!")
+  pass_if(~ identical(unlist(.result), unlist(subset(peajes, peajes$`x2016` >  14000 & peajes$`x2016` < 38000))), "¡Muy bien!")
 )
 ```
 
-
 ### Generar nueva columna que contenga la suma de lo recogido en los 3 años
 
-En el set de datos hay tres columnas referentes a los montos recolectados en los peajes en tres años distintos, estas son `2015`, `2016` y `2017`. Ahora cree una nueva columna que contenga la suma de los montos recolectados n estos años para cada peaje. LLame a esa columna suma
+En el set de datos hay tres columnas referentes a los montos recolectados en los
+peajes en tres años distintos, estas son `x2015`, `x2016` y `x2017`. Ahora cree
+una nueva columna que contenga la suma de los montos recolectados en estos años 
+para cada peaje. LLame a esa columna `suma`
 
-```{r suma, exercise=TRUE, exercise.eval = FALSE}
+```{r suma, exercise = TRUE, exercise.eval = FALSE}
 
 ```
 
@@ -191,7 +175,7 @@ peajes$suma
 
 ```{r suma-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(peajes$suma <- peajes$`2015` + peajes$`2016` + peajes$`2017`)), "Bien hecho!")
+  pass_if(~ identical(unlist(.result), unlist(peajes$suma <- peajes$`x2015` + peajes$`x2016` + peajes$`x2017`)), "¡Bien hecho!")
 )
 ```
 
