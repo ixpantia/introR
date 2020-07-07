@@ -34,7 +34,7 @@ SICOP <- SICOP_2[1:1000,] %>%
 
 ## Datos: **SICOP**
 
-El conjunto de datos que se usaran en la sesion e llama **SICOP** y contiene informacion de compras publicas en Costa Rica en el 2019. Tiene 1000 observaciones y 21 variables.
+El conjunto de datos que se usaran en la sesión se llama **SICOP** y contiene información de compras públicas en Costa Rica en el 2019. Tiene 1000 observaciones y 21 variables.
 ```{r}
 glimpse(SICOP)
 ```
@@ -45,25 +45,25 @@ Descripción de las columnas:
 |:----------:|:---------------------:|
 | `no`         | Número de compra |
 | `fecha_notificacion`  | Fecha y hora en la que se publica la posible compra |
-| `descripcion`  | Descripcion de la compra realizada |
+| `descripcion`  | Descripción de la compra realizada |
 | `numero_procedimiento`  | Identificador del procedimiento |
 | `institucion` | Institución pública que realizó la compra |
 | `numero_contrato` | Identificador del contrato |
 | `adjudicatario` | Proveedor del producto |
-| `cedula_adjudicatario` | Cédla jurídica o física del proveedor |
+| `cedula_adjudicatario` | Cédula jurídica o física del proveedor |
 | `moneda` | Moneda en la que se hizo la compra |
 | `monto` | Monto cancelado por la compra |
 | `modificaciones` | Indica si se hicieron modificaciones a la compra original |
 | `vigencia_contrato` | Meses de vigencia del contrato |
-| `clasificacion_objeto` | Clasificacion del producto comprado |
+| `clasificacion_objeto` | Clasificación del producto comprado |
 | `tipo_modalidad` | Tipo de la modalidad de la compra |
-| `tipo_procedimiento` | Tipo de |procedimiento de la compra |
-| `firma_contrato` | Fecba en la que se firmó el contrato de la compra |
+| `tipo_procedimiento` | Tipo de procedimiento de la compra |
+| `firma_contrato` | Fecha en la que se firmó el contrato de la compra |
 | `moneda_monto_estimado` | Moneda en la que está el monto estimado de la compra |
 | `monto_estimado` | Monto estimado de la compra |
 | `fecha` | Fecha en la que se realiza la compra |
 | `hora` | Hora a la que se realiza la compra |
-| `mes_dia` | Mes y dia donde se realiza la compra |
+| `mes_dia` | Mes y día donde se realiza la compra |
 
 
 ## Ejercicios 
@@ -92,7 +92,7 @@ question("¿Cuál es la diferencia entre `geom_point()` y `geom_jitter()`?",
 
 ### 2. ¿Cómo podemos hacer para que el abline nos aparezca con los puntos?
 
-Haga un gráfico de puntos donde en el eje x esté la variable `mes_dia` y en el eje y: `monto` y luego agreguele un abline. 
+Haga un gráfico de puntos donde en el eje x esté la variable `mes_dia` y en el eje y: `monto` y luego agréguele un abline. 
 
 ```{r abline, exercise = TRUE}
 ggplot(data = SICOP)
