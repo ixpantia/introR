@@ -48,7 +48,7 @@ prueba <- propiedades %>%
 
 ## Datos: **propiedades**
 
-Este set de datos incluye consta de información sobre propiedades en venta en Argentina en el 2017 de la compañía **Properati**. 
+Este conjunto de datos incluye de información sobre propiedades en venta en Argentina en el 2017 de la compañía **Properati**. 
 ```{r}
 glimpse(propiedades)
 ```
@@ -80,12 +80,13 @@ Descripción de las variables
 | `title` | Título de la propiedad |
 | `image_thumbnail` | Foto de la propiedad |
 
-
 ## Preguntas
 
-### Cuanta superficie tienen casa y apartamentes en promedio?
+### ¿Cuánta superficie tienen casa y apartamentos en promedio?
 
-En el set de datos **propiedades** hay una variable llamada `urface_total_in_m2` que describe la superficie total de la propiedad y otra variable, `property_type` que contiene describe el tipo de propiedad: apartamento, casa, PH o tienda. Ahora descubra cuanta superficie tienen casa y apartamento en promedio.
+En el conjunto de datos **propiedades** hay una variable llamada
+`urface_total_in_m2` que describe la superficie total de la propiedad. Una
+segunda variable, `property_type`, contiene el tipo de propiedad. Ahora descubra cuánta superficie tienen las propiedades de tipo casa y tipo apartamento en promedio.
 ```{r prom, exercise = TRUE}
 propiedades %>% 
   
@@ -97,9 +98,13 @@ propiedades %>%
 
 ```{r prom-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(propiedades %>%
-                                                group_by(property_type) %>%
-                                                summarize(promedio = mean(surface_total_in_m2, na.rm = TRUE)))), "Excelente!")
+  pass_if(~ identical(unlist(.result), 
+                      unlist(propiedades %>%
+                               group_by(property_type) %>%
+                               summarize(
+                                 promedio = mean(surface_total_in_m2,
+                                                 na.rm = TRUE)))),
+          "¡Excelente!")
 )
 ```
 
