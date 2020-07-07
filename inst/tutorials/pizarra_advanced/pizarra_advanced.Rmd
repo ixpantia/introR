@@ -8,8 +8,9 @@ description: >
 ---
 
 ```{r setup, include=FALSE}
-library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
+
+library(learnr)
 library(readr)
 library(dplyr)
 library(GGally)
@@ -19,10 +20,10 @@ library(wordcloud)
 library(tidyr)
 
 url <- "https://storage.googleapis.com/datos_cursos/properati-AR-2017-08-01-properties-sell-six_months.csv"
-temp = tempfile(fileext = ".csv")
-download.file(url, destfile=temp, mode='wb')
-sell_0217 <- read.csv(temp)
 
+temp = tempfile(fileext = ".csv")
+download.file(url, destfile = temp, mode = 'wb')
+sell_0217 <- read.csv(temp)
 
 propiedades <- sell_0217 %>% 
   select(-c(operation, country_name, geonames_id, lat.lon))
@@ -33,11 +34,9 @@ sell_0217 %>%
 
 rm(sell_0217)
 
-
 prueba <- propiedades %>%
   select(property_type, currency, price, surface_total_in_m2, surface_covered_in_m2) %>%
   sample_frac(0.1)
-
 
 prueba <- propiedades %>%
   sample_frac(0.01) %>%
