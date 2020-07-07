@@ -10,31 +10,37 @@ description: >
 ---
 
 ```{r setup, include=FALSE}
-library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
+
+library(tibble)
+library(learnr)
 library(dplyr)
 library(gradethis)
 library(tidyr)
-temporadas <- data.frame(anio = c(2015, 2016, 2017, 2018),
-           invierno = c(40, 38, 42, 44),
-           primavera = c(46, 40, 50, 48),
-           verano = c(70, 62, 81, 76),
-           otono = c(52, 46, 54, 56))
-estaciones <- gather(data = temporadas, key = temporada, value = temperatura, -anio)
+
+temporadas <- tibble(anio = c(2015, 2016, 2017, 2018),
+                         invierno = c(40, 38, 42, 44),
+                         primavera = c(46, 40, 50, 48),
+                         verano = c(70, 62, 81, 76),
+                         otono = c(52, 46, 54, 56))
+
+estaciones <- pivot_longer(data = temporadas,
+                           cols = -anio,
+                           names_to = "temporada",
+                           values_to = "temperatura")
 
 tutorial_options(exercise.checker = gradethis::grade_learnr)
 ```
 
-
 ## Datos: **estaciones**
 
-Este set de datos contiene la temperatura promedio por estación.
-Contiene 16 observaciones y 3 variables. 
+Este conjunto de datos contiene la temperatura promedio por estación. En total
+hay 16 observaciones y 3 variables. 
 ```{r}
 glimpse(estaciones)
 ```
 
-Descripcion de las variables:
+Descripción de las variables:
 
 | Variable | Descripcion |
 |:--------:|:-----------:|
@@ -46,8 +52,10 @@ Descripcion de las variables:
 
 ### Muestre las observaciones que se refieran a "invierno" solamente 
 
-En la base *estaciones* hay una columna llamada `temporada`, una variable categórica con 4 categorías: invierno, verano, primavera y otoño. Obtenga la información referente a "invierno" solamente.
-```{r filter, exercise=TRUE}
+En el conjunto de datos *estaciones* hay una columna llamada `temporada` la cual
+es una variable categórica con 4 categorías: invierno, verano, primavera y otoño.
+Obtenga la información referente a "invierno" solamente.
+```{r filter, exercise = TRUE}
 estaciones %>% 
 ```
 
@@ -57,10 +65,12 @@ estaciones %>%
 
 ```{r filter-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(estaciones %>% filter(temporada == "invierno"))), "Buenísimo!")
+  pass_if(~ identical(unlist(.result), 
+                      unlist(estaciones %>% 
+                               filter(temporada == "invierno"))),
+          "¡Buenísimo!")
 )
 ```
-
 
 ### Obtenga la temperatura promedio por temporada
 
@@ -80,22 +90,23 @@ estaciones %>%
 "summarise(temp_promedio = )"
 ```
 
-
 ```{r mutate-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(estaciones %>% 
-  group_by(temporada) %>% 
-  summarize(temp_promedio = mean(temperatura))
-)), "Excelente!")
+  pass_if(~ identical(unlist(.result),
+                      unlist(estaciones %>%
+                               group_by(temporada) %>% 
+                               summarize(temp_promedio = mean(temperatura))
+                             )),
+          "¡Excelente!")
 )
 ```
 
-
 ### Ordene de forma descendiente las temporadas según la temperatura 
 
-Ordene las observaciones en *estaciones* de manera que las temporadas estén ordenadas según la temperatura reportada de mayor a menor, es decir, en forma descendiente.
+Ordene las observaciones en *estaciones* de manera que las temporadas estén 
+ordenadas según la temperatura reportada de mayor a menor, es decir, en forma descendiente.
 
-```{r arrange, exercise=TRUE}
+```{r arrange, exercise = TRUE}
 estaciones %>% 
   group_by() %>% 
 ```
@@ -110,10 +121,12 @@ estaciones %>%
 
 ```{r arrange-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(estaciones %>% 
-  group_by(temporada) %>% 
-  arrange(desc(temperatura))
-  )), "Bien hecho!")
+  pass_if(~ identical(unlist(.result),
+                      unlist(estaciones %>%
+                               group_by(temporada) %>%
+                               arrange(desc(temperatura))
+                             )),
+          "¡Bien hecho!")
 )
 ```
 
