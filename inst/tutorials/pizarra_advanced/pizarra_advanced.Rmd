@@ -85,7 +85,7 @@ Descripción de las variables
 ### ¿Cuánta superficie tienen casa y apartamentos en promedio?
 
 En el conjunto de datos **propiedades** hay una variable llamada
-`urface_total_in_m2` que describe la superficie total de la propiedad. Una
+`surface_total_in_m2` que describe la superficie total de la propiedad. Una
 segunda variable, `property_type`, contiene el tipo de propiedad. Ahora descubra cuánta superficie tienen las propiedades de tipo casa y tipo apartamento en promedio.
 ```{r prom, exercise = TRUE}
 propiedades %>% 

@@ -142,7 +142,7 @@ grade_result(
 
 ## Datos: **LifeCycleSavings** 
 
-Este conjunto de datos contiene información sobre el cilo de vida de los ahorros
+Este conjunto de datos contiene información sobre el ciclo de vida de los ahorros
 de 50 paises. Está inspirado en la hipótesis de Franco Modigliani sobre la razón
 de ahorro: que puede ser explicada por el ingreso disponible per capita, el
 porcentaje de cambio en el ingreso disponible per capita, el porcentaje de
