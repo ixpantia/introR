@@ -57,7 +57,11 @@ en la interfaz de RStudio llamada **Tutorial**. Al abrirla vamos a
 encontrar distintos tutoriales, entre estos los de ixpantia. Deberíamos
 de poder visualizar algo similar a la imagen siguiente:
 
-![](man/figures/tutoriales_ixpantia.png)
+![](man/figures/tutoriales_ixpantia.png) Notarás que hay en algunos
+casos dos tutoriales por sesión. Ambos son ejercicios que se pueden
+completar de manera autoguiada, sin embargo, si estás en un curso de
+ixpantia la distinción va a estar en su uso durante la sesión o para
+realizar como tareas.
 
 ## Ayuda o sugerencias
 
