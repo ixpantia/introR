@@ -9,8 +9,9 @@ description: >
 ---
 
 ```{r setup, include=FALSE}
-library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
+
+library(learnr)
 library(tidyverse)
 library(hflights)
 library(lubridate)
@@ -91,8 +92,6 @@ dob2 <- format(as.Date(marriage$dob, "%m/%d/%y"), "19%y-%m-%d")
 grade_code("¡Muy bien!")
 ```
 
-
-
 ### Cree una nueva columna que represente el tiempo que ha pasado desde la ceremonia 
 
 En el ejercicio anterior pasamos las columnas que se referían a fechas en el formato correcto, esto quedó guardado en un nuevo set de datos llamado **marriage2**. Ahora cree una nueva variable que represente el tiempo que ha pasado desde la ceremonia (`ceremonydate2`) y llamela `duracion`
@@ -107,11 +106,12 @@ marriage2 %>%
 
 ```{r today-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(marriage2 %>% 
-                                                mutate(duracion = today() - ceremonydate))), "Excelente!")
+  pass_if(~ identical(unlist(.result), 
+                      unlist(marriage2 %>% 
+                               mutate(duracion = today() - ceremonydate))),
+          "¡Excelente!")
 )
 ```
-
 
 ### Represente gráficamente la distribucion de la nueva variable `duracion`
 
@@ -133,11 +133,10 @@ ggplot(marriage_duracion, aes()) +
 ```{r graf1-check}
 grade_result(
   pass_if(~ identical(.result, ggplot(marriage_duracion, aes(as.numeric(duracion))) +
-                                geom_histogram(aes(fill = ..count..))), "Excelente!")
+                                geom_histogram(aes(fill = ..count..))),
+          "¡Excelente!")
 )
 ```
-
-
 
 ### Represente gráficamente la distribucion de  `duracion` según la persona que inscribió el matrimonio
 
@@ -154,8 +153,10 @@ ggplot(marriage_duracion, aes()) +
 
 ```{r graf2-check}
 grade_result(
-  pass_if(~ identical(.result, ggplot(marriage_duracion, aes(as.numeric(duracion), fill = person)) +
-                                                geom_histogram()), "Excelente!")
+  pass_if(~ identical(.result, ggplot(marriage_duracion, aes(as.numeric(duracion),
+                                                             fill = person)) +
+                        geom_histogram()),
+          "¡Excelente!")
 )
 ```
 
