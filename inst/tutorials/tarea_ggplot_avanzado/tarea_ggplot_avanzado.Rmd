@@ -10,6 +10,8 @@ description: >
 ---
 
 ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
 library(learnr)
 library(gradethis)
 library(ggplot2)
@@ -18,18 +20,17 @@ library(tidyr)
 library(mosaicData)
 library(visdat)
 library(plotly)
-knitr::opts_chunk$set(echo = FALSE)
 
-Weather$month <- as.factor(Weather$month)
+weather <- Weather %>% 
+  mutate(month = as.factor(month))
 ```
 
+## Datos: **weather**
 
-## Datos: **Weather**
-
-En esta tarea vamos a estar utilizando el set de datos **Weather** del paquete `mosaicData`. Es un conjunto de datos que contiene información sobre el clima en 5 ciudades del mundo para los años: 2016 y 2017. Contiene 3655 observaciones y 25 variables.  
+En esta tarea vamos a estar utilizando el set de datos **weather** del paquete `mosaicData`. Es un conjunto de datos que contiene información sobre el clima en 5 ciudades del mundo para los años: 2016 y 2017. Contiene 3655 observaciones y 25 variables.  
 
 ```{r}
-glimpse(Weather)
+glimpse(weather)
 ```
 
 Descripción de las variables 
@@ -67,42 +68,40 @@ Descripción de las variables
 
 ### 1. Visualice los NAs
 
-Es importante conocer dónde y cuántos valores faltantes tenemos en un set de datos. Visualice los NAs de la base de datos **Weather**
+Es importante conocer dónde y cuántos valores faltantes tenemos en un set de datos. Visualice los NAs de la base de datos **weather**
 ```{r vis, exercise = TRUE}
 
 ```
 
 ```{r vis-solution}
-vis_dat(Weather)
+vis_dat(weather)
 ```
-
-
 
 ### 2. Cree un gráfico con una linea de regresión suavizada para la temperatura promedio a través de los años 
  
-En **Weather** tenemos una variable llamada `avg_temp` que contiene la temperatura promedio presentada cada día y además el día se ve reflejado en la variable `date`. Cree un gráfico que muestre una línea de regresión suavizada para la temperatura promedio a través del tiempo contemplado. Excluya el error estándar
+En **weather** tenemos una variable llamada `avg_temp` que contiene la temperatura promedio presentada cada día y además el día se ve reflejado en la variable `date`. Cree un gráfico que muestre una línea de regresión suavizada para la temperatura promedio a través del tiempo contemplado. Excluya el error estándar
 ```{r smooth, exercise = TRUE}
-ggplot(Weather)
+ggplot(weather)
 
 ```
 
 ```{r smooth-solution}
-ggplot(Weather, aes(x = date, y = avg_temp)) +
+ggplot(weather, aes(x = date, y = avg_temp)) +
 geom_smooth(se = FALSE)
 ```
 
 
 ### 3. Cree un gráfico de barras donde se muestre la velocidad promedio del viento por día para cada ciudad 
 
-Al variable `avg_wind` en **Weather** muestra le velocidad promedio del viento para cada fecha (`date`), además, tenemos en `city` el nombre de la ciudad donde se recolectó cada dato. Utilizando estas tres variables cree un gráfico que muestra la velocidad promedio del viento a través del tiempo, en cada ciudad. Las etiquetas de la fecha deben mostrar solo el mes y el año y para que se vea más ordenado, "corte" la fecha cada 5 meses.
+Al variable `avg_wind` en **weather** muestra le velocidad promedio del viento para cada fecha (`date`), además, tenemos en `city` el nombre de la ciudad donde se recolectó cada dato. Utilizando estas tres variables cree un gráfico que muestra la velocidad promedio del viento a través del tiempo, en cada ciudad. Las etiquetas de la fecha deben mostrar solo el mes y el año y para que se vea más ordenado, "corte" la fecha cada 5 meses.
 
 ```{r bar, exercise = TRUE}
-ggplot(Weather)
+ggplot(weather)
 
 ```
 
 ```{r bar-solution}
-ggplot(data = Weather, aes(x = date, y = avg_wind, 
+ggplot(data = weather, aes(x = date, y = avg_wind, 
                                      group = city,
                                      fill = city)) +
   geom_bar(stat = "identity") +
@@ -114,15 +113,15 @@ ggplot(data = Weather, aes(x = date, y = avg_wind,
 
 ### 4. Cree un gráfico de barras apiladas que muestre la humedad promedio en cada mes según los eventos meteotológicos que se presentaron
 
-En **Weather** tenemos una variable llamada `avg_humidity` con el promedio de humedad que se presentó cada día. Además, la variable `month` con solamente el mes de la fecha registrada y `events` con el o los eventos meteorológicos que se presentaron cada día. Ustede debe crear un gráfico que muestre la relación entre los eventos meteorológicos y la humedad promedio en cada mes. Coloque las etiquetas correspondientes a cada eje, título, leyenda y subtítulo. Además, utilice un "tema" (`theme_`) y controle el tamaño de las letras.
+En **weather** tenemos una variable llamada `avg_humidity` con el promedio de humedad que se presentó cada día. Además, la variable `month` con solamente el mes de la fecha registrada y `events` con el o los eventos meteorológicos que se presentaron cada día. Ustede debe crear un gráfico que muestre la relación entre los eventos meteorológicos y la humedad promedio en cada mes. Coloque las etiquetas correspondientes a cada eje, título, leyenda y subtítulo. Además, utilice un "tema" (`theme_`) y controle el tamaño de las letras.
 
 ```{r bar2, exercise = TRUE}
-ggplot(Weather)
+ggplot(weather)
 
 ```
 
 ```{r bar2-solution}
-ggplot(Weather, aes(x = month, y = avg_humidity, 
+ggplot(weather, aes(x = month, y = avg_humidity, 
                                    group = events,
                                    fill = events)) +
 geom_bar(stat = "summary") +
@@ -140,12 +139,12 @@ theme_bw(base_size = 16)
 Grafique la distribución de densidad de la variable `avg_hg` (presión del nivel del mar promedio en pulgadas de mercurio) con la densidad como tal y un histograma. Debe asegurarse de que el histograma tenga una transparencia suficiente para que el histograma se logre diferenciar. Además, agregue una línea que muestre la media general de la vriable, haga que esta línea esté compuesta de puntos, sea de tamaño 2 y azul. 
 
 ```{r hist, exercise = TRUE}
-ggplot(Weather)
+ggplot(weather)
 
 ```
 
 ```{r hist-solution}
-ggplot(Weather, aes(x = avg_hg)) +
+ggplot(weather, aes(x = avg_hg)) +
   geom_histogram(aes(y = ..density..), colour = "black", fill = "white") +
   geom_density(alpha = .7, fill = "lightblue") +
   geom_vline(aes(xintercept = mean(avg_hg)),
@@ -158,12 +157,12 @@ ggplot(Weather, aes(x = avg_hg)) +
 Utilizando ggplotly, convierta un gráfico normal a un gráfico interactivo que muestre el comportamiento del punto de rocío promedio (`avg_dewpt`) a través del tiempo (`date`) para cada ciudad (`city`). En el eje x, para la fecha, utilice el formato: año, día, mes y "corte" la fecha cada dos meses, además, haga que las etiquetas de este eje tengan un ángulo de 90. Recuerde poner las etiquetas correspondientes.
 
 ```{r plotly, exercise = TRUE}
-interactivo <- ggplot(Weather)
+interactivo <- ggplot(weather)
                       
 ```
 
 ```{r plotly-solution}
-interactivo <- ggplot(Weather, aes(x = date, y = avg_dewpt, 
+interactivo <- ggplot(weather, aes(x = date, y = avg_dewpt, 
                              color = city)) +
   geom_line() +
   scale_color_viridis_d() +

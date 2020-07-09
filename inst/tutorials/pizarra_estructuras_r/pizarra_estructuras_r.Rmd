@@ -9,11 +9,10 @@ description: >
 ---
 
 ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
 library(learnr)
 library(dplyr)
 library(gradethis)
-
-knitr::opts_chunk$set(echo = FALSE)
 
 tutorial_options(exercise.checker = gradethis::grade_learnr)
 
@@ -21,14 +20,15 @@ regiones <- data.frame(id = c(254, 369, 147, 852),
                 region = c("NORTE", "SUR", "NORTE", "ESTE"),
                 valor = c(2500, 3700, 4200, 1200),
                 tipo = c("A", "A", "C", "B"))
+
 datasets::LifeCycleSavings 
 LifeCycleSavings$paises <- row.names(LifeCycleSavings)
 ```
 
-
 ## Datos: **regiones**
 
-Este es un set de datos donde cada observacion se refiere a una region. Contiene 4 observaciones y 4 variables (columnas).
+Este es un conjunto de datos donde cada observación corresponde a una región. 
+Posee 4 observaciones (filas) y 4 variables (columnas).
 
 ```{r}
 glimpse(regiones)
@@ -47,9 +47,9 @@ Descripción de las columnas:
 
 ### 1. ¿Cómo obtener la 3ra fila de regiones?
 
-El set de datos regiones tiene 4 filas, ahora obtenga los datos que se encuentran en la tercera fila, incluyendo todas las columnas.
+El conjunto de datos regiones tiene 4 filas, ahora obtenga los datos que se encuentran en la tercera fila, incluyendo todas las columnas.
 
-```{r 3era_fila, exercise=TRUE}
+```{r 3era_fila, exercise = TRUE}
 regiones
 ```
 
@@ -65,11 +65,11 @@ regiones[3,]
 grade_code("¡Muy bien!")
 ```
 
-
 ### 2. ¿Cómo obtener la 2da columna de regiones?
 
-El de datos tiene 4 columnas, ahora obtenga la información de la cuarta columna, incluyendo todas las filas. 
-```{r 2da_col, exercise=TRUE, exercise.eval = FALSE}
+El conjunto de datos tiene 4 columnas, ahora obtenga la información de la cuarta
+columna, incluyendo todas las filas. 
+```{r 2da_col, exercise = TRUE, exercise.eval = FALSE}
 regiones
 ```
 
@@ -78,18 +78,20 @@ regiones
 ```
 
 ```{r 2da_col-solution}
-regiones[,2]
+regiones[ ,2]
 ```
 
 ```{r 2da_col-check}
 grade_code("¡Muy bien!")
 ```
 
-
 ### 3. ¿Cómo obtener lo referente a la región NORTE únicamente?
 
-En el set de datos hay una columna llamada `region` que se refiere al punto cardinal al que pertenece la región: NORTE, SUR, ESTE u OESTE. Ahora obtenga la información referente a aquellas regiones que pertenezcan a la region NORTE solamente. 
-```{r NORTE, exercise=TRUE, exercise.eval = FALSE}
+En el conjunto de datos hay una columna llamada `region` que se refiere al punto
+cardinal al que pertenece la región: NORTE, SUR, ESTE u OESTE. Ahora obtenga la
+información referente a aquellas regiones que pertenezcan a la región NORTE
+solamente. 
+```{r NORTE, exercise = TRUE, exercise.eval = FALSE}
 
 ```
 
@@ -99,10 +101,9 @@ En el set de datos hay una columna llamada `region` que se refiere al punto card
 
 ```{r NORTE-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(subset(regiones, region == "NORTE"))), "Muy bien!")
+  pass_if(~ identical(unlist(.result), unlist(subset(regiones, region == "NORTE"))), "¡Muy bien!")
 )
 ```
-
 
 ### 4. ¿Cómo obtener lo referente a aquellas regiones donde los montos son mayores 3000?
 
@@ -122,11 +123,10 @@ grade_result(
 )
 ```
 
-
 ### ¿Cómo obtener lo referente a las regiones que **NO** son de tipo B?
 
 En el set de datos hay una variable llamada `tipo`, que describe si la región es tipo A, B o C. Ahora obtenga la información referente a aquellas regiones que NO son de tipo B, es decir, A o C. 
-```{r difB, exercise=TRUE, exercise.eval = FALSE}
+```{r difB, exercise = TRUE, exercise.eval = FALSE}
 regiones
 ```
 
@@ -136,14 +136,18 @@ regiones
 
 ```{r difB-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(subset(regiones, tipo != "B"))), "Buenísimo!")
+  pass_if(~ identical(unlist(.result), unlist(subset(regiones, tipo != "B"))), "¡Buenísimo!")
 )
 ```
 
-
 ## Datos: **LifeCycleSavings** 
 
-Este set de datos contiene informacion sobre el cilo de vida de los ahorros de 50 paises, inspirado en la hipótesis de Franco Modigliani sobre la razón de ahorro: esta puede ser explicada por el ingreso disponible per capita, el porcentaje de cambio en el ingreso disponible per capita, el porcentaje de población con menos de 15 años y el porcentaje de población con más de 75 años. Los datos fueron recolectados en la década 1960-1970. 
+Este conjunto de datos contiene información sobre el ciclo de vida de los ahorros
+de 50 paises. Está inspirado en la hipótesis de Franco Modigliani sobre la razón
+de ahorro: que puede ser explicada por el ingreso disponible per capita, el
+porcentaje de cambio en el ingreso disponible per capita, el porcentaje de
+población con menos de 15 años y el porcentaje de población con más de 75 años.
+Los datos fueron recolectados en la década 1960-1970. 
 ```{r}
 glimpse(LifeCycleSavings)
 ```
@@ -163,8 +167,7 @@ Descripción de las variables:
 ### 1. Obtener media de variable dpi
 
 En el set de datos hay una variable llamada `dpi`, obtenga la media o el promedio de esta.
-
-```{r med_dpi, exercise=TRUE, exercise.eval = FALSE}
+```{r med_dpi, exercise = TRUE, exercise.eval = FALSE}
 LifeCycleSavings$dpi
 ```
 
@@ -178,10 +181,11 @@ grade_result(
 )
 ```
 
-
 ### 2. ¿Cuál país tiene mayor porcentaje de población menor a 15? 
 
-En el set de datos hay una variable que representa el porcentaje de población que es menor de 15 años, descubra cuál país tiene un mayor porcentaje de esta población. 
+En el conjunto de datos hay una variable que representa el porcentaje de población
+que es menor de 15 años, descubra cuál país tiene un mayor porcentaje de esta
+población. 
 
 ```{r pob15, exercise=TRUE, exercise.eval = FALSE}
 LifeCycleSavings$pop15
@@ -193,15 +197,14 @@ LifeCycleSavings$pop15
 
 ```{r pob15-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(max(LifeCycleSavings$pop15))), "Buenísimo!")
+  pass_if(~ identical(unlist(.result), unlist(max(LifeCycleSavings$pop15))), "¡Buenísimo!")
 )
 ```
-
 
 ### 3. ¿Cuál país tiene menor porcentaje de población mayor a 75? 
 
 En el set de datos hay una variable que representa el porcentaje de población que es mayor de 75 años, descubra cuál país tiene un menor porcentaje de esta población. 
-```{r pob15_2, exercise=TRUE, exercise.eval = FALSE}
+```{r pob15_2, exercise = TRUE, exercise.eval = FALSE}
 
 ```
 
@@ -211,31 +214,11 @@ En el set de datos hay una variable que representa el porcentaje de población q
 
 ```{r pob15_2-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(min(LifeCycleSavings$pop75))), "Muy bien!")
+  pass_if(~ identical(unlist(.result), unlist(min(LifeCycleSavings$pop75))), "¡Muy bien!")
 )
 ```
 
-
-### 4. Hacer que los nombres de las filas se conviertan en una columna 
-
-Las filas están identificadas con el nombre del país, convierta estos nombres en una nueva columna llamada "paises"
-
-```{r row_names, exercise=TRUE, exercise.eval = FALSE}
-
-```
-
-```{r row_names-hint-1}
-"row.names()"
-```
-
-```{r row_names-check}
-grade_result(
-  pass_if(~ identical(unlist(.result), unlist(LifeCycleSavings$paises <- row.names(LifeCycleSavings))), "Buenisimo!")
-)
-```
-
-
-### 5. Cambiar nombre dpi a disposable_income
+### 4. Cambiar nombre dpi a disposable_income
 
 En el set de datos hay una variable que se llama dpi, que representa el ingreso disponible per cápita, ahora cambie el nombre de esta variable a `diposable_income` 
 
@@ -254,7 +237,7 @@ grade_result(
 ```
 
 
-### 6. ¿Por qué no es recomendable hacer subsets por posición?
+### 5. ¿Por qué no es recomendable hacer subsets por posición?
 
 En el mundo de los datos se menciona que no es recomendable hacer subsets por posición, es decir, basándose en la posición de la variable por la que quiero filtrar la base, ¿porqué no se recomienda hacerlo? 
 
@@ -268,7 +251,7 @@ question("¿Por qué no es recomendable hacer subsets por posición?",
 ```
 
 
-### 7. Generar nueva columna que contenga la suma de pop15 y pop75 
+### 6. Generar nueva columna que contenga la suma de pop15 y pop75 
 
 En el set de datos hay una variable llamada `pop15`, el porcentaje de población menor de 15 años y otra denominada `pop75`, el porcentaje de población mayor a 75 años, ahora cree una nueva columna que sume, para cada país, estos dos porcentajes. Llame a esta nueva columna "suma". 
 
@@ -287,7 +270,7 @@ grade_result(
 ```
 
 
-### 8. Subset con países que tengan porcentajes de población menores a 15 años  menor 23% y mayor a 47%
+### 7. Subset con países que tengan porcentajes de población menores a 15 años  menor 23% y mayor a 47%
 
 El set de datos incluye información de 50 países, cada uno con un porcentaje de población menor de 15 años (`pop15`) y un porcentaje de población mayor 75 años (`pop75`). Ahora obtenga un subconjunto donde solo se encuentren los países en los que `pop15` sea menor a 23% o `pop75` mayor a 47%.
 
@@ -306,11 +289,11 @@ grade_result(
 ```
 
 
-### 9. Obtener un subset de los 6 países con mayor porcentaje de población mayor a 75 
+### 8. Obtener un subset de los 6 países con mayor porcentaje de población mayor a 75 
 
 El set de datos contiene información de 50 países, cada uno con un porcentaje de población mayor de 75 años (`pop75`). Ahora obtenga un subconjunto que solo contenga los 6 países con mayor porcentaje de población mayor a 75 años. 
 
-```{r 6pai, exercise=TRUE, exercise.eval = FALSE}
+```{r 6pai, exercise = TRUE, exercise.eval = FALSE}
 
 ```
 
@@ -322,17 +305,11 @@ El set de datos contiene información de 50 países, cada uno con un porcentaje 
 grade_result(
   pass_if(~ identical(unlist(.result), unlist(top_n(LifeCycleSavings, 6 , pop75) %>% 
                                                 arrange(desc(pop75)))),"Bien hecho!"),
-  pass_if(~ identical(unlist(.result),  unlist(LifeCycleSavings[order(LifeCycleSavings$pop75,decreasing = TRUE)[1:6],])),
-                      "Bien hecho!")
+  pass_if(~ identical(unlist(.result), 
+                      unlist(LifeCycleSavings[order(LifeCycleSavings$pop75,
+                                                    decreasing = TRUE)[1:6],])),
+          "¡Bien hecho!")
   )
 ```
-
-
-
-
-
-
-
-
 
 

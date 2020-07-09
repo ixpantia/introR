@@ -8,9 +8,9 @@ description: >
 ---
 
 ```{r setup, include=FALSE}
-library(learnr)
-
 knitr::opts_chunk$set(echo = FALSE)
+
+library(learnr)
 library(dplyr)
 library(purrr)
 library(rlang)
@@ -19,23 +19,23 @@ library(janitor)
 library(lubridate)
 library(readxl)
 
-indice <- read_excel("PJCROD_INDICESALARIAL_V1.xls")
-indice_salarialPJ <- indice %>% 
-  mutate(salario_antes = as.numeric(Salario_Base_Ant), salario_actual = as.numeric(Salario_Base_Act), indice = as.numeric(I_C_S))
+indice_salarial <- read_excel("PJCROD_INDICESALARIAL_V1.xls") %>% 
+  mutate(salario_antes = as.numeric(Salario_Base_Ant),
+         salario_actual = as.numeric(Salario_Base_Act),
+         indice = as.numeric(I_C_S))
 ```
 
 ## Datos de la sesión
 
 ### Indice Salarial del Poder Judicial
 ```{r}
-glimpse(indice_salarialPJ)
+glimpse(indice_salarial)
 ```
-
 
 ## Preguntas
 
 ### Pregunta 1 
-```{r exp, exercise=TRUE, error = TRUE}
+```{r exp, exercise = TRUE, error = TRUE}
 mi_exp_mal <- (indice_salarialPJ$salario_antes * indice_salarialPJ$salario_actual) / indice_salarialPJ$indice
 mi_exp <- quote((indice_salarialPJ$salario_antes * indice_salarialPJ$salario_actual) / indice_salarialPJ$indice) 
 
@@ -51,7 +51,7 @@ qq_show(
 ```
 
 Para crear funciones con gramática tidyverse:
-```{r gramatica, exercise=TRUE}
+```{r gramatica, exercise = TRUE}
 indice_salarialPJ %>%
   group_by(TN_Cod_Clase) %>%
   summarise(
@@ -60,7 +60,7 @@ indice_salarialPJ %>%
 ```
 
 ### Pregunta 2
-```{r promedio, exercise=TRUE}
+```{r promedio, exercise = TRUE}
 calcula_promedio <- function(data, columna) {
   data %>%
     group_by(TN_Cod_Clase) %>% 
@@ -73,7 +73,7 @@ qq_show(calcula_promedio(data = indice_salarialPJ, columna =  "salario_actual"))
 ```
 
 ### Pregunta 3
-```{r promedio2, exercise=TRUE}
+```{r promedio2, exercise = TRUE}
 calcula_promedio <- function(data, columna, grupo) {
   data %>%
     group_by({{grupo}}) %>% 
@@ -84,23 +84,23 @@ calcula_promedio(data = indice_salarialPJ, columna = "salario_actual", grupo = R
 ```
 
 ### Pregunta 4
-```{r clase, exercise=TRUE}
+```{r clase, exercise = TRUE}
 promedio_por_clase <- function(datos_abiertos, clase) {
   
   indice_salarialPJ %>% 
     filter(TC_Des_Clase == {{clase}}) %>% 
     summarise(
       promedio = mean(salario_actual, na.rm = TRUE)
-
     )
 }
 
-promedio_por_clase(datos_abiertos = indice_salarialPJ,  clase = "AUXILIAR  ADMINISTRATIVO")
+promedio_por_clase(datos_abiertos = indice_salarialPJ,
+                   clase = "AUXILIAR  ADMINISTRATIVO")
 ```
 
 ### Pregunta 5
-```{r agrupacion, exercise=TRUE}
-agrupacion_total <- function(datos_abiertos, ...){
+```{r agrupacion, exercise = TRUE}
+agrupacion_total <- function(datos_abiertos, ...) {
   
   agrupacion <- enquos(...)
   
@@ -111,5 +111,6 @@ agrupacion_total <- function(datos_abiertos, ...){
   )
 }
 
-agrupacion_total(datos_abiertos = indice_salarialPJ, ... =  R_E_F_J, TN_Cod_Clase)
+agrupacion_total(datos_abiertos = indice_salarialPJ, 
+                 ... =  R_E_F_J, TN_Cod_Clase)
 ```

@@ -10,11 +10,14 @@ description: >
 ---
 
 ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
 library(learnr)
 library(dplyr)
 library(gradethis)
-knitr::opts_chunk$set(echo = FALSE)
+
 gapminder <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv')
+
 promedio <- gapminder %>%
     group_by(country) %>%
     summarise(promedio_pib = mean(gdpPercap))
@@ -22,10 +25,11 @@ promedio <- gapminder %>%
 tutorial_options(exercise.checker = gradethis::grade_learnr)
 ```
 
-
 ## Datos: **gapminder**
 
-Este set de datos contiene información sobre distintos países, como características demográficas o económicas. Incluye 1704 observaciones y 6 variables. 
+Este conjunto de datos contiene información sobre distintos países tales como
+características demográficas o económicas. Incluye 1704 observaciones y
+6 variables. 
 
 ```{r}
 glimpse(gapminder)
@@ -44,9 +48,11 @@ Descripción de las variables:
 
 ## Ejercicios 
 
-### Utilice `filter()` para mostrar solo los datos de Oceania
+### Utilice `filter()` para filtrar únicamente los datos de Oceania
 
-En el set de datos **gapminder** hay una columna que se llama `continent` que muestra el continente al que pertenece cada país, en total tiene 5 categorías ya que agrupa toda América en una sola categoría. Filtre de forma que solo muestre los datos correspondientes a Oceanía usando `filter()`.
+En el set de datos **gapminder** hay una columna que se llama `continent` 
+que muestra el continente al que pertenece cada país. En total tiene 5 
+categorías. Filtre de forma que sólo muestre los datos correspondientes a Oceanía usando `filter()`.
 ```{r filter, exercise = TRUE}
 gapminder %>% 
   filter()
@@ -58,15 +64,20 @@ gapminder %>%
 
 ```{r filter-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(gapminder %>% 
-                                              filter(continent == 'Oceania'))), "Muy bien!")
+  pass_if(~ identical(unlist(.result), 
+                      unlist(gapminder %>%
+                               filter(continent == 'Oceania'))),
+          "¡Muy bien!")
 )
 ```
 
-
 ### Utilice `select()` para seleccionar las columnas `country`, `year` y `pop`
 
-El set de datos **gapminder** tiene en total 6 columnas o variables. Sin embargo, en ocasiones interesa utilizar una base con solamente algunas variables. Por ejemplo podría interesar analizar solamente la población de los distintos país en los años registrados. Para lograr esto, seleccione las columnas `country`, `year` y `pop` utilizando `select()`.
+El conjunto de datos **gapminder** tiene en total 6 columnas o variables. Sin
+embargo, en ocasiones interesa utilizar una base con solamente algunas variables.
+Por ejemplo podría interesar analizar únicamente la población de los distintos
+países en los años registrados. Para lograr esto, seleccione las columnas 
+`country`, `year` y `pop` utilizando `select()`.
 ```{r select, exercise = TRUE}
 gapminder %>% 
   select()
@@ -74,15 +85,19 @@ gapminder %>%
 
 ```{r select-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(gapminder %>% 
-                                                select(country, year, pop))), "Muy bien!")
+  pass_if(~ identical(unlist(.result),
+                      unlist(gapminder %>% 
+                               select(country, year, pop))),
+          "¡Muy bien!")
 )
 ```
 
-
 ### Calcule el promedio del PIB per cápita de cada país usando `summarise()` y `group_by()` 
 
-EL set de datos **gapminder** tiene una variable que se llama `gdpPercap` que describe el PIB per cápita de los países para distintos años. Ahora utilice esa variable y agrupe por país (`country`) y use `summarise()` para calcular el promedio de gdpPercap por país  y llámelo `promedio_pib`.
+EL conjunto de datos **gapminder** tiene una variable que se llama `gdpPercap`
+que describe el PIB per cápita de los países para distintos años. Ahora utilice
+esta variable agrupando por país (`country`) y use `summarise()` para calcular el promedio de gdpPercap por país. Llame a la nueva variable con los datos del
+promedio `promedio_pib`.
 ```{r summarise, exercise = TRUE}
 gapminder %>% 
   group_by() %>% 
@@ -95,37 +110,46 @@ gapminder %>%
 
 ```{r summarise-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(gapminder %>%
-                                                group_by(country) %>%
-                                                summarise(promedio_pib = mean(gdpPercap)))), "Excelente!")
+  pass_if(~ identical(unlist(.result),
+                      unlist(gapminder %>%
+                      group_by(country) %>%
+                      summarise(promedio_pib = mean(gdpPercap)))),
+          "¡Excelente!")
 )
 ```
 
-
-
 ### Ordene de menor a mayor los países según `promedio_pib` utilizando `arrange()`
 
-Anteriormente creamos una variable llamada `promedio_pib` que representa el promedio del PIB per cápita de cada país. Esto quedó guardado en un nuevo set de datos llamado **promedio**. Ahora, partiendo de este nuevo conjunto de datos, ordene de de menor a mayor según el PIB promedio de cada país. 
+Anteriormente creamos una variable llamada `promedio_pib` que representa el 
+promedio del PIB per cápita de cada país. Esto quedó guardado en un nuevo conjunto
+de datos llamado **promedio**. Ahora, partiendo de este nuevo conjunto de datos, 
+ordene de de menor a mayor según el PIB promedio de cada país. 
 ```{r arrange, exercise = TRUE}
 promedio %>% 
   arrange()
 ```
 
 ```{r arrange-hint-1}
-"El default de arrange() es ordenar de menor a mayor"
+"Por defecto `arrange()` ordena de menor a mayor"
 ```
 
 ```{r arrange-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(promedio %>% 
-                                                arrange(promedio_pib))), "Bien hecho!")
+  pass_if(~ identical(unlist(.result),
+                      unlist(promedio %>% 
+                      arrange(promedio_pib))), 
+          "¡Bien hecho!")
 )
 ```
 
+### Cree una nueva columna que sea la multiplicación de la población por el PIB 
+per cápita usando `mutate()`
 
-### Cree una nueva columna que sea la multiplicación de la población por el PIB per cápita usando `mutate()`
-
-En el set de datos **gapminder** hay una columna que se llama `pop` que se refiere a la población del país y otra que se llama `gdpPercap` que se refiere al PIB per cápita de los países en cada año. Ahora, cree una nueva variable llamada `multiplicacion` que sea la multiplicación de las dos columnas mencionadas. 
+En el conjunto de datos **gapminder** hay una columna que se llama `pop` que se
+refiere a la población del país y otra columna que se llama `gdpPercap`, la cual
+se refiere al PIB per cápita de los países en cada año. Ahora, genere una nueva
+variable llamada `multiplicacion` que contenga el valor resultante de la
+multiplicación de las dos columnas mencionadas. 
 ```{r mutate, exercise = TRUE}
 gapminder %>% 
   mutate(multiplicacion = )
@@ -137,8 +161,10 @@ gapminder %>%
 
 ```{r mutate-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(gapminder %>% 
-                                                mutate(multiplicacion = pop*gdpPercap))), "Buenisimo!")
+  pass_if(~ identical(unlist(.result),
+                      unlist(gapminder %>% 
+                      mutate(multiplicacion = pop*gdpPercap))),
+          "¡Buenisimo!")
 )
 ```
 

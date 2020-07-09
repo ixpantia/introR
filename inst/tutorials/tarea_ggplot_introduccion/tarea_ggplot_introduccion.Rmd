@@ -10,21 +10,21 @@ description: >
 ---
 
 ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
 library(learnr)
 library(gradethis)
 library(ggplot2)
 library(dplyr)
 library(tidyr)
-knitr::opts_chunk$set(echo = FALSE)
+txhousing <- txhousing %>% 
+  mutate(month = as.factor(month))
 
-txhousing$month <- as.factor(txhousing$month)
 cities <- c("Austin", "Dallas", "El Paso", "Houston", "Irving", "San Antonio")
 
 txhousing2 <- txhousing %>% 
   filter(city %in% cities)
-
 ```
-
 
 ## Datos: **txhousing**
 

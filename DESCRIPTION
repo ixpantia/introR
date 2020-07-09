@@ -32,7 +32,7 @@ License: file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends:
-    R (>= 3.6),
+    R (>= 4.0.0),
     learnr
 VignetteBuilder: knitr
 Imports: 

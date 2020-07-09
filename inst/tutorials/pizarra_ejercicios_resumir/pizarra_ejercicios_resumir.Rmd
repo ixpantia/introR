@@ -10,17 +10,19 @@ description: >
 ---
 
 ```{r setup, include=FALSE}
-library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
+
+library(learnr)
 library(dplyr)
 library(tidyr)
 library(lubridate)
 library(readr)
 library(readxl)
+library(tibble)
 library(gradethis)
 tutorial_options(exercise.checker = gradethis::grade_learnr)
 
-directores <- data.frame(   
+directores <- tibble(   
     director =  c("Spielberg",
                   "Scorsese",
                   "Hitchcock",
@@ -32,7 +34,7 @@ directores <- data.frame(
                      "EEUU",
                      "POL"))
 
-peliculas <- data.frame(    
+peliculas <- tibble(    
     director = c("Spielberg",
 		            "Scorsese",
                 "Hitchcock",
@@ -48,7 +50,7 @@ peliculas <- data.frame(
     		        "Reservoir Dogs",
     		        "Chinatown"))
 
-premios <- data.frame(
+premios <- tibble(
   pelicula = c("Catch Me If You Can",
                "Super 8",
                "North by Northwest",
@@ -61,18 +63,16 @@ premios <- data.frame(
              "Tony"))
 ```
 
-
 ## Datos
 
 Para la sesión utilizaremos tres conjuntos de datos distintos:
 
 ### **directores**
 
-Contiene información sobre 5 directores de cine famosos. Consta de 2 variables y 5 observaciones.
+Contiene información sobre 5 directores de cine. Consta de 2 variables y 5 observaciones.
 ```{r}
 glimpse(directores)
 ```
-
 
 Descripción de las columnas:
 
@@ -80,8 +80,6 @@ Descripción de las columnas:
 |:----------:|:--------------------------------:|
 | `director`    | Apellido del director  |
 | `nacionalidad`  |  País de donde proviene |
-
-
 
 ### **peliculas**
 
@@ -96,8 +94,6 @@ Descripción de las columnas:
 |:----------:|:--------------------------------:|
 | `director`    | Apellido del director  |
 | `pelicula`     | Nombre de la película |
-
-
 
 ### **premios**
 
@@ -117,7 +113,7 @@ Descripción de las columnas:
 
 ### Ejercicio A: Una el conjunto de datos **directores** con **peliculas** y cuente cuántas películas tiene cada director
 
-En el set de datos **directores** tenemos información sobre directores de cine famosos y su nacionalidad, mientras que en **peliculas** tenemos información sobre películas conocidas y su director. Ahora una estos dos sets de forma que podamos calcular el número de películas de cada director. 
+En el conjunto de datos **directores** tenemos información sobre directores de cine famosos y su nacionalidad, mientras que en **peliculas** tenemos información sobre películas conocidas y su director. Ahora una estos dos sets de forma que podamos calcular el número de películas de cada director. 
 ```{r A, exercise = TRUE}
 
 ```
@@ -128,9 +124,11 @@ En el set de datos **directores** tenemos información sobre directores de cine 
 
 ```{r A-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(inner_join(directores, peliculas) %>% 
-  group_by(director) %>% 
-  tally())), "Excelente!")
+  pass_if(~ identical(unlist(.result),
+                      unlist(inner_join(directores, peliculas) %>% 
+                               group_by(director) %>%
+                               tally())),
+          "¡Excelente!")
 )
 ```
 
@@ -141,20 +139,22 @@ Puede utilizar este espacio para hacer ejercicios con `right_join` y `left_join`
 
 ```
 
-```{r B2, echo=FALSE}
+```{r B2, echo = FALSE}
 question("¿Cuál es la diferencia entre `right_join` y `left_join`?",
-  answer("`right_join` no completa la union entre los dos sets de datos"),
+  answer("`right_join` no completa la union entre los dos conjuntos de datos"),
   answer("`left_join` une solo las observaciones que están en ambos conjuntos de datos"),
-  answer("`right_join` toma solo las observaciones que concuerden con el set de datos de la derecha", correct = TRUE),
+  answer("`right_join` toma solo las observaciones que concuerden con el conjunto de datos de la derecha", correct = TRUE),
   answer("`left_join` toma solo las observaciones que no están en el conjunto de la izquierda"),
   incorrect = "Incorrecto",
   correct = "Correcto")
 ```
 
+### Ejercicio C: Hacer unión de unicamente las observaciones que concuerdan entre
+los conjuntos de datos `peliculas` con `premios`
 
-### Ejercicio C: Hacer unión de unicamente las observaciones que concuerdan en conjuntos de datos `peliculas` con `premios`
-
-Utilizando alguno de los *joins* vistos, obtenga un set de datos que tenga las observaciones que concuerdan en conjuntos de datos `peliculas` con `premios`, las demás las debe excluir
+Utilizando alguno de los *joins* vistos, obtenga un conjunto de datos que tenga
+las observaciones que concuerdan en los conjuntos de datos `peliculas` con 
+`premios`. Las demás observaciones las debe de excluir
 ```{r C, exercise = TRUE}
 
 ```
@@ -166,30 +166,30 @@ Utilizando alguno de los *joins* vistos, obtenga un set de datos que tenga las o
 ```{r C-check}
 grade_result(
   pass_if(~ identical(unlist(.result), 
-                      unlist(inner_join(peliculas, premios))) , "Excelente!")
+                      unlist(inner_join(peliculas, premios))),
+          "¡Excelente!")
 )
 ```
 
-
 ### Ejercicio D: ¿Qué resulta de un `full_join` entre **directores** y **peliculas**?
 
-El resultado de hacer un `full_join` entre **directores** y **peliculas** sería un set de datos con qué características?
+Al hacer un `full_join` entre los conjuntos de datos **directores** y 
+**peliculas**, el conjunto de datos resultante, ¿qué características tendría?
 
-```{r D, echo=FALSE}
+```{r D, echo = FALSE}
 question("¿Qué resulta de un `full_join` entre directores y peliculas?",
-  answer("Un set de datos con solo las observaciones que coinciden en ambos casos"),
-  answer("Un set de datos con las observaciones de directores que coinciden en películas"),
-  answer("Un set de datos con las observaciones de películas que coinciden en directores"),
-  answer("Un set de datos que contiene la información de ambos sets", correct = TRUE),
+  answer("Un conjunto de datos con solo las observaciones que coinciden en ambos casos"),
+  answer("Un conjunto de datos con las observaciones de directores que coinciden en películas"),
+  answer("Un conjunto de datos con las observaciones de películas que coinciden en directores"),
+  answer("Un conjunto de datos que contiene la información de ambos sets", correct = TRUE),
   incorrect = "Incorrecto",
   correct = "Correcto")
 ```
 
-
 ### Ejercicio E: ¿Qué resultaría de un `anti_join` entre **peliculas** y **directores**? 
 
-El resultado de hacer un `anti_join` entre **peliculas** y **directores** sería un set de datos con cuántas observaciones?
-```{r E, echo=FALSE}
+¿Cuántas observaciones resultarían de aplicar un `anti_join` entre **peliculas** y **directores**?
+```{r E, echo = FALSE}
 question("¿Qué resultaría de un `anti_join` entre peliculas y directores? ",
   answer("Un set de datos con 12 observaciones"),
   answer("Un set de datos con 5 observaciones"),
@@ -198,5 +198,4 @@ question("¿Qué resultaría de un `anti_join` entre peliculas y directores? ",
   incorrect = "Incorrecto",
   correct = "Correcto")
 ```
-
 
