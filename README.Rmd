@@ -25,9 +25,29 @@ conceptos de R aprendidos en los cursos de ixpantia.
 
 ## Instalación
 
+Antes de instalar este paquete, primero debemos de realizar la instalación del
+paquete que se llama `gradethis`. 
+
+Esto porque uno de los componentes del `ixpantia.introR` es el paquete [gradethis](https://github.com/rstudio-education/gradethis), sin embargo este no
+se encuentra publicado aún en el CRAN y por ende debemos de instalarlo desde su
+versión en desarrollo en Github. Podemos correr el siguiente comando para
+hacerlo:
+
+```{r, eval = FALSE}
+remotes::install_github("rstudio-education/gradethis")
+```
+
+Recuerda que **necesitamos** además tener las **versiones más recientes** de **R ( >=4.0.2) y RStudio (>=1.3.959)** para tener
+la funcionalidad de los tutoriales dinámicos.
+
+Una vez instalado el `gradethis` podemos proceder a instalar `ixpantia.introR`.
 Hay dos formas de instalar el paquete en su computador. Una es hacerlo
 directamente del repositorio en GitHub (versión en desarrollo) con el siguiente
-comando:
+comando. 
+
+Este comando lo puedes copiar y pegar en la consola de RStudio. Una vez pegado
+se presiona la tecla **Enter** para que se ejecute e inmediatamente iniciará
+el proceso de la descarga.
 
 ```{r, eval = FALSE}
 remotes::install_github("ixpantia/ixpantia.introR")
@@ -44,19 +64,23 @@ inmediatamente se abrirá una nueva ventana para que busque el archivo.
 Una vez seleccionado el archivo, hay que dar click en **Install** e
 iniciará el proceso de instalación.
 
-## Dependencias
+**Errores de instalación**
 
-Uno de los componentes del `ixpantia.introR` es el paquete [gradethis](https://github.com/rstudio-education/gradethis), sin embargo este no
-se encuentra publicado aún en el CRAN y por ende debemos de instalarlo desde su
-versión en desarrollo en Github. Podemos correr el siguiente comando para
-hacerlo:
-
+En caso de que aparezcan mensajes como por ejemplo:
 ```{r, eval = FALSE}
-remotes::install_github("rstudio-education/gradethis")
+Warning in install.packages :
+  package ‘remotes’ is not available (for R version 4.0.2)
+```
+ 
+Lo que debemos hacer es instalar el paquete que nos indica (en el ejemplo anterior
+sería el paquete remotes que no tenemos instalado). Esto lo hacemos con la
+función
+```{r, eval = FALSE}
+install.packages("remotes")
 ```
 
-Necesitamos además tener las versiones más recientes de **R ( >=4.0.2) y RStudio (>=1.3.959)** para tener
-la funcionalidad de los tutoriales dinámicos.
+En caso de que no nos siga funcionando problamente nos faltan las comillas o
+bien estamos escribiendo mal el nombre.
 
 ## Usando los tutoriales dinámicos
 
