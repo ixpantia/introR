@@ -18,8 +18,11 @@ library(readr)
 library(janitor)
 library(lubridate)
 library(readxl)
+url <- "https://storage.googleapis.com/datos_cursos/PJCROD_INDICESALARIAL_V1.xls"
 
-indice_salarial <- read_excel("PJCROD_INDICESALARIAL_V1.xls") %>% 
+temp = tempfile(fileext = ".xls")
+download.file(url, destfile = temp, mode = 'wb')
+indice_salarial <- read_excel(temp) %>% 
   mutate(salario_antes = as.numeric(Salario_Base_Ant),
          salario_actual = as.numeric(Salario_Base_Act),
          indice = as.numeric(I_C_S))
