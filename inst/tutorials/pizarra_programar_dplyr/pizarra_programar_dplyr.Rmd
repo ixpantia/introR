@@ -25,7 +25,8 @@ download.file(url, destfile = temp, mode = 'wb')
 indice_salarial <- read_excel(temp) %>% 
   mutate(salario_antes = as.numeric(Salario_Base_Ant),
          salario_actual = as.numeric(Salario_Base_Act),
-         indice = as.numeric(I_C_S))
+         indice = as.numeric(I_C_S)) %>% 
+  clean_names()
 ```
 
 ## Datos de la sesión
@@ -39,24 +40,24 @@ glimpse(indice_salarial)
 
 ### Pregunta 1 
 ```{r exp, exercise = TRUE, error = TRUE}
-mi_exp_mal <- (indice_salarialPJ$salario_antes * indice_salarialPJ$salario_actual) / indice_salarialPJ$indice
-mi_exp <- quote((indice_salarialPJ$salario_antes * indice_salarialPJ$salario_actual) / indice_salarialPJ$indice) 
+mi_exp_mal <- (indice_salarial$salario_antes * indice_salarial$salario_actual) / indice_salarial$indice
+mi_exp <- quote((indice_salarial$salario_antes * indice_salarial$salario_actual) / indice_salarial$indice) 
 
 qq_show(
-  indice_salarialPJ %>% 
+  indice_salarial %>% 
   mutate(mi_exp)
 )
 
 qq_show(
-  indice_salarialPJ %>% 
+  indice_salarial %>% 
   mutate(!!mi_exp)
 )
 ```
 
 Para crear funciones con gramática tidyverse:
 ```{r gramatica, exercise = TRUE}
-indice_salarialPJ %>%
-  group_by(TN_Cod_Clase) %>%
+indice_salarial %>%
+  group_by(tn_cod_clase) %>%
   summarise(
     avg = mean(salario_actual, na.rm = TRUE)
   )
@@ -66,13 +67,13 @@ indice_salarialPJ %>%
 ```{r promedio, exercise = TRUE}
 calcula_promedio <- function(data, columna) {
   data %>%
-    group_by(TN_Cod_Clase) %>% 
+    group_by(tn_cod_clase) %>% 
     summarise(avg = mean(.data[[columna]], na.rm = TRUE))
 }
 
-calcula_promedio(data = indice_salarialPJ, columna =  "salario_actual")
+calcula_promedio(data = indice_salarial, columna =  "salario_actual")
 
-qq_show(calcula_promedio(data = indice_salarialPJ, columna =  "salario_actual"))
+qq_show(calcula_promedio(data = indice_salarial, columna =  "salario_actual"))
 ```
 
 ### Pregunta 3
@@ -83,21 +84,21 @@ calcula_promedio <- function(data, columna, grupo) {
     summarise(avg = mean(.data[[columna]], na.rm = TRUE))
 }
 
-calcula_promedio(data = indice_salarialPJ, columna = "salario_actual", grupo = R_E_F_J)
+calcula_promedio(data = indice_salarial, columna = "salario_actual", grupo = r_e_f_j )
 ```
 
 ### Pregunta 4
 ```{r clase, exercise = TRUE}
 promedio_por_clase <- function(datos_abiertos, clase) {
   
-  indice_salarialPJ %>% 
-    filter(TC_Des_Clase == {{clase}}) %>% 
+  indice_salarial %>% 
+    filter(tc_des_clase == {{clase}}) %>% 
     summarise(
       promedio = mean(salario_actual, na.rm = TRUE)
     )
 }
 
-promedio_por_clase(datos_abiertos = indice_salarialPJ,
+promedio_por_clase(datos_abiertos = indice_salarial,
                    clase = "AUXILIAR  ADMINISTRATIVO")
 ```
 
@@ -114,6 +115,6 @@ agrupacion_total <- function(datos_abiertos, ...) {
   )
 }
 
-agrupacion_total(datos_abiertos = indice_salarialPJ, 
-                 ... =  R_E_F_J, TN_Cod_Clase)
+agrupacion_total(datos_abiertos = indice_salarial, 
+                 ... =  r_e_f_j , tn_cod_clase)
 ```
