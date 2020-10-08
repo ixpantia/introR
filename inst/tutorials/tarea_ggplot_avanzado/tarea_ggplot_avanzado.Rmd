@@ -126,11 +126,12 @@ ggplot(weather, aes(x = month, y = avg_humidity,
                                    fill = events)) +
 geom_bar(stat = "summary") +
 scale_fill_viridis_d() +
-xlab("Mes") + ylab("Humedad promedio") +
-labs(title = "Humedad promedio por mes según evento meteorológico",
-     subtitle = "La humedad se mide en g/m3",
+xlab("Mes") + ylab("Humedad (g/m3)") +
+labs(title = "Humedad promedio" ,
+     subtitle = "por mes y evento", 
      fill = "Evento") +
-theme_bw(base_size = 16)
+theme_bw(base_size = 14) +
+theme(axis.text.x = element_text(angle = 45))
 ```
 
 
@@ -167,9 +168,9 @@ interactivo <- ggplot(weather, aes(x = date, y = avg_dewpt,
   geom_line() +
   scale_color_viridis_d() +
   scale_x_date(date_labels = "%Y-%d-%m", date_breaks = "2 month") +
-  xlab("Fecha") + ylab("Punto de rocío promedio") +
-  labs(title = "Punto de rocío promedio a través del tiempo por ciudad", color = "Ciudad") +
-  theme(axis.text.x = element_text(angle = 90))
+  xlab("Fecha") + ylab("Punto de rocío (grados F)") +
+  labs(title = "Punto de rocío promedio", color = "Ciudad") +
+  theme(axis.text.x = element_text(angle = 45))
 
 ggplotly(interactivo)
 ```

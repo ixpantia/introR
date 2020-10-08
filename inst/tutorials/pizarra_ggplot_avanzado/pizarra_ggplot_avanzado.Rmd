@@ -171,7 +171,7 @@ aerolineas_vuelos <- left_join(vuelos_cancelados_mes, vuelos_por_aerolinea,
 
 #### 4. Saque cantidad de cancelaciones por aerolinea
 
-Partiendo de **vuelos cancelados**, cree u nuevo conjunto de datos donde hayan 3 columnas: la aerolínea (`unique_carrier`), `mes`, y el total de cancelaciones (`total_cancelaciones`).
+Partiendo de **vuelos cancelados**, cree un nuevo conjunto de datos donde hayan 3 columnas: la aerolínea (`unique_carrier`), `mes`, y el total de cancelaciones (`total_cancelaciones`).
 
 ```{r cancelaciones, exercise = TRUE}
 cancelaciones_por_aerolinea <- vuelos_cancelados %>% 
