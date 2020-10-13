@@ -92,7 +92,7 @@ question("¿Cuál es la diferencia entre `geom_point()` y `geom_jitter()`?",
 
 ### 2. ¿Cómo podemos hacer para que el abline nos aparezca con los puntos?
 
-Haga un gráfico de puntos donde en el eje x esté la variable `mes_dia` y en el eje y: `monto` y luego agréguele un abline. 
+Haga un gráfico de puntos donde en el eje x esté la variable `mes_dia` y en el eje y: `monto` y luego agréguele un abline en "2e+08" 
 
 ```{r abline, exercise = TRUE}
 ggplot(data = SICOP)
@@ -101,7 +101,7 @@ ggplot(data = SICOP)
 ```{r abline-solution}
 ggplot(data = SICOP, aes(x = mes_dia, y = monto)) +
                         geom_point() +
-                        geom_abline()
+                        geom_abline(intercept = 2e+08)
 ```
 
 
