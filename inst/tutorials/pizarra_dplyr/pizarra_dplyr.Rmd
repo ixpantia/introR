@@ -50,9 +50,11 @@ Descripción de las variables:
 
 ### Utilice `filter()` para filtrar únicamente los datos de Oceania
 
-En el set de datos **gapminder** hay una columna que se llama `continent` 
-que muestra el continente al que pertenece cada país. En total tiene 5 
-categorías. Filtre de forma que sólo muestre los datos correspondientes a Oceanía usando `filter()`.
+En el set de datos **gapminder** hay una columna que se llama `continent` que
+muestra el continente al que pertenece cada país. En total tiene 5 categorías.
+Filtre de forma que sólo muestre los datos correspondientes a Oceanía usando
+`filter()`.
+
 ```{r filter, exercise = TRUE}
 gapminder %>% 
   filter()
@@ -74,10 +76,11 @@ grade_result(
 ### Utilice `select()` para seleccionar las columnas `country`, `year` y `pop`
 
 El conjunto de datos **gapminder** tiene en total 6 columnas o variables. Sin
-embargo, en ocasiones interesa utilizar una base con solamente algunas variables.
-Por ejemplo podría interesar analizar únicamente la población de los distintos
-países en los años registrados. Para lograr esto, seleccione las columnas 
-`country`, `year` y `pop` utilizando `select()`.
+embargo, en ocasiones interesa utilizar una base con solamente algunas
+variables.  Por ejemplo podría interesar analizar únicamente la población de
+los distintos países en los años registrados. Para lograr esto, seleccione las
+columnas `country`, `year` y `pop` utilizando `select()`.
+
 ```{r select, exercise = TRUE}
 gapminder %>% 
   select()
@@ -96,8 +99,10 @@ grade_result(
 
 EL conjunto de datos **gapminder** tiene una variable que se llama `gdpPercap`
 que describe el PIB per cápita de los países para distintos años. Ahora utilice
-esta variable agrupando por país (`country`) y use `summarise()` para calcular el promedio de gdpPercap por país. Llame a la nueva variable con los datos del
+esta variable agrupando por país (`country`) y use `summarise()` para calcular
+el promedio de gdpPercap por país. Llame a la nueva variable con los datos del
 promedio `promedio_pib`.
+
 ```{r summarise, exercise = TRUE}
 gapminder %>% 
   group_by() %>% 
@@ -120,10 +125,11 @@ grade_result(
 
 ### Ordene de menor a mayor los países según `promedio_pib` utilizando `arrange()`
 
-Anteriormente creamos una variable llamada `promedio_pib` que representa el 
-promedio del PIB per cápita de cada país. Esto quedó guardado en un nuevo conjunto
-de datos llamado **promedio**. Ahora, partiendo de este nuevo conjunto de datos, 
-ordene de de menor a mayor según el PIB promedio de cada país. 
+Anteriormente creamos una variable llamada `promedio_pib` que representa el
+promedio del PIB per cápita de cada país. Esto quedó guardado en un nuevo
+conjunto de datos llamado **promedio**. Ahora, partiendo de este nuevo conjunto
+de datos, ordene de de menor a mayor según el PIB promedio de cada país. 
+
 ```{r arrange, exercise = TRUE}
 promedio %>% 
   arrange()
@@ -150,6 +156,7 @@ refiere a la población del país y otra columna que se llama `gdpPercap`, la cu
 se refiere al PIB per cápita de los países en cada año. Ahora, genere una nueva
 variable llamada `multiplicacion` que contenga el valor resultante de la
 multiplicación de las dos columnas mencionadas. 
+
 ```{r mutate, exercise = TRUE}
 gapminder %>% 
   mutate(multiplicacion = )
