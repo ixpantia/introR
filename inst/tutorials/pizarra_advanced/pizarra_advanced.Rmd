@@ -54,31 +54,31 @@ glimpse(propiedades)
 ```
 Descripción de las variables
 
-| Variable | Descripción |
-|:--------:|:-----------:|
-| `id` | Identificador |
-| `created_on` | Fecha de construccion de la propiedad |
-| `property_type` | Tipo de propiedad |
-| `place_name` | Nombre del lugar donde se ubica la propiedad |
-| `place_with_parent_names` | Nombre completo del lugar donde se ubica la propiedad |
-| `state_name` | Nombre del estado donde se ubica la propiedad |
-| `lat` | Latitud |
-| `lon` | Longitud |
-| `price` | Precio de la propiedad |
-| `currency` | Moneda en la que está el precio |
-| `price_aprox_local_currency` | Precio aproximado en la moneda local (peso argentino)  |
-| `price_aprox_usd` | Precio aproximado en dólares estadounidenses |
-| `surface_total_in_m2 ` | Superficie total en m2 |
-| `surface_covered_in_m2 ` | Superficie cubierta por la construcción en m2 |
-| `price_usd_per_m2 ` | Precio en dólares por m2 |
-| `price_per_m2` | Precio por m2 |
-| `floor` | Cantidad de pisos en la propiedad |
-| `rooms` | Cantidad de habitaciones |
-| `expenses` | Dinero invertido en la propiedad |
-| `properati_url` | URL de la información de la propiedad |
-| `description` | Descripción de la propiedad |
-| `title` | Título de la propiedad |
-| `image_thumbnail` | Foto de la propiedad |
+| Variable                     | Descripción                                           |
+| :--------:                   | :-----------:                                         |
+| `id`                         | Identificador                                         |
+| `created_on`                 | Fecha de construccion de la propiedad                 |
+| `property_type`              | Tipo de propiedad                                     |
+| `place_name`                 | Nombre del lugar donde se ubica la propiedad          |
+| `place_with_parent_names`    | Nombre completo del lugar donde se ubica la propiedad |
+| `state_name`                 | Nombre del estado donde se ubica la propiedad         |
+| `lat`                        | Latitud                                               |
+| `lon`                        | Longitud                                              |
+| `price`                      | Precio de la propiedad                                |
+| `currency`                   | Moneda en la que está el precio                       |
+| `price_aprox_local_currency` | Precio aproximado en la moneda local (peso argentino) |
+| `price_aprox_usd`            | Precio aproximado en dólares estadounidenses          |
+| `surface_total_in_m2 `       | Superficie total en m2                                |
+| `surface_covered_in_m2 `     | Superficie cubierta por la construcción en m2         |
+| `price_usd_per_m2 `          | Precio en dólares por m2                              |
+| `price_per_m2`               | Precio por m2                                         |
+| `floor`                      | Cantidad de pisos en la propiedad                     |
+| `rooms`                      | Cantidad de habitaciones                              |
+| `expenses`                   | Dinero invertido en la propiedad                      |
+| `properati_url`              | URL de la información de la propiedad                 |
+| `description`                | Descripción de la propiedad                           |
+| `title`                      | Título de la propiedad                                |
+| `image_thumbnail`            | Foto de la propiedad                                  |
 
 ## Preguntas
 
@@ -140,9 +140,11 @@ grade_result(
 
 En el conjunto de datos que estamos trabajando hay una columna que se llama
 `price_aprox_usd` con el precio al que se vendió la propiedad estandarizado a
-dólares y otra llamada `currency` con la moneda en la que se encuentra ese precio.
-Utilizando estas dos columnas y otras herramientas descubra si las casas que se venden en dólares son más costosas que las que se venden en la moneda local 
-(pesos argentinos)
+dólares y otra llamada `currency` con la moneda en la que se encuentra ese
+precio.  Utilizando estas dos columnas y otras herramientas descubra si las
+casas que se venden en dólares son más costosas que las que se venden en la
+moneda local (pesos argentinos)
+
 ```{r pesos, exercise = TRUE}
 propiedades %>% 
   
@@ -164,11 +166,12 @@ grade_result(
 
 ### ¿Cuál es la cantidad óptima de cuartos en una casa para aumentar el valor por m2?
 
-En **propiedades** tenemos una variables `rooms` que describe cuantas habitaciones
-tiene la propiedad y otra, `price_usd_per_m2` donde se dice el precio por m2, en
-dólares, de la propiedad. Utilizando estas columnas y otras herramientas averigue
-cuál es la cantidad óptima de cuartos en una casa para optimizar el valor por m2, 
-es decir, para que este valor promedio sea el mayor posible. 
+En **propiedades** tenemos una variables `rooms` que describe cuantas
+habitaciones tiene la propiedad y otra, `price_usd_per_m2` donde se dice el
+precio por m2, en dólares, de la propiedad. Utilizando estas columnas y otras
+herramientas averigue cuál es la cantidad óptima de cuartos en una casa para
+optimizar el valor por m2, es decir, para que este valor promedio sea el mayor
+posible. 
 
 ```{r vent, exercise = TRUE}
 propiedades %>% 

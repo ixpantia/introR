@@ -76,10 +76,10 @@ glimpse(directores)
 
 Descripción de las columnas:
 
-| Variable   | Descripción                      |
-|:----------:|:--------------------------------:|
-| `director`    | Apellido del director  |
-| `nacionalidad`  |  País de donde proviene |
+| Variable       | Descripción                        |
+| :----------:   | :--------------------------------: |
+| `director`     | Apellido del director              |
+| `nacionalidad` | País de donde proviene             |
 
 ### **peliculas**
 
@@ -90,10 +90,10 @@ glimpse(peliculas)
 
 Descripción de las columnas:
 
-| Variable   | Descripción                      |
-|:----------:|:--------------------------------:|
-| `director`    | Apellido del director  |
-| `pelicula`     | Nombre de la película |
+| Variable     | Descripción                        |
+| :----------: | :--------------------------------: |
+| `director`   | Apellido del director              |
+| `pelicula`   | Nombre de la película              |
 
 ### **premios**
 
@@ -104,16 +104,20 @@ glimpse(premios)
 
 Descripción de las columnas:
 
-| Variable   | Descripción                      |
-|:----------:|:--------------------------------:|
-| `pelicula`    | Nombre de la película |
-| `premio`     |  Nombre del premio que recibió |
+| Variable     | Descripción                        |
+| :----------: | :--------------------------------: |
+| `pelicula`   | Nombre de la película              |
+| `premio`     | Nombre del premio que recibió      |
 
 ## Ejercicios
 
 ### Ejercicio A: Una el conjunto de datos **directores** con **peliculas** y cuente cuántas películas tiene cada director
 
-En el conjunto de datos **directores** tenemos información sobre directores de cine famosos y su nacionalidad, mientras que en **peliculas** tenemos información sobre películas conocidas y su director. Ahora una estos dos sets de forma que podamos calcular el número de películas de cada director. 
+En el conjunto de datos **directores** tenemos información sobre directores de
+cine famosos y su nacionalidad, mientras que en **peliculas** tenemos
+información sobre películas conocidas y su director. Ahora una estos dos sets
+de forma que podamos calcular el número de películas de cada director. 
+
 ```{r A, exercise = TRUE}
 
 ```
@@ -134,7 +138,9 @@ grade_result(
 
 ### Ejercicio B: ¿Cuál es la diferencia entre `right_join` y `left_join`?
 
-Puede utilizar este espacio para hacer ejercicios con `right_join` y `left_join` antes de contestar la pregunta
+Puede utilizar este espacio para hacer ejercicios con `right_join` y
+`left_join` antes de contestar la pregunta
+
 ```{r B1, exercise = TRUE}
 
 ```
@@ -155,6 +161,7 @@ los conjuntos de datos `peliculas` con `premios`
 Utilizando alguno de los *joins* vistos, obtenga un conjunto de datos que tenga
 las observaciones que concuerdan en los conjuntos de datos `peliculas` con 
 `premios`. Las demás observaciones las debe de excluir
+
 ```{r C, exercise = TRUE}
 
 ```
@@ -189,6 +196,7 @@ question("¿Qué resulta de un `full_join` entre directores y peliculas?",
 ### Ejercicio E: ¿Qué resultaría de un `anti_join` entre **peliculas** y **directores**? 
 
 ¿Cuántas observaciones resultarían de aplicar un `anti_join` entre **peliculas** y **directores**?
+
 ```{r E, echo = FALSE}
 question("¿Qué resultaría de un `anti_join` entre peliculas y directores? ",
   answer("Un set de datos con 12 observaciones"),
