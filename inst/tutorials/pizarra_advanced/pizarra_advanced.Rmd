@@ -18,15 +18,15 @@ library(lubridate)
 library(tm)
 library(wordcloud)
 library(tidyr)
+library(gradethis)
+tutorial_options(exercise.checker = gradethis::grade_learnr)
+temp = tempfile(fileext = ".xlsx")
+dataURL <- "https://storage.googleapis.com/datos_cursos/properati-AR-2017-08-01-properties_short.xlsx"
+download.file(dataURL, destfile = temp, mode='wb')
+sell_0217 <- readxl::read_excel(temp)
 
-url <- "https://storage.googleapis.com/datos_cursos/properati-AR-2017-08-01-properties-sell-six_months.csv"
-
-temp = tempfile(fileext = ".csv")
-download.file(url, destfile = temp, mode = 'wb')
-sell_0217 <- read.csv(temp)
-
-propiedades <- sell_0217 %>% 
-  select(-c(operation, country_name, geonames_id, lat.lon))
+propiedades <- sell_0217[1:1000,] %>% 
+  select(-c(operation, country_name, geonames_id, lat, lon))
 
 
 sell_0217 %>%
@@ -87,7 +87,7 @@ Descripción de las variables
 En el conjunto de datos **propiedades** hay una variable llamada
 `surface_total_in_m2` que describe la superficie total de la propiedad. Una
 segunda variable, `property_type`, contiene el tipo de propiedad. Ahora descubra cuánta superficie tienen las propiedades de tipo casa y tipo apartamento en promedio.
-```{r prom, exercise = TRUE}
+```{r prom, exercise = TRUE, exercise.lines = 8}
 propiedades %>% 
   
 ```
