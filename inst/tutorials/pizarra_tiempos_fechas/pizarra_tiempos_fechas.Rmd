@@ -19,7 +19,7 @@ library(readxl)
 library(ggplot2)
 library(dplyr)
 library(gradethis)
-
+tutorial_options(exercise.checker = gradethis::grade_learnr)
 marriage <- mosaicData::Marriage
 
 marriage2 <- marriage %>% 
