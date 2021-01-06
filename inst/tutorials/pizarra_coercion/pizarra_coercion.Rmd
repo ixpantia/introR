@@ -27,14 +27,13 @@ library(dplyr)
 vector_1 <- c(10, 20, 30)
 vector_2 <- c("a", "b", "c")
 vector_3 <- c(TRUE, FALSE, TRUE)
-prueba_vector<-c(20, 40, "A", 80)
-class(prueba_vector)
-prueba_vector
+vector_4 <- c(2, FALSE, 5)
+
 vector_prueba_1 <- c(20, 40, TRUE, 80)
 vector_prueba_2 <- c("R","ixpantia", "RStudio", 2)
 vector_prueba_3 <- c(20:60)
 vector_prueba_4 <- c(letters)
-vector_prueba_5 <- c(TRUE, TRUE, FALSE, 0,0,1)
+vector_prueba_5 <- c(TRUE, TRUE, FALSE, 0, 0, 1)
 
 vector_prueba_1_nuevo <- as.numeric(vector_prueba_1)
 vector_prueba_2_nuevo <- as.logical(vector_prueba_2)
@@ -48,43 +47,88 @@ knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_lo
 ```
 
 ## Datos
-```{r echo=TRUE, message=TRUE}
-vector_prueba_1
-vector_prueba_2
-vector_prueba_3
-vector_prueba_4
-vector_prueba_5
-```
+
+Los datos en este caso son realmente vectores que tienen distintas características útiles para los ejercicios que vienen más adelante. En cada pregunta se muestra la creación del vector que se utilizará.
 
 
-**¿Qué cree que ha pasado con la letra que había inicialmente en el vector_prueba_1?**
-```{r v1, exercise = TRUE}
+## Preguntas
 
-```
+A continuación se muestran una serie de preguntas de selección única. Además se proporciona un espacio que usted puede utilizar para experimentar con los distintos vectores y poder responder las preguntas correctamente.
 
+### Pregunta 1
 
-**¿Qué ocurre con los datos de vector_prueba_2? ¿En qué se convierten?**
-```{r v2, exercise = TRUE}
+Observe el siguiente vector:
+```{r v1.1, exercise = TRUE}
+vector_1 <- c(10, 20, 30)
 
 ```
 
+```{r v1.2, exercise = TRUE}
+question("¿Qué pasa con si le agregamos una letra al `vector_1`?",
+  answer("Sigue siendo un vector numérico porque la mayoría de elementos son números"),
+  answer("Se convierte en un `character`", correct = TRUE) ,
+  answer("Se convierte en un `logical`")
+)
+```
 
-**¿Podríamos ahora sacar el promedio del vector_prueba_3?**
-```{r v3, exercise = TRUE}
+### Pregunta 2
+
+Observe el siguiente vector:
+```{r v2.1, exercise = TRUE}
+vector_2 <- c("a", "b", "c")
 
 ```
 
+```{r v2.2, exercise = TRUE}
+question("¿Qué ocurre con los datos del vector_2 si le agregamos un número? ¿En qué se convierten?",
+  answer("Sigue siendo un `character`", correct = TRUE),
+  answer("Se convierte en un `numeric`"),
+  answer("Se convierte en un `logical`")
+)
+```
 
-**¿Qué ha pasado con vector_prueba_4?**
-```{r v4, exercise = TRUE}
+### Pregunta 3
+
+Observe el siguiente vector:
+```{r v3.1, exercise = TRUE}
+vector_3 <- c(TRUE, TRUE, FALSE, 0, 0, 1)
+```
+
+```{r v3.2, exercise = TRUE}
+question("¿Qué tipo es este nuevo vector_3_2?",
+  answer("Sigue siendo un `logical`"),
+  answer("Se convierte en un `numeric`", correct = TRUE),
+  answer("Se convierte en un `character`")
+)
+```
+
+### Pregunta 4
+
+Observe el siguiente vector:
+```{r v4.1, exercise = TRUE}
+vector_4 <- c(2, FALSE, 5)
+```
+
+```{r v4.2, exercise = TRUE}
+question("¿Qué sucede con la expresion `FALSE` si aplicamos la función `as.numeric` al vector 4?",
+  answer("Da un error"),
+  answer("La convierte en un NA o valor faltante"),
+  answer("La convierte en 0", correct = TRUE)
+)
+```
+
+### Pregunta 5
+
+Observe el siguiente vector:
+```{r v5.1, exercise = TRUE}
+vector_5 <- c("R","ixpantia", "RStudio", 2)
 
 ```
 
-
-**¿Qué tenemos ahora con el vector_prueba_5?**
-```{r v5, exercise = TRUE}
-
+```{r v5.2, exercise = TRUE}
+question("¿Qué ocurre con los datos de vector_5 al aplicarle la función `as.logical`? ¿En qué se convierten?",
+  answer("Se convierte en NAs o valores faltantes", correct = TRUE),
+  answer("Se convierte en TRUE o FALSE"),
+  answer("Se convierte en un `character`")
+)
 ```
-
-
-
