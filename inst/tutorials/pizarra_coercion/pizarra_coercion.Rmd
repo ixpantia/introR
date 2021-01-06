@@ -26,20 +26,9 @@ library(dplyr)
 
 vector_1 <- c(10, 20, 30)
 vector_2 <- c("a", "b", "c")
-vector_3 <- c(TRUE, FALSE, TRUE)
+vector_3 <- c(TRUE, TRUE, FALSE, 0, 0, 1)
 vector_4 <- c(2, FALSE, 5)
-
-vector_prueba_1 <- c(20, 40, TRUE, 80)
-vector_prueba_2 <- c("R","ixpantia", "RStudio", 2)
-vector_prueba_3 <- c(20:60)
-vector_prueba_4 <- c(letters)
-vector_prueba_5 <- c(TRUE, TRUE, FALSE, 0, 0, 1)
-
-vector_prueba_1_nuevo <- as.numeric(vector_prueba_1)
-vector_prueba_2_nuevo <- as.logical(vector_prueba_2)
-vector_prueba_2_nuevo <- as.logical(vector_prueba_2)
-vector_prueba_4_nuevo <- as.numeric(vector_prueba_4)
-vector_prueba_5_nuevo <- as.logical(vector_prueba_5)
+vector_5 <- c("R","ixpantia", "RStudio", 2)
 ```
 
 ```{r, echo=FALSE, out.width="35%", fig.align = "center"}
@@ -58,12 +47,12 @@ A continuación se muestran una serie de preguntas de selección única. Además
 ### Pregunta 1
 
 Observe el siguiente vector:
-```{r v1.1, exercise = TRUE}
+```{r v1_1, exercise = TRUE}
 vector_1 <- c(10, 20, 30)
 
 ```
 
-```{r v1.2, exercise = TRUE}
+```{r v1_2}
 question("¿Qué pasa con si le agregamos una letra al `vector_1`?",
   answer("Sigue siendo un vector numérico porque la mayoría de elementos son números"),
   answer("Se convierte en un `character`", correct = TRUE) ,
@@ -74,12 +63,12 @@ question("¿Qué pasa con si le agregamos una letra al `vector_1`?",
 ### Pregunta 2
 
 Observe el siguiente vector:
-```{r v2.1, exercise = TRUE}
+```{r v2_1, exercise = TRUE}
 vector_2 <- c("a", "b", "c")
 
 ```
 
-```{r v2.2, exercise = TRUE}
+```{r v2_2}
 question("¿Qué ocurre con los datos del vector_2 si le agregamos un número? ¿En qué se convierten?",
   answer("Sigue siendo un `character`", correct = TRUE),
   answer("Se convierte en un `numeric`"),
@@ -90,11 +79,11 @@ question("¿Qué ocurre con los datos del vector_2 si le agregamos un número? �
 ### Pregunta 3
 
 Observe el siguiente vector:
-```{r v3.1, exercise = TRUE}
+```{r v3_1, exercise = TRUE}
 vector_3 <- c(TRUE, TRUE, FALSE, 0, 0, 1)
 ```
 
-```{r v3.2, exercise = TRUE}
+```{r v3_2}
 question("¿Qué tipo es este nuevo vector_3_2?",
   answer("Sigue siendo un `logical`"),
   answer("Se convierte en un `numeric`", correct = TRUE),
@@ -105,11 +94,11 @@ question("¿Qué tipo es este nuevo vector_3_2?",
 ### Pregunta 4
 
 Observe el siguiente vector:
-```{r v4.1, exercise = TRUE}
+```{r v4_1, exercise = TRUE}
 vector_4 <- c(2, FALSE, 5)
 ```
 
-```{r v4.2, exercise = TRUE}
+```{r v4_2}
 question("¿Qué sucede con la expresion `FALSE` si aplicamos la función `as.numeric` al vector 4?",
   answer("Da un error"),
   answer("La convierte en un NA o valor faltante"),
@@ -120,12 +109,12 @@ question("¿Qué sucede con la expresion `FALSE` si aplicamos la función `as.nu
 ### Pregunta 5
 
 Observe el siguiente vector:
-```{r v5.1, exercise = TRUE}
+```{r v5_1, exercise = TRUE}
 vector_5 <- c("R","ixpantia", "RStudio", 2)
 
 ```
 
-```{r v5.2, exercise = TRUE}
+```{r v5_2}
 question("¿Qué ocurre con los datos de vector_5 al aplicarle la función `as.logical`? ¿En qué se convierten?",
   answer("Se convierte en NAs o valores faltantes", correct = TRUE),
   answer("Se convierte en TRUE o FALSE"),
