@@ -1,11 +1,19 @@
 ---
 title: "ixpantia sesion_2: coerciones"
-output: learnr::tutorial
+output: 
+  learnr::tutorial:
+    css: https://storage.googleapis.com/datos_cursos/custom_css.css
 runtime: shiny_prerendered
 description: >
   Ejercicios de pizarra que se realizan durante la sesión para aprender sobre
   coerciones en R.
 ---
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Slab&family=Source+Sans+Pro:wght@300;400&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+</style> 
 
 ```{r setup, include=FALSE}
 library(learnr)
@@ -35,6 +43,9 @@ vector_prueba_4_nuevo <- as.numeric(vector_prueba_4)
 vector_prueba_5_nuevo <- as.logical(vector_prueba_5)
 ```
 
+```{r, echo=FALSE, out.width="35%", fig.align = "center"}
+knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_logo.png")  
+```
 
 ## Datos
 ```{r echo=TRUE, message=TRUE}
