@@ -2,7 +2,7 @@
 title: "ixpantia sesion_extra: Estilo de código"
 output: 
   learnr::tutorial:
-    css: https://storage.googleapis.com/datos_cursos/custom_css.css
+    css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/custom_css.css
 runtime: shiny_prerendered
 description: >
   Ejercicios para aprender el estilo de código recomendado en ixpantia?.
@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r, echo=FALSE, out.width="35%", fig.align = "center"}
-knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_logo.png")  
+knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")  
 ```
 
 ## Introducción
