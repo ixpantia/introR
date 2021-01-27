@@ -3,7 +3,7 @@ title: "ixpantia sesion_2: Estructuras en R"
 subtitle: "**Ejercicios pizarra**"
 output: 
   learnr::tutorial:
-    css: https://storage.googleapis.com/datos_cursos/custom_css.css
+    css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/custom_css.css
 runtime: shiny_prerendered
 description: >
   Ejercicios de pizarra que se realizan durante la sesión para aprender sobre
@@ -34,7 +34,7 @@ LifeCycleSavings$paises <- row.names(LifeCycleSavings)
 ```
 
 ```{r, echo=FALSE, out.width="35%", fig.align = "center"}
-knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_logo.png")  
+knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")   
 ```
 
 ## Datos: **regiones**

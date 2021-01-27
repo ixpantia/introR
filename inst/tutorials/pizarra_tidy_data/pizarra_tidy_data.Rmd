@@ -3,7 +3,7 @@ title: "ixpantia sesion_6: tidy data"
 subtitle: "Ejercicios resumir" 
 output: 
   learnr::tutorial:
-    css: https://storage.googleapis.com/datos_cursos/custom_css.css
+    css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/custom_css.css
 runtime: shiny_prerendered
 description: >
   Ejercicios de pizarra que se realizan durante la sesión para aprender sobre
@@ -52,7 +52,7 @@ fecha_separada <- separate(data = planilla2, col = fecha,into = c("anio", "mes",
 ```
 
 ```{r, echo=FALSE, out.width="35%", fig.align = "center"}
-knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_logo.png")  
+knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")   
 ```
 
 ## Dispersar y reorganizar
