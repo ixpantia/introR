@@ -1,13 +1,21 @@
 ---
 title: "ixpantia sesion_4: Ejercicios resumir datos"
 subtitle: "Tarea"
-output: learnr::tutorial
+output: 
+  learnr::tutorial:
+    css: https://storage.googleapis.com/datos_cursos/custom_css.css
 runtime: shiny_prerendered
 description: >
   Ejercicios de tarea que se pueden practicar fuera de la sesión del curso. Esta
   tarea tiene como objetivo repasar los conceptos de la sesión resumir datos.
   Combina elementos de cada todos los temas vistos durante la sesión.
 ---
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Slab&family=Source+Sans+Pro:wght@300;400&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+</style> 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -38,6 +46,10 @@ editores <- tibble::tribble(
   )
 
 tutorial_options(exercise.checker = gradethis::grade_learnr)
+```
+
+```{r, echo=FALSE, out.width="35%", fig.align = "center"}
+knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_logo.png")  
 ```
 
 ## Datos

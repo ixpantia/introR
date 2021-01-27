@@ -2,15 +2,25 @@
 title: "ixpantia sesion_extra: Estilo de código"
 output: 
   learnr::tutorial:
-    css: css/custom_css.css
+    css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/custom_css.css
 runtime: shiny_prerendered
 description: >
   Ejercicios para aprender el estilo de código recomendado en ixpantia?.
 ---
 
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Slab&family=Source+Sans+Pro:wght@300;400&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+</style> 
+
 ```{r setup, include=FALSE}
 library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, echo=FALSE, out.width="35%", fig.align = "center"}
+knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")  
 ```
 
 ## Introducción
@@ -133,22 +143,8 @@ question("¿Cuál (es) de estos comandos es (son) correcto (s)?",
 
 #### Tip 8
 
-Cuando quieras introducir mas orden en el código alineándolo, por ejemplo, sobre los símbolos de igualdad esta bien usar espacios para tal efecto
+Cuando quieras introducir mas orden en el código alineándolo, por ejemplo, sobre los símbolos de igualdad, está bien usar espacios para tal efecto
 
-#### Ejercicio 8
-
-```{r alineado}
-question("¿Cuál (es) de estos comandos es (son) correcto (s)?",
-  answer("data.frame(
-            resultados  = c(7, 3, 8),
-            primera_vez = c(TRUE, FALSE, TRUE)
-          )", correct = TRUE),
-  answer("data.frame(
-          resultados  = c(7, 3, 8),
-            primera_vez = c(TRUE, FALSE, TRUE)
-          )")
-)
-```
 
 #### Tip 9
 
@@ -171,62 +167,17 @@ question("¿Cuál (es) de estos comandos es (son) correcto (s)?",
 
 No uses punto y coma dentro del código. No es necesario, y prácticamente ya no se usa.
 
-#### Ejercicio 10
-```{r punt_com}
-question("¿Cuál (es) de estos comandos es (son) correcto (s)?",
-  answer("x <- 1:3
-          print(x)", correct = TRUE),
-  answer("x <- 1:3; print(x)")
-)
-```
 
 ### Llaves
 
 #### Tip 11
 Abrir una llave nunca debería ocurrir en su propia línea y siempre se sigue con una línea nueva. Una llave que cierra siempre debe ir en su propia línea a menos que sea else. Siempre usa llaves cuando estás usando construcciones con “if”, aún cuando no es posible no hacerlo.
 
-#### Ejercicio 11
-```{r llaves}
-question("¿Cuál (es) de estos comandos es (son) correcto (s)?",
-  answer("if (x == 0) {
-            0
-          } else {
-          z / x
-          }"),
-  answer("if (x == 0) {
-            0
-            } else {
-            z / x
-          }", correct = TRUE),
-    answer("if (x != 0) {
-            print(x)
-           }", correct = TRUE),
-    answer("if (x != 0) 
-            print(x)")
-)
-```
-
 ### Longitud de lineas
 
 #### Tip 12
 
 Trata de limitar tu código a una longitud de 80 caracteres por linea. Esto cabe cómodamente en una página impresa a un tamaño de la fuente razonable. 
-
-#### Ejercicio 12
-```{r long}
-question("¿Cuál (es) de estos comandos es (son) correcto (s)?",
-  answer("nuevo_df <- mi_df %>% mutate(var2 = var2 + 1) %>%  select(var1, var2, cat) %>% group_by(cat) %>% summarise(vars = var1 + var2) %>% arrange(vars) %>% mutate(var_nueva = vars + 2) %>% select(var_nueva)") ,
-  answer("nuevo_df <- mi_df %>% 
-         mutate(var2 = var2 + 1) %>%  
-         select(var1, var2, cat) %>% 
-         group_by(cat) %>% 
-         summarise(vars = var1 + var2) %>% a
-         rrange(vars) %>% 
-         mutate(var_nueva = vars + 2) %>% 
-         select(var_nueva)", correct = TRUE)
-)
-```
-
 
 ### Asignación
 
