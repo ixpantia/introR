@@ -1,13 +1,21 @@
 ---
 title: "ixpantia sesion_4: dplyr"
 subtitle: "Ejercicios pizarra"
-output: learnr::tutorial
+output: 
+  learnr::tutorial:
+    css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/custom_css.css
 runtime: shiny_prerendered
 description: >
   Ejercicios de pizarra que se realizan durante la sesión para aprender sobre
   el proceso de resumir datos, específicamente aquellos que involucran el uso
   de dplyr.
 ---
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Slab&family=Source+Sans+Pro:wght@300;400&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+</style> 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -23,6 +31,10 @@ promedio <- gapminder %>%
     summarise(promedio_pib = mean(gdpPercap))
 
 tutorial_options(exercise.checker = gradethis::grade_learnr)
+```
+
+```{r, echo=FALSE, out.width="35%", fig.align = "center"}
+knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")  
 ```
 
 ## Datos: **gapminder**
@@ -142,8 +154,7 @@ grade_result(
 )
 ```
 
-### Cree una nueva columna que sea la multiplicación de la población por el PIB 
-per cápita usando `mutate()`
+### Cree una nueva columna que sea la multiplicación de la población por el PIB per cápita usando `mutate()`
 
 En el conjunto de datos **gapminder** hay una columna que se llama `pop` que se
 refiere a la población del país y otra columna que se llama `gdpPercap`, la cual

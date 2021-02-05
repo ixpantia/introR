@@ -1,7 +1,9 @@
 ---
 title: "ixpantia sesion_4: tidyr"
 subtitle: "Tarea"
-output: learnr::tutorial
+output: 
+  learnr::tutorial:
+    css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/custom_css.css
 runtime: shiny_prerendered
 description: >
   Ejercicios de tarea que se pueden practicar fuera de la sesión del curso. Esta
@@ -9,12 +11,19 @@ description: >
   específicamente lo que corresponde a tidyr.
 ---
 
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Slab&family=Source+Sans+Pro:wght@300;400&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+</style> 
+
 ```{r setup, include=FALSE}
 library(learnr)
 library(gradethis)
 library(tidyr)
 library(untidydata)
 library(dplyr)
+library(here)
 
 spirantization2 <- spirantization %>% 
   select(-cIntensity)
@@ -24,8 +33,12 @@ separado <- separate(spirantization2, id, into = c("participante", "numero"), se
 ancho <- spread(separado, key = participante, value = vIntensity)
 
 knitr::opts_chunk$set(echo = FALSE)
+tutorial_options(exercise.checker = gradethis::grade_learnr)
 ```
 
+```{r, echo=FALSE, out.width="35%", fig.align = "center"}
+knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")  
+```
 
 ## Datos: **spirantization2**
 Este conjunto de datos proviene del paquete **untidydata** y contiene informacion sobre datos simulado que contiene medidas de intensidad de una palabra inicial o secuencia de vocales obstruentes intervocalicas para dos grupos de estudiantes y hablantes nativos de español.

@@ -1,12 +1,20 @@
 ---
 title: "ixpantia sesion_5: Tiempos y fechas"
 subtitle: "Ejercicios pizarra"
-output: learnr::tutorial
+output: 
+  learnr::tutorial:
+    css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/custom_css.css
 runtime: shiny_prerendered
 description: >
   Ejercicios de pizarra que se realizan durante la sesión para aprender sobre
   tiempos y fechas en R.
 ---
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Slab&family=Source+Sans+Pro:wght@300;400&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+</style> 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
@@ -30,6 +38,10 @@ marriage2 <- marriage %>%
 
 marriage_duracion <- marriage2 %>% 
   mutate(duracion = today() - ceremonydate2)
+```
+
+```{r, echo=FALSE, out.width="35%", fig.align = "center"}
+knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")   
 ```
 
 
