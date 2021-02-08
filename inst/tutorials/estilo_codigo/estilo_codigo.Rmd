@@ -2,6 +2,7 @@
 title: "ixpantia sesion_extra: Estilo de código"
 output: 
   learnr::tutorial:
+    language: es
     css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/custom_css.css
 runtime: shiny_prerendered
 description: >
@@ -94,7 +95,7 @@ question("¿Cuál (es) de estos nombres de funciones es (son) correcto (s)?",
 )
 ```
 
-## Syntax
+## Sintaxis
 
 ### Espacios
 
