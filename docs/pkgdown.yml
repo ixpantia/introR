@@ -3,5 +3,6 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   uso_paqute: uso_paqute.html
-last_built: 2021-02-09T16:43Z
+  uso_tutoriales: uso_tutoriales.html
+last_built: 2021-02-09T16:49Z
 
