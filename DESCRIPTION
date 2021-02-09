@@ -35,10 +35,10 @@ URL: https://github.com/ixpantia/ixpantia.introR
 BugReports: https://github.com/ixpantia/ixpantia.introR/issues
 Depends:
     R (>= 4.0.0),
-    learnr,
-    gradethis
+    learnr
 VignetteBuilder: knitr
 Imports: 
+    gradethis,
     ggplot2,
     dplyr,
     tidyr,
