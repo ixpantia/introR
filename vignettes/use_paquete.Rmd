@@ -1,8 +1,8 @@
 ---
-title: "Uso del paquete ixpantia.introR"
+title: "use_paquete"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Uso del paquete ixpantia.introR}
+  %\VignetteIndexEntry{use_paquete}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
