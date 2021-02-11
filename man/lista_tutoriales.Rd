@@ -2,7 +2,7 @@
 % Please edit documentation in R/lista_tutoriales.R
 \name{lista_tutoriales}
 \alias{lista_tutoriales}
-\title{Función para listar los tutoriales disponibles en el paquete}
+\title{Listar los tutoriales disponibles en el paquete}
 \usage{
 lista_tutoriales()
 }
