@@ -1,8 +1,8 @@
 ---
-title: "use_tutoriales"
+title: "Uso de los tutoriales de learnr"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{use_tutoriales}
+  %\VignetteIndexEntry{Uso de los tutoriales de learnr}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
