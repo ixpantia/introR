@@ -1,8 +1,8 @@
 ---
-title: "Uso de los tutoriales de learnr"
+title: "Uso de tutoriales learnr"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Uso de los tutoriales de learnr}
+  %\VignetteIndexEntry{Uso de tutoriales learnr}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -17,12 +17,16 @@ knitr::opts_chunk$set(
 ## Partes del tutorial 
 
 Todos los tutoriales incluidos tienen una forma similar a la siguiente:
-
+  
 ![](img/forma_general.png)
 
-Las secciones se puede seleccionar directamente haciendo click sobre ellas o bien, al llegar al final de una se muestra un botón para pasar a la siguiente. La mayoría de preguntas incluidas son similares a la que se muestra arriba bajo la etiqueta de "pregunta". Hay dos variantes a este tipo de preguntas.
+Las secciones se puede seleccionar directamente haciendo click sobre ellas o bien,
+al llegar al final de una se muestra un botón para pasar a la siguiente. La
+mayoría de preguntas incluidas son similares a la que se muestra arriba bajo la
+etiqueta de "pregunta". Hay dos variantes a este tipo de preguntas.
 
 Una que incluye la opción de ver la solución y no se tiene que dar una respuesta definitiva
+
 ![](img/partes1.png)
 
 Y otra donde solo se puede ver una pista y si se debe dar la repuesta:
@@ -31,5 +35,6 @@ Y otra donde solo se puede ver una pista y si se debe dar la repuesta:
 
 Para esto se usa el botón señalado con la etiqueta de "responder ejercicio".
 
-En ambos casos tenemos un espacio donde podemos escribir código, un botón para correr ese código sin recibir retroalimentación y un botón para reiniciar el código que se escribe en el espacio designado.
-
+En ambos casos tenemos un espacio donde podemos escribir código, un botón para
+correr ese código sin recibir retroalimentación y un botón para reiniciar el
+código que se escribe en el espacio designado.
