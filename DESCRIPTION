@@ -1,6 +1,6 @@
 Package: ixpantia.introR
 Type: Package
-Title: Aprenda R con ejercicios interactivos del curso introducción a R de ixpantia.
+Title: Aprenda R con ejercicios interactivos del curso introducción a R de ixpantia
 Version: 0.0.2
 Authors@R: c(
   person(given = "ixpantia, 
