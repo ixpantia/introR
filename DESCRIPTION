@@ -34,11 +34,11 @@ LazyData: true
 URL: https://github.com/ixpantia/ixpantia.introR
 BugReports: https://github.com/ixpantia/ixpantia.introR/issues
 Depends:
-    R (>= 4.0.0),
-    learnr
+    R (>= 4.0.0)
 VignetteBuilder: knitr
 Imports: 
     gradethis,
+    learnr,
     ggplot2,
     dplyr,
     tidyr,
