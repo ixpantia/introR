@@ -39,6 +39,7 @@ VignetteBuilder: knitr
 Imports: 
     gradethis,
     learnr,
+    rsconnect, 
     ggplot2,
     dplyr,
     tidyr,
