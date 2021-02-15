@@ -1,0 +1,8 @@
+pandoc: 2.7.3
+pkgdown: 1.6.1
+pkgdown_sha: ~
+articles:
+  use_paquete: use_paquete.html
+  uso_tutoriales_learnr: uso_tutoriales_learnr.html
+last_built: 2021-02-15T20:39Z
+
