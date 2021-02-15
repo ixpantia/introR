@@ -53,7 +53,7 @@ Descripción de las variables:
 | Variable | Descripcion |
 |:--------:|:-----------:|
 | `label` | Código del participante | 
-| `rep` | Repeitición |
+| `rep` | Repetición |
 | `f1`| Vector numérico indicando la vocal F1 en Hz  | 
 
 ## Ejercicios:
