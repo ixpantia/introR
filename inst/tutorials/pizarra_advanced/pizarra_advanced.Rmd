@@ -1,9 +1,10 @@
 ---
-title: "ixpantia sesion_5: Ejercicios sesión R avanzado"
+title: "Sesión 5: R avanzado"
+subitle: "Ejercicios pizarra"
 output: 
   learnr::tutorial:
     language: es
-    css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/custom_css.css
+    css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/intro_r.css
 runtime: shiny_prerendered
 description: >
   Ejercicios de pizarra que se realizan durante la sesión para aprender sobre
