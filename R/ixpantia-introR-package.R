@@ -38,24 +38,21 @@ practicar <- function(nombre_tutorial) {
   # install.packages(paquetes)
 }
 
-#' @title Practicar con tutorial
+#' @title Listar tutoriales
 #'
-#' @description Despliega el tutorial elegido por su nombre en un navegador web
+#' @description Genera una lista con los tutoriales dis
 #'
 #' @details La función necesita que en el computador docker esté instalado y que
 #' se hayan agregado las lineas siguientes en la terminal:
 #'
-#' @param nombre_tutorial Es el nombre de uno de los tutoriales dentro del
-#' paquete ixpantia.introR
+#' @param tipo Es el tipo del tutorial que queremos listar. Puede ser `tarea` o
+#' `pizarra`
 #'
 #' @examples
 #'\dontrun{
 #' practicar("pizarra_coercion")
 #'}
-tutoriales_disponibles <- function(tipo) {
-  tutoriales <- available_tutorials("ixpantia.introR") %>%
-    as_tibble() %>%
-    tidyr::separate()
+listar_tutoriales <- function(tipo) {
 
   if (tipo == "tarea") {
     tutoriales <- available_tutorials("ixpantia.introR") %>%
