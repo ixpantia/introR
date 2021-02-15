@@ -3,7 +3,7 @@ title: "ixpantia sesion_extra: Estilo de código"
 output: 
   learnr::tutorial:
     language: es
-    css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/custom_css.css
+    css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/intro_r.css
 runtime: shiny_prerendered
 description: >
   Ejercicios para aprender el estilo de código recomendado en ixpantia?.
