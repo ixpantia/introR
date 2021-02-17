@@ -37,7 +37,6 @@ Depends:
     R (>= 4.0.0)
 VignetteBuilder: knitr
 Imports: 
-    gradethis,
     learnr,
     rsconnect, 
     ggplot2,
@@ -54,7 +53,6 @@ Imports:
     learnr
 RoxygenNote: 7.1.1
 Suggests: 
-    gradethis,
     knitr,
     rmarkdown
 Remotes: rstudio-education/gradethis
