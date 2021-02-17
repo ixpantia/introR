@@ -4,5 +4,6 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^Meta$
 ^img$
 ^\.github$
