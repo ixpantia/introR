@@ -3,6 +3,7 @@ title: "ixpantia sesion_7: ggplot avanzado"
 subtitle: "Tarea"
 output: 
   learnr::tutorial:
+    language: es
     css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/custom_css.css
 runtime: shiny_prerendered
 description: >

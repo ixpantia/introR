@@ -66,8 +66,3 @@ listar_tutoriales <- function(tipo) {
   return(tutoriales)
 }
 
-
-
-
-
-
