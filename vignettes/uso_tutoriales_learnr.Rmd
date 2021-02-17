@@ -60,3 +60,9 @@ que en el primer caso, despliega un mensaje de retroalimentación.
 knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/seleccion.png")
 ```
 
+## Tutorial en vivo sobre learnr y gradethis 
+En el webinario de setiembre 2020 de [Data Latam](http://www.datalatam.com/), 
+Andrea Vargas explicó cómo se crean los tutoriales basados en `leanr` y cómo 
+utilizar `gradethis` cómo herramienta de evaluación dentro de los mismos. La
+grabación de este webinario se puede encontrar [aquí](https://www.youtube.com/watch?v=HyB0Lsa9ixo). 
+Utilizando este recurso es posible entender lo que hay detrás de los tutoriales incluidos en este paquete. 
