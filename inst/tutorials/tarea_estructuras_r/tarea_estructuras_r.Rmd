@@ -1,10 +1,10 @@
 ---
-title: "ixpantia sesion_2: Estructuras en R"
-subtitle: "**Tarea**"
+title: "Sesión 2: Estructuras en R"
+subtitle: "Tarea"
 output: 
   learnr::tutorial:
     language: es
-    css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/custom_css.css
+    css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/intro_r.css
 runtime: shiny_prerendered
 description: >
   Ejercicios de tarea que se pueden practicar fuera de la sesión del curso. Esta

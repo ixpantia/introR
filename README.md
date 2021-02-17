@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ixpantia.introR <a href="url"><img src="man/figures/ixpantia_cursos.png" align="right" width="30%"></a>
+# ixpantia.introR <a href="url"><img src="man/figures/introR_logo.png" align="right" width="30%"></a>
 
 <!-- badges: start -->
 
