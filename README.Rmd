@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# ixpantia.introR <a href="url"><img src="man/figures/ixpantia_cursos.png" align="right" width="30%"></a>
+# ixpantia.introR <a href="url"><img src="man/figures/introR_logo.png" align="right" width="30%"></a>
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/ixpantia.introR)](https://cran.r-project.org/package=ixpantia.introR)
