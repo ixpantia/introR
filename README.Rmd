@@ -64,7 +64,7 @@ inmediatamente se abrirá una nueva ventana para que busque el archivo.
 Una vez seleccionado el archivo, hay que dar click en **Install** e
 iniciará el proceso de instalación.
 
-**Errores de instalación**
+## **Errores de instalación**
 
 En caso de que aparezcan mensajes como por ejemplo:
 ```{r, eval = FALSE}
