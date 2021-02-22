@@ -37,7 +37,6 @@ Depends:
     R (>= 4.0.0)
 VignetteBuilder: knitr
 Imports: 
-    gradethis,
     learnr,
     rsconnect, 
     ggplot2,
