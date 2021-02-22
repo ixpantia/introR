@@ -22,6 +22,7 @@ library(dplyr)
 library(gradethis)
 library(datos)
 y <- 10:100
+notas <- c(67, 89, 95, 92, 71, 84, 100, 97)
 
 tutorial_options(exercise.checker = gradethis::grade_learnr)
 ```
@@ -38,11 +39,11 @@ A continuación mostramos los conceptos básicos de R:
 ### Crear objetos
 
 En R para crear un objeto utilizamos el símbolo `<-` (también se 
-puede utilizar `=` pero no es lo recomendado). 
+puede utilizar `=`). 
 
 **Ejemplo**: crear un objeto llamado "temperatura" que contenga el número 36.
 
-```{r}
+```{r ejemplo_asignacion}
 temperatura <- 36
 ```
 
@@ -55,12 +56,18 @@ de los paréntesis colocamos la información requerida para que la
 función haga su trabajo.
 
 Un ejemplo de una función de R es `mean()`, para obtener rápidamente el 
-promedio de algún objeto. Se utiliza de la siguiente forma:
+promedio de algún objeto. 
 
-```{r}
-mean(y)
+Podemos utilizarla para obtener el promedio de las notas de un curso que 
+tenemos guardadas en el objeto `notas`.
+```{r ver_notas}
+notas
 ```
 
+Se utiliza de la siguiente forma:
+```{r ejemplo_funcion}
+mean(notas)
+```
 
 ### Data frames
 Una de las estructuras más comunes en R son los data frames o conjuntos de 
