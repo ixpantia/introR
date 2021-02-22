@@ -50,7 +50,7 @@ Imports:
     lubridate,
     readr,
     hflights,
-    learnr
+    datos
 RoxygenNote: 7.1.1
 Suggests: 
     knitr,
