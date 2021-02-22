@@ -20,6 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(learnr)
 library(dplyr)
 library(gradethis)
+library(datos)
 y <- 10:100
 
 tutorial_options(exercise.checker = gradethis::grade_learnr)
@@ -39,16 +40,16 @@ A continuación mostramos los conceptos básicos de R:
 En R para crear un objeto utilizamos el símbolo `<-` (también se 
 puede utilizar `=` pero no es lo recomendado). 
 
-**Ejemplo**: crear un objeto llamado "x" que contenga el número 1
+**Ejemplo**: crear un objeto llamado "temperatura" que contenga el número 36.
 
 ```{r}
-x <- 1
+temperatura <- 36
 ```
 
 ### Funciones
 
 Las funciones son una serie de pasos o procedimientos que se
-encapsulan en un mismo lugar para que escribir de código sea más
+encapsulan en un mismo lugar para que escribir código sea más
 eficiente. Una función siempre es precedida por un paréntesis. Dentro
 de los paréntesis colocamos la información requerida para que la
 función haga su trabajo.
@@ -151,7 +152,7 @@ grade_result(
 )
 ```
 
-### Acceda la segunda columna del conjunto de datos `mtcars`
+### Acceda la segunda columna del conjunto de datos `mtautos`
 
 ```{r seg_col, exercise = TRUE}
  
@@ -164,7 +165,7 @@ grade_result(
 ```{r seg_col-check}
 grade_result(
   pass_if(~ identical(unlist(.result), 
-                      unlist(mtcars[, 2])),
+                      unlist(mtautos[, 2])),
           "¡Buenísimo!")
 )
 ```
@@ -210,5 +211,31 @@ class()
 grade_result(
   pass_if(~ identical(.result, class(y)),
           "¡Buenísimo!")
+)
+```
+
+### Resolviendo errores
+
+Imaginemos que comienzo a hacer un análisis de datos exploratorio en R y lo 
+primero que quiero hacer es un gráfico con `ggplot`. Para esto escribo lo 
+siguiente:
+
+```{r codigo_ggplot, eval=FALSE}
+ggplot(ventas, aes(x = tipo_producto, y = total_ganancias)) +
+  geom_boxplot()
+```
+
+Al hacerlo, obtengo el siguiente error:
+```{r error, echo=FALSE, out.width="65%", fig.align = "center"}
+knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/error_libreria.png")  
+```
+
+```{r error_ejercicio, echo=FALSE}
+question("¿Porqué se da esta error?",
+  answer("Porque faltan argumentos en el código"),
+  answer("Porque no ha llamado la librería `ggplot2`", 
+         correct = TRUE),
+  answer("Porque los datos `ventas` no fueron cargados"),
+  answer("Porque hay un error ortográfico en la instrucción")
 )
 ```
