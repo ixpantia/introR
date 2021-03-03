@@ -7,8 +7,7 @@
 revisar_dependencias(instalar = FALSE)
 }
 \arguments{
-\item{tipo}{Es el tipo del tutorial que queremos listar. Puede ser `tarea` o
-`pizarra`}
+\item{instalar}{Indicar si quieres instalar las dependencias al revisar}
 }
 \description{
 Muestra las dependencias del paquete ixpantia.introR que son

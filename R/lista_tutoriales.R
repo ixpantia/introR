@@ -77,8 +77,7 @@ listar_tutoriales <- function(tipo) {
 #' uso de los tutoriales. Si en algún caso no sabemos cuál paquete nos falta,
 #' esta función nos dará la lista de dependencias.
 #'
-#' @param tipo Es el tipo del tutorial que queremos listar. Puede ser `tarea` o
-#' `pizarra`
+#' @param instalar Indicar si quieres instalar las dependencias al revisar
 #'
 #' @examples
 #'\dontrun{
