@@ -41,6 +41,7 @@ Imports:
     rsconnect, 
     ggplot2,
     dplyr,
+    tibble,
     tidyr,
     mosaicData,
     visdat,
