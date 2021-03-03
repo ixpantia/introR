@@ -17,7 +17,7 @@ NULL
 #'}
 practicar <- function(nombre_tutorial) {
   tutoriales <- available_tutorials("ixpantia.introR") %>%
-    as_tibble()
+    tibble::as_tibble()
 
   nombres <- tutoriales %>%
     select(name) %>%
@@ -27,7 +27,7 @@ practicar <- function(nombre_tutorial) {
     nombres <- tutoriales %>%
       select(name) %>%
       pull()
-    print("Nombre no válido. Elegir alguno de los siguientes:")
+    print("Nombre no v\xc3\xa1clido. Elegir alguno de los siguientes:")
     nombres
   }
 
@@ -77,8 +77,7 @@ listar_tutoriales <- function(tipo) {
 #' uso de los tutoriales. Si en algún caso no sabemos cuál paquete nos falta,
 #' esta función nos dará la lista de dependencias.
 #'
-#' @param tipo Es el tipo del tutorial que queremos listar. Puede ser `tarea` o
-#' `pizarra`
+#' @param instalar Indicar si quieres instalar las dependencias al revisar
 #'
 #' @examples
 #'\dontrun{
