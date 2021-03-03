@@ -17,7 +17,7 @@ NULL
 #'}
 practicar <- function(nombre_tutorial) {
   tutoriales <- available_tutorials("ixpantia.introR") %>%
-    as_tibble()
+    tibble::as_tibble()
 
   nombres <- tutoriales %>%
     select(name) %>%
@@ -27,7 +27,7 @@ practicar <- function(nombre_tutorial) {
     nombres <- tutoriales %>%
       select(name) %>%
       pull()
-    print("Nombre no válido. Elegir alguno de los siguientes:")
+    print("Nombre no v\xc3\xa1clido. Elegir alguno de los siguientes:")
     nombres
   }
 
