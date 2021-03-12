@@ -34,7 +34,7 @@ LazyData: true
 URL: https://github.com/ixpantia/introR
 BugReports: https://github.com/ixpantia/introR/issues
 Depends:
-    R (>= 4.0.0)
+    R (>= 3.6.0)
 VignetteBuilder: knitr
 Imports: 
     learnr,
