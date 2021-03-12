@@ -1,5 +1,5 @@
 ---
-title: "Uso de tutoriales `learnr` + `gradethis`"
+title: "Uso de tutoriales learnr + gradethis"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Uso de tutoriales learnr + gradethis}
@@ -17,7 +17,7 @@ options(rmarkdown.html_vignette.check_title = FALSE)
 ```
 
 Los tutoriales parte de
-[`introR`](https://ixpantia.github.io/ixpantia.introR/)
+[`introR`](https://ixpantia.github.io/introR/)
 están basados en el paquete [`learnr`](https://rstudio.github.io/learnr/). A 
 continuación se comentan los principales elementos que constituyen dichos 
 recursos. 

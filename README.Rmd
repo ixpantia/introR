@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 # introR <a href="url"><img src="man/figures/introR_logo.png" align="right" width="30%"></a>
 
 <!-- badges: start -->
-[![CRAN status](https://www.r-pkg.org/badges/version/ixpantia.introR)](https://cran.r-project.org/package=ixpantia.introR)
+[![CRAN status](https://www.r-pkg.org/badges/version/introR)](https://cran.r-project.org/package=introR)
 <!-- badges: end -->
 
 El paquete `introR` le permitirá hacer uso de los tutoriales
@@ -104,5 +104,5 @@ En [este video](https://www.youtube.com/watch?v=jBSDZ1Juji4) puedes encontrar un
 
 Si tenés dudas sobre el uso del paquete o sugerencias para
 mejorarlo, por favor escríbenos a *hola@ixpantia.com* o bien podés abrirnos
-un [tiquete](https://github.com/ixpantia/ixpantia.introR/issues)
+un [tiquete](https://github.com/ixpantia/introR/issues)
 
