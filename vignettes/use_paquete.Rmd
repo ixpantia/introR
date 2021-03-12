@@ -1,8 +1,8 @@
 ---
-title: "Uso del paquete ixpantia.introR"
+title: "Uso del paquete introR"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Uso del paquete ixpantia.introR}
+  %\VignetteIndexEntry{Uso del paquete introR}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -28,7 +28,7 @@ llamada "Tutorial"
 Los paquetes que necesitamos para los tutoriales principalmente son:
 
 ```{r setup, eval = FALSE}
-library(ixpantia.introR)
+library(introR)
 library(learnr)
 library(gradethis)
 ```

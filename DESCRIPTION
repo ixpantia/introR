@@ -1,4 +1,4 @@
-Package: ixpantia.introR
+Package: introR
 Type: Package
 Title: Aprenda R con ejercicios interactivos del curso introducción a R de ixpantia
 Version: 0.0.3
@@ -31,8 +31,8 @@ Description: Obtenga de manera interactiva ejercicios para realizar durante las
 License: file LICENSE
 Encoding: UTF-8
 LazyData: true
-URL: https://github.com/ixpantia/ixpantia.introR
-BugReports: https://github.com/ixpantia/ixpantia.introR/issues
+URL: https://github.com/ixpantia/introR
+BugReports: https://github.com/ixpantia/introR/issues
 Depends:
     R (>= 4.0.0)
 VignetteBuilder: knitr
@@ -54,7 +54,8 @@ Imports:
     datos
 RoxygenNote: 7.1.1
 Suggests: 
+    testthat (>= 3.0.0),
     knitr,
     rmarkdown
 Remotes: rstudio-education/gradethis
-
+Config/testthat/edition: 3

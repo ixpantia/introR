@@ -13,13 +13,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-# ixpantia.introR <a href="url"><img src="man/figures/introR_logo.png" align="right" width="30%"></a>
+# introR <a href="url"><img src="man/figures/introR_logo.png" align="right" width="30%"></a>
 
 <!-- badges: start -->
-[![CRAN status](https://www.r-pkg.org/badges/version/ixpantia.introR)](https://cran.r-project.org/package=ixpantia.introR)
+[![CRAN status](https://www.r-pkg.org/badges/version/introR)](https://cran.r-project.org/package=introR)
 <!-- badges: end -->
 
-El paquete `ixpantia.introR` le permitirá hacer uso de los tutoriales
+El paquete `introR` le permitirá hacer uso de los tutoriales
 interactivos en su IDE de RStudio. Una forma para estudiar y practicar
 conceptos de R aprendidos en los cursos de ixpantia.
 
@@ -28,7 +28,7 @@ conceptos de R aprendidos en los cursos de ixpantia.
 Antes de instalar este paquete, primero debemos de realizar la instalación del
 paquete que se llama `gradethis`. 
 
-Esto porque uno de los componentes del `ixpantia.introR` es el paquete [gradethis](https://github.com/rstudio-education/gradethis), sin embargo este no
+Esto porque uno de los componentes del `introR` es el paquete [gradethis](https://github.com/rstudio-education/gradethis), sin embargo este no
 se encuentra publicado aún en el CRAN y por ende debemos de instalarlo desde su
 versión en desarrollo en Github. Podemos correr el siguiente comando para
 hacerlo:
@@ -40,7 +40,7 @@ remotes::install_github("rstudio-education/gradethis")
 Recuerda que **necesitamos** además tener las **versiones más recientes** de **R ( >=4.0.2) y RStudio (>=1.3.959)** para tener
 la funcionalidad de los tutoriales dinámicos.
 
-Una vez instalado el `gradethis` podemos proceder a instalar `ixpantia.introR`.
+Una vez instalado el `gradethis` podemos proceder a instalar `introR`.
 Hay dos formas de instalar el paquete en su computador. Una es hacerlo
 directamente del repositorio en GitHub (versión en desarrollo) con el siguiente
 comando. 
@@ -50,7 +50,7 @@ se presiona la tecla **Enter** para que se ejecute e inmediatamente iniciará
 el proceso de la descarga.
 
 ```{r, eval = FALSE}
-remotes::install_github("ixpantia/ixpantia.introR")
+remotes::install_github("ixpantia/introR")
 ```
 
 Una segunda forma es que cuente con el archivo `.tar.gz` en
@@ -104,5 +104,5 @@ En [este video](https://www.youtube.com/watch?v=jBSDZ1Juji4) puedes encontrar un
 
 Si tenés dudas sobre el uso del paquete o sugerencias para
 mejorarlo, por favor escríbenos a *hola@ixpantia.com* o bien podés abrirnos
-un [tiquete](https://github.com/ixpantia/ixpantia.introR/issues)
+un [tiquete](https://github.com/ixpantia/introR/issues)
 
