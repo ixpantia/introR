@@ -9,7 +9,7 @@ NULL
 #' se hayan agregado las lineas siguientes en la terminal:
 #'
 #' @param nombre_tutorial Es el nombre de uno de los tutoriales dentro del
-#' paquete ixpantia.introR
+#' paquete introR
 #'
 #' @examples
 #'\dontrun{

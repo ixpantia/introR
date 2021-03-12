@@ -8,7 +8,7 @@ practicar(nombre_tutorial)
 }
 \arguments{
 \item{nombre_tutorial}{Es el nombre de uno de los tutoriales dentro del
-paquete ixpantia.introR}
+paquete introR}
 }
 \description{
 Despliega el tutorial elegido por su nombre en un navegador web
