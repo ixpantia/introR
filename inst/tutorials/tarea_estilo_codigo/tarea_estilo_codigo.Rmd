@@ -26,10 +26,18 @@ knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_in
 
 ## Introducción
 
-Hay muchas formas de escribir código en R. Entre mas código escribes, y sobretodo entre mas código tienes que leer, más apreciarás un estilo uniforme. Te permitirá leer tu propio código y volver a entenderlo más fácilmente después de un largo tiempo sin haberlo visto. Además, un estilo uniforme te permitirá trabajar más efectivamente con otros.
+Hay muchas formas de escribir código en R. Entre mas código escribes, y 
+sobretodo entre mas código tienes que leer, más apreciarás un estilo uniforme. 
+Te permitirá leer tu propio código y volver a entenderlo más fácilmente después
+de un largo tiempo sin haberlo visto. Además, un estilo uniforme te permitirá
+trabajar más efectivamente con otros.
 
-Aquí podrás encontrar los diferentes elementos que pueden estar en un guía de estilo. Esta basado en el guia de estilo de Hadley Wickham. Este a su vez esta basado en el guia de estilo de Google. Además, se incluyen las sugerencias que son relevantes para hispanohablantes. Esto porque en el Castellano estamos acostumbrados, entre otras cosas, a tildes, eñes y otros caracteres que necesitan su propia discusión.
-
+Aquí podrás encontrar los diferentes elementos que pueden estar en un guía de
+estilo. Esta basado en el guia de estilo de Hadley Wickham. Este a su vez esta
+basado en el guia de estilo de Google. Además, se incluyen las sugerencias que 
+son relevantes para hispanohablantes. Esto porque en el Castellano estamos
+acostumbrados, entre otras cosas, a tildes, eñes y otros caracteres que 
+necesitan su propia discusión.
 
 ## Nomenclatura
 
@@ -37,7 +45,8 @@ Aquí podrás encontrar los diferentes elementos que pueden estar en un guía de
 
 #### Tip 1
 
-Los archivos deben tener un nombre descriptivo, no tener caracteres especiales (tildes, eñes) y terminar en .R. 
+Los archivos deben tener un nombre descriptivo, no tener caracteres especiales
+(tildes, eñes) y terminar en .R. 
 
 #### Ejercicio 1
 
@@ -69,7 +78,10 @@ question("¿Cuál (es) de estos nombres de archivos es (son) correcto (s)?",
 
 #### Tip 3
 
-Nombres de variables y de funciones deben ser en minúscula y que se ha de usar un guión bajo (_) para separar palabras dentro de un nombre. Usar sustantivos para los nombres de las variables y verbos para las funciones. Nunca uses caracteres especiales como tildes y eñes en tus nombres de objetos.
+Nombres de variables y de funciones deben ser en minúscula y que se ha de usar 
+un guión bajo (_) para separar palabras dentro de un nombre. Usar sustantivos 
+para los nombres de las variables y verbos para las funciones. Nunca uses 
+caracteres especiales como tildes y eñes en tus nombres de objetos.
 
 #### Ejercicio 3
 ```{r nombres_objs}
@@ -83,7 +95,8 @@ question("¿Cuál (es) de estos nombres de objetos es (son) correcto (s)?",
 
 #### Tip 4
 
-Si usas nombres de funciones que ya están en uso es probable que generes confusión. Trata de evitarlo hasta donde sea posible.
+Si usas nombres de funciones que ya están en uso es probable que generes 
+confusión. Trata de evitarlo hasta donde sea posible.
 
 #### Ejercicio 4
 ```{r nombres_objs2}
@@ -101,9 +114,12 @@ question("¿Cuál (es) de estos nombres de funciones es (son) correcto (s)?",
 
 #### Tip 5
 
-Antes y después de todos los operadores infijos va un espacio (=, +, <-, etc). Esto aplica aún para el signo equivalente (=) en las llamada de una función. No hay espacios antes de una coma, pero una coma siempre es seguida por un espacio.
+Antes y después de todos los operadores infijos va un espacio (=, +, <-, etc).
+Esto aplica aún para el signo equivalente (=) en las llamada de una función. No
+hay espacios antes de una coma, pero una coma siempre es seguida por un espacio.
 
 #### Ejercicio 5
+
 ```{r  espacios_num}
 question("¿Cuál (es) de estos comandos es (son) correcto (s)?",
   answer("profundidad<-round((pies + pulgadas/12), 2)"),
@@ -119,6 +135,7 @@ question("¿Cuál (es) de estos comandos es (son) correcto (s)?",
 No se usan espacios para `:`, `::` ni `:::`. 
 
 #### Ejercicio 6
+
 ```{r espacios_dospts}
 question("¿Cuál (es) de estos comandos es (son) correcto (s)?",
   answer("x <- 2:23", correct = TRUE),
@@ -130,9 +147,11 @@ question("¿Cuál (es) de estos comandos es (son) correcto (s)?",
 
 #### Tip 7
 
-Antes del paréntesis izquierdo va un espacio, a no ser que estés llamando una función en cual caso no se usa un espacio.
+Antes del paréntesis izquierdo va un espacio, a no ser que estés llamando una
+función en cual caso no se usa un espacio.
 
 #### Ejercicio 7
+
 ```{r espacios_izq}
 question("¿Cuál (es) de estos comandos es (son) correcto (s)?",
   answer("qplot(x, y)", correct = TRUE),
@@ -144,14 +163,16 @@ question("¿Cuál (es) de estos comandos es (son) correcto (s)?",
 
 #### Tip 8
 
-Cuando quieras introducir mas orden en el código alineándolo, por ejemplo, sobre los símbolos de igualdad, está bien usar espacios para tal efecto
-
+Cuando quieras introducir mas orden en el código alineándolo, por ejemplo,
+sobre los símbolos de igualdad, está bien usar espacios para tal efecto
 
 #### Tip 9
 
-Los paréntesis y corchetes ([]) no llevan espacios a su alrededor. Si hay una coma, aplican las convenciones que se mencionaron antes.
+Los paréntesis y corchetes ([]) no llevan espacios a su alrededor. Si hay una 
+coma, aplican las convenciones que se mencionaron antes.
 
 #### Ejercicio 9
+
 ```{r parent}
 question("¿Cuál (es) de estos comandos es (son) correcto (s)?",
   answer("if ( depurando ) x <- 34"),
@@ -166,25 +187,32 @@ question("¿Cuál (es) de estos comandos es (son) correcto (s)?",
 
 #### Tip 10
 
-No uses punto y coma dentro del código. No es necesario, y prácticamente ya no se usa.
+No uses punto y coma dentro del código. No es necesario, y prácticamente ya no 
+se usa.
 
 
 ### Llaves
 
 #### Tip 11
-Abrir una llave nunca debería ocurrir en su propia línea y siempre se sigue con una línea nueva. Una llave que cierra siempre debe ir en su propia línea a menos que sea else. Siempre usa llaves cuando estás usando construcciones con “if”, aún cuando no es posible no hacerlo.
+
+Abrir una llave nunca debería ocurrir en su propia línea y siempre se sigue con
+una línea nueva. Una llave que cierra siempre debe ir en su propia línea a menos
+que sea else. Siempre usa llaves cuando estás usando construcciones con “if”, 
+aún cuando no es posible no hacerlo.
 
 ### Longitud de lineas
 
 #### Tip 12
 
-Trata de limitar tu código a una longitud de 80 caracteres por linea. Esto cabe cómodamente en una página impresa a un tamaño de la fuente razonable. 
+Trata de limitar tu código a una longitud de 80 caracteres por linea. Esto cabe
+cómodamente en una página impresa a un tamaño de la fuente razonable. 
 
 ### Asignación
 
 #### Tip 13
 
-Es mejor usar solo `<-` para asignación en vez de `=` y usar el símbolo de igualdad solamente para argumentos dentro de funciones.
+Es mejor usar solo `<-` para asignación en vez de `=` y usar el símbolo de
+igualdad solamente para argumentos dentro de funciones.
 
 #### Ejercicio 13
 ```{r asigna}
@@ -193,4 +221,3 @@ question("¿Cuál (es) de estos comandos es (son) correcto (s)?",
   answer("y = 23")
 )
 ```
-
