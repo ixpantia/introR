@@ -27,24 +27,29 @@ library(ggplot2)
 library(dplyr)
 library(tidyr)
 
-txhousing <- txhousing %>% 
+casas_texas <- txhousing %>% 
   mutate(month = as.factor(month))
 
 cities <- c("Austin", "Dallas", "El Paso", "Houston", "Irving", "San Antonio")
 
-txhousing2 <- txhousing %>% 
+casas_texas2 <- casas_texas %>% 
   filter(city %in% cities)
 ```
 
 ```{r, echo=FALSE, out.width="35%", fig.align = "center"}
-knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")    
+knitr::include_graphics(
+  "https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png"
+  )    
 ```
 
-## Datos: **txhousing**
+## Datos: **casas_texas**
 
-Para la tareas usaremos el conjunto de datos **txhousing**, el cual contiene información sobre la industria de las bienes raíces en Texas, Estados Unidos, del 2000 al 2015. El set de datos contiene 8602 observaciones y 9 variables. 
+Para la tareas usaremos el conjunto de datos **casas_texas**, el cual contiene
+información sobre la industria de las bienes raíces en Texas, Estados Unidos, 
+del 2000 al 2015. El set de datos contiene 8602 observaciones y 9 variables. 
+
 ```{r}
-glimpse(txhousing)
+glimpse(casas_texas)
 ```
 
 Descripción de las variables 
@@ -61,87 +66,94 @@ Descripción de las variables
 | `inventory` | Tiempo necesario para que se vendan todos los listados activos al paso actual de las ventas |
 | `date` | Fecha en estudio |
 
-
 ## Ejercicios
 
 ### 1. Grafique la variable `volume` de tal forma que podamos ver su distribucion
 
-En el set de datos `txhousing` hay una variable llamada `volume` que representa el valor total de las ventas realizadas. Usando algunos de los `geoms` de ggplot, grafique esta variable de tal forma que se logre ver su distribucion.
+En el set de datos `casas_texas` hay una variable llamada `volume` que 
+representa el valor total de las ventas realizadas. Usando algunos de los 
+`geoms` de ggplot, grafique esta variable de tal forma que se logre ver su
+distribución.
 
 ```{r volume, exercise = TRUE}
-ggplot(txhousing)
-
+ggplot(casas_texas)
 ```
 
 ```{r volume-solution}
-ggplot(txhousing, aes(volume)) +
+ggplot(casas_texas, aes(volume)) +
   geom_density()
 
 # o también
 
-ggplot(txhousing, aes(volume)) +
+ggplot(casas_texas, aes(volume)) +
   geom_histogram()
 ```
 
-
 ### 2. Cree un gráfico de puntos sencillo que represente la cantidad de ventas sobre los años
 
-En **txhousing** tenemos una variables llamada `year` que tiene los años del 2000 al 2015 en que se dieron ests ventas y otra variable, `sales` con la cantidad de ventas hechas en la ciudad a la fecha indicada. Ahora utilice estas variables para hacer un gráfico que muestres la cantidad de ventas realizadas para cada año en forma de puntos. 
+En **casas_texas** tenemos una variables llamada `year` que tiene los años del 
+2000 al 2015 en que se dieron ests ventas y otra variable, `sales` con la 
+cantidad de ventas hechas en la ciudad a la fecha indicada. Ahora utilice estas variables para hacer un gráfico que muestres la cantidad de ventas realizadas 
+para cada año en forma de puntos. 
 
 ```{r point, exercise = TRUE}
-ggplot(txhousing)
+ggplot(casas_texas)
 ```
 
 ```{r point-solution}
-ggplot(txhousing, aes(x = year, y = sales)) +
+ggplot(casas_texas, aes(x = year, y = sales)) +
 geom_point()
 ```
 
-
 ### 3. Cree un gráfico que permita ver la relación entre `volume` y `sales` 
 
-En `txhousing` hay una variable que se llama `volume` que representa el valor total de las ventas realizadas y otra llamada `sales` que contiene el número de ventas realizadas. Grafique la relación de estas variables utilizando `geom_smooth` y `geom_point`. Utilice el método "lm" y una confianza del 90%.
+En `casas_texas` hay una variable que se llama `volume` que representa el valor total de las ventas realizadas y otra llamada `sales` que contiene el número de ventas realizadas. Grafique la relación de estas variables utilizando 
+`geom_smooth` y `geom_point`. Utilice el método "lm" y una confianza del 90%.
+
 ```{r lm, exercise = TRUE}
-ggplot(txhousing)
+ggplot(casas_texas)
 
 ```
 
 ```{r lm-solution}
-ggplot(txhousing, aes(x = sales, y = volume)) +
+ggplot(casas_texas, aes(x = sales, y = volume)) +
   geom_smooth(aes(x = sales, y = volume), 
               method = "lm", level = 0.90) +
   geom_point() 
 ```
 
-
 ### 4. Haga un gráfico que muestre la cantidad de listados por año para cada ciudad
 
-Para este ejercicio utilizaremos el set de datos **txhousing2** para que sea visualmente más entendible ya que restringe la cantidad de datos.
+Para este ejercicio utilizaremos el set de datos **casas_texas2** para que sea visualmente más entendible ya que restringe la cantidad de datos.
 
-La variable `listings` del conjunto de datos **txhousing2** describe la cantidad de listados activos, además, la variable `year` describe el año y la variable `city`, el nombre de la ciudad de Texas en cada caso. Utilizando estas tres variables obtenga un gráfico que muestre la cantidad de listados por año para cada una de las ciudades. 
+La variable `listings` del conjunto de datos **casas_texas2** describe la 
+cantidad de listados activos, además, la variable `year` describe el año y la variable `city`, el nombre de la ciudad de Texas en cada caso. Utilizando estas 
+tres variables obtenga un gráfico que muestre la cantidad de listados por año
+para cada una de las ciudades. 
+
 ```{r fill, exercise = TRUE}
-ggplot(txhousing2) 
+ggplot(casas_texas2) 
 
 ```
 
 ```{r fill-solution}
-ggplot(txhousing2) +
+ggplot(casas_texas2) +
 geom_col(aes(year, listings, fill = city))
 ```
 
+### 5. Haga un gráfico de cajas para las 6 ciudades de **casas_texas** según su cantidad de listados activos 
 
-### 5. Haga un gráfico de cajas para las 6 ciudades de **txhousing** según su cantidad de listados activos 
+En **casas_texas** la variable `city` contempla solamente 6 ciudades de Texas,
+además este conjunto de datos tiene una variable llamada `listings` que contiene 
+la cantidad de listados activos. Cree un gráfico de cajas que muestre la
+distribución de la variable `listings` para cada una de las ciudades.
 
-En **txhousing** la variable `city` contempla solamente 6 ciudades de Texas, además este conjunto de datos tiene una variable llamada `listings` que contiene la cantidad de listados activos. Cree un gráfico de cajas que muestre la distribución de la variable `listings` para cada una de las ciudades.
 ```{r box, exercise = TRUE}
-ggplot(txhousing2) 
+ggplot(casas_texas2) 
 
 ```
 
 ```{r box-solution}
-ggplot(txhousing2) +
+ggplot(casas_texas2) +
   geom_boxplot(aes(x = city, y = listings))
 ```
-
-
-
