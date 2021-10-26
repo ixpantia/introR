@@ -42,14 +42,16 @@ tutorial_options(exercise.checker = gradethis::grade_learnr)
 ```
 
 ```{r, echo=FALSE, out.width="35%", fig.align = "center"}
-knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")  
+knitr::include_graphics(
+  "https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png"
+  )  
 ```
-
 
 ## Datos: **estaciones**
 
 Este conjunto de datos contiene la temperatura promedio por estación. En total
 hay 16 observaciones y 3 variables. 
+
 ```{r}
 glimpse(estaciones)
 ```
@@ -66,9 +68,10 @@ Descripción de las variables:
 
 ### Muestre las observaciones que se refieran a "invierno" solamente 
 
-En el conjunto de datos *estaciones* hay una columna llamada `temporada` la cual
-es una variable categórica con 4 categorías: invierno, verano, primavera y otoño.
-Obtenga la información referente a "invierno" solamente.
+En el conjunto de datos *estaciones* hay una columna llamada `temporada` la
+cual es una variable categórica con 4 categorías: invierno, verano, primavera y
+otoño. Obtenga la información referente a "invierno" solamente.
+
 ```{r filter, exercise = TRUE}
 estaciones %>% 
 ```
@@ -90,7 +93,9 @@ grade_result(
 
 En el conjunto de datos hay varios años por temporada. Obtenga la
 temperatura promedio de todos los años para cada una de las estaciones.
-Llame a esa nueva variable "temp_promedio". Utilice las funciones `group_by()` y `summarise()`. 
+Llame a esa nueva variable "temp_promedio". Utilice las funciones `group_by()`
+y `summarise()`. 
+
 ```{r mutate, exercise=TRUE}
 estaciones %>% 
   
@@ -118,7 +123,8 @@ grade_result(
 ### Ordene de forma descendiente las temporadas según la temperatura 
 
 Ordene las observaciones en *estaciones* de manera que las temporadas estén 
-ordenadas según la temperatura reportada de mayor a menor, es decir, en forma descendiente.
+ordenadas según la temperatura reportada de mayor a menor, es decir, en forma
+descendiente.
 
 ```{r arrange, exercise = TRUE}
 estaciones %>% 
@@ -143,4 +149,3 @@ grade_result(
           "¡Bien hecho!")
 )
 ```
-
