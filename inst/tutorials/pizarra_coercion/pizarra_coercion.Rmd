@@ -34,21 +34,27 @@ vector_5 <- c("R","ixpantia", "RStudio", 2)
 ```
 
 ```{r, echo=FALSE, out.width="35%", fig.align = "center"}
-knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")   
+knitr::include_graphics(
+  "https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png"
+  )   
 ```
 
 ## Datos
 
-Los datos en este caso son realmente vectores que tienen distintas características útiles para los ejercicios que vienen más adelante. En cada pregunta se muestra la creación del vector que se utilizará.
-
+Los datos en este caso son realmente vectores que tienen distintas 
+características útiles para los ejercicios que vienen más adelante. En cada 
+pregunta se muestra la creación del vector que se utilizará.
 
 ## Preguntas
 
-A continuación se muestran una serie de preguntas de selección única. Además se proporciona un espacio que usted puede utilizar para experimentar con los distintos vectores y poder responder las preguntas correctamente.
+A continuación se muestran una serie de preguntas de selección única. Además se
+proporciona un espacio que usted puede utilizar para experimentar con los
+distintos vectores y poder responder las preguntas correctamente.
 
 ### Pregunta 1
 
 Observe el siguiente vector:
+
 ```{r v1_1, exercise = TRUE}
 vector_1 <- c(10, 20, 30)
 
@@ -65,6 +71,7 @@ question("¿Qué pasa con si le agregamos una letra al `vector_1`?",
 ### Pregunta 2
 
 Observe el siguiente vector:
+
 ```{r v2_1, exercise = TRUE}
 vector_2 <- c("a", "b", "c")
 
@@ -111,6 +118,7 @@ question("¿Qué sucede con la expresion `FALSE` si aplicamos la función `as.nu
 ### Pregunta 5
 
 Observe el siguiente vector:
+
 ```{r v5_1, exercise = TRUE}
 vector_5 <- c("R","ixpantia", "RStudio", 2)
 
