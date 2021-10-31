@@ -27,9 +27,13 @@ library(tidyr)
 library(gradethis)
 tutorial_options(exercise.checker = gradethis::grade_learnr)
 
-gap_ancho <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder_wide.csv')
+gap_ancho <- readr::read_csv(
+  'https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder_wide.csv'
+  )
 
-gapminder <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv')
+gapminder <- readr::read_csv(
+  'https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv'
+  )
 
 gap_largo <- gather(gap_ancho, 
                     key = obstype_year,
@@ -43,14 +47,20 @@ knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_in
 
 ## Datos: **gap_ancho**
 
-Este conjunto de datos contiene información sobre distintos países, como características demográficas y económicas. Se conforma de 38 variables y 142 observaciones. Como podrán ver, la base está un poco desordenada y parece tener mucho espacio para mejoras. 
+Este conjunto de datos contiene información sobre distintos países, como
+características demográficas y económicas. Se conforma de 38 variables y 142
+observaciones. Como podrán ver, la base está un poco desordenada y parece tener
+mucho espacio para mejoras. 
+
 ```{r}
 glimpse(gap_ancho)
 ```
  
 Descripción de las variables: 
  
-Nota: algunas variables comparten la primera palabra de su nombre con otras, por lo que solo se describen estos inicios de nombres ya que son muchas variables y describir todas resultaría muy largo y repetitivo. 
+Nota: algunas variables comparten la primera palabra de su nombre con otras, 
+por lo que solo se describen estos inicios de nombres ya que son muchas 
+variables y describir todas resultaría muy largo y repetitivo. 
 
 | Variable | Descripción |
 |:--------:|:-----------:|
@@ -65,7 +75,11 @@ Nota: algunas variables comparten la primera palabra de su nombre con otras, por
 
 ### Ordene el conjunto de datos de utilizando `pivot_longer()`
 
-El conjunto de datos *gap_ancho* no está ordenado, es más ancho de lo que debería. Utilizando la función `pivot_longer` convierta *gap_ancho* en un conjunto de datos con una nueva columna *obstype_year* con los nombres de las variables y *obs_values* con sus valores 
+El conjunto de datos *gap_ancho* no está ordenado, es más ancho de lo que 
+debería. Utilizando la función `pivot_longer` convierta *gap_ancho* en un 
+conjunto de datos con una nueva columna *obstype_year* con los nombres de 
+las variables y *obs_values* con sus valores 
+
 ```{r gather, exercise = TRUE}
 pivot_longer(gap_ancho,  )
 ```
@@ -78,7 +92,6 @@ names_to =  "obstype_year"
 values_to = "obs_values"
 ```
 
-
 ```{r gather-check}
 grade_result(
   pass_if(~ identical(unlist(.result), 
@@ -89,10 +102,12 @@ grade_result(
         )
 ```
 
-
 ### Vuelva al conjunto de datos original usando `pivot_wider`
 
-Anteriormente acomodamos el conjunto de datos original utilizando `pivot_longer()`, este conjunto de datos quedó guardado como **gap_largo**. Ahora utilice `pivot_wider()`  para volver al formato original de los datos. 
+Anteriormente acomodamos el conjunto de datos original utilizando 
+`pivot_longer()`, este conjunto de datos quedó guardado como **gap_largo**. 
+Ahora utilice `pivot_wider()`  para volver al formato original de los datos.
+
 ```{r spread, exercise = TRUE}
 pivot_wider(gap_largo, )
 ```
@@ -100,7 +115,6 @@ pivot_wider(gap_largo, )
 ```{r spread-hint-1}
 cols= gdpPercap_1952:pop_2007
 ```
-
 
 ```{r spread-hint-2}
 "names_from = obstype_year"
@@ -118,10 +132,14 @@ grade_result(
 )
 ```
 
-
 ### Separe la columna `obstype_type` en dos columnas: `obstype` y `year`
 
-En el conjunto de datos de *gap_largo*  hay una columna llamada `obstype_year` que contiene la característica demográfica o económica y el año de registro de la misma. Utilice la función `separate()` para separar esta columna en dos nuevas: `obstype` y `year`. Recuerde observar el símbolo que hay como patrón para separar cada uno de los valores
+En el conjunto de datos de *gap_largo*  hay una columna llamada `obstype_year` 
+que contiene la característica demográfica o económica y el año de registro de 
+la misma. Utilice la función `separate()` para separar esta columna en dos
+nuevas: `obstype` y `year`. Recuerde observar el símbolo que hay como patrón 
+para separar cada uno de los valores
+
 ```{r separate, exercise = TRUE}
 separate(data = gap_largo, )
 ```
