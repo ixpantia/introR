@@ -60,16 +60,19 @@ promedio de algún objeto.
 
 Podemos utilizarla para obtener el promedio de las notas de un curso que 
 tenemos guardadas en el objeto `notas`.
+
 ```{r ver_notas}
 notas
 ```
 
 Se utiliza de la siguiente forma:
+
 ```{r ejemplo_funcion}
 mean(notas)
 ```
 
 ### Data frames
+
 Una de las estructuras más comunes en R son los data frames o conjuntos de 
 datos. En palabras simples estos son tablas que contienen datos y están 
 formadas por filas y columnas. Para crear uno de estos objetos en R podemos 
@@ -120,6 +123,7 @@ Para buscar la ayuda de un paquete:
 ## Ejercicios 
 
 ### Utilice la función `max()`
+
 La función `max` como es de esperar, nos devuelve el número máximo 
 del objeto que le indiquemos. Utilícela para obtener el máximo de 
 `y <- 10:100`
@@ -139,7 +143,6 @@ grade_result(
           "¡Buenísimo!")
 )
 ```
-
 
 ### Busque la ayuda o documentación de la función `mean()`
 
@@ -166,7 +169,7 @@ grade_result(
 ```
 
 ```{r seg_col-hint-1}
-[, 2]
+"[, 2]"
 ```
 
 ```{r seg_col-check}
@@ -211,7 +214,7 @@ question("¿Cómo se intala el paquete `dplyr`?",
 ```
 
 ```{r class-hint-1}
-class()
+"class()"
 ```
 
 ```{r class-check}
@@ -233,8 +236,11 @@ ggplot(ventas, aes(x = tipo_producto, y = total_ganancias)) +
 ```
 
 Al hacerlo, obtengo el siguiente error:
+
 ```{r error, echo=FALSE, out.width="65%", fig.align = "center"}
-knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/error_libreria.png")  
+knitr::include_graphics(
+  "https://storage.googleapis.com/datos_cursos/ixpantia_introR/error_libreria.png"
+  )  
 ```
 
 ```{r error_ejercicio, echo=FALSE}
