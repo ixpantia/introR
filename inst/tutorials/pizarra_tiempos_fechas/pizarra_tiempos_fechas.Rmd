@@ -29,26 +29,31 @@ library(ggplot2)
 library(dplyr)
 library(gradethis)
 tutorial_options(exercise.checker = gradethis::grade_learnr)
+
 marriage <- mosaicData::Marriage
 
-marriage2 <- marriage %>% 
-  mutate(appdate2 = mdy(appdate),
-         ceremonydate2 = mdy(ceremonydate),
-         dob2 = format(as.Date(marriage$dob, "%m/%d/%y"), "19%y-%m-%d")
+matrimonios <- marriage %>% 
+  mutate(appdate = mdy(appdate),
+         ceremonydate = mdy(ceremonydate),
+         dob = format(as.Date(dob, "%m/%d/%y"), "19%y-%m-%d")
 )
 
-marriage_duracion <- marriage2 %>% 
-  mutate(duracion = today() - ceremonydate2)
+marriage_duracion <- matrimonios %>% 
+  mutate(duracion = today() - ceremonydate)
 ```
 
 ```{r, echo=FALSE, out.width="35%", fig.align = "center"}
-knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")   
+knitr::include_graphics(
+  "https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png"
+  )   
 ```
 
 
 ## Datos: **marriage**
 
-Este set de datos contiene información sobre matrimonios registrados en Alabama, Estados Unidos enntre 1996 y 1999. 
+Este set de datos contiene información sobre matrimonios registrados en Alabama,
+Estados Unidos entre 1996 y 1999. 
+
 ```{r}
 glimpse(marriage)
 ```
@@ -71,7 +76,6 @@ glimpse(marriage)
 | `dayOfBirth` | Día de nacimiento |
 | `sign` | Signo astrológico de quien inscribe |
 
-
 ### Columnas de fechas
 
 ```{r echo=TRUE}
@@ -84,11 +88,15 @@ class(marriage$dob)
 
 ### Convierta las tres columnas en el formato fecha que les corresponde
 
-Anteriormente vimos que en el set de datos **marriage** hay tres variables que representan fechas pero no están correctamente categorizadas. Utilice las funciones vistas anteriormente para convertirlas en el formato que les pertenece. 
+Anteriormente vimos que en el set de datos **marriage** hay tres variables que
+representan fechas pero no están correctamente categorizadas. Utilice las 
+funciones vistas anteriormente para convertirlas en el formato que les
+pertenece. 
+
 ```{r convertir, exercise = TRUE}
-appdate2 <- 
-ceremonydate2 <- 
-dob2 <- 
+appdate <- 
+ceremonydate <- 
+dob <- 
 ```
 
 ```{r convertir-hint-1}
@@ -96,9 +104,9 @@ dob2 <-
 ```
 
 ```{r convertir-solution}
-appdate2 <- mdy(marriage$appdate)
-ceremonydate2 <- mdy(marriage$ceremonydate)
-dob2 <- format(as.Date(marriage$dob, "%m/%d/%y"), "19%y-%m-%d")
+appdate <- mdy(marriage$appdate)
+ceremonydate <- mdy(marriage$ceremonydate)
+dob <- format(as.Date(marriage$dob, "%m/%d/%y"), "19%y-%m-%d")
 ```
 
 ```{r convertir-check}
@@ -106,10 +114,13 @@ grade_code("¡Muy bien!")
 ```
 
 ### Cree una nueva columna que represente el tiempo que ha pasado desde la ceremonia 
+En el ejercicio anterior pasamos las columnas que se referían a fechas en el 
+formato correcto, esto quedó guardado en un nuevo set de datos llamado
+**matrimonios**. Ahora cree una nueva variable que represente el tiempo que ha
+pasado desde la ceremonia (`ceremonydate`) y llamela `duracion`
 
-En el ejercicio anterior pasamos las columnas que se referían a fechas en el formato correcto, esto quedó guardado en un nuevo set de datos llamado **marriage2**. Ahora cree una nueva variable que represente el tiempo que ha pasado desde la ceremonia (`ceremonydate2`) y llamela `duracion`
 ```{r today, exercise = TRUE}
-marriage2 %>% 
+matrimonios %>% 
   mutate()
 ```
 
@@ -120,7 +131,7 @@ marriage2 %>%
 ```{r today-check}
 grade_result(
   pass_if(~ identical(unlist(.result), 
-                      unlist(marriage2 %>% 
+                      unlist(matrimonios %>% 
                                mutate(duracion = today() - ceremonydate))),
           "¡Excelente!")
 )
@@ -128,7 +139,12 @@ grade_result(
 
 ### Represente gráficamente la distribucion de la nueva variable `duracion`
 
-En el ejercicio anterior creamos una nueva variable llamada `duracion` que representa el tiempo que ha pasado desde el matrimonio al dia de hoy. Esto quedó guardado en un nuevo set de datos llamado **marriage_duracion**. Ahora utilice `ggplot2` para representar con un gráfico la distribucion de esta variable. Debe utilizar `as.numeric(duracion)` para evitar problemas con la interfaz. 
+En el ejercicio anterior creamos una nueva variable llamada `duracion` que
+representa el tiempo que ha pasado desde el matrimonio al dia de hoy. Esto 
+quedó guardado en un nuevo set de datos llamado **marriage_duracion**. Ahora 
+utilice `ggplot2` para representar con un gráfico la distribucion de esta
+variable. Debe utilizar `as.numeric(duracion)` para evitar problemas con la
+interfaz. 
 
 ```{r graf1, exercise = TRUE}
 ggplot(marriage_duracion, aes()) +
@@ -145,7 +161,9 @@ ggplot(marriage_duracion, aes()) +
 
 ```{r graf1-check}
 grade_result(
-  pass_if(~ identical(.result, ggplot(marriage_duracion, aes(as.numeric(duracion))) +
+  pass_if(~ identical(.result, 
+                      ggplot(marriage_duracion, 
+                             aes(as.numeric(duracion))) +
                                 geom_histogram(aes(fill = ..count..))),
           "¡Excelente!")
 )
@@ -153,7 +171,10 @@ grade_result(
 
 ### Represente gráficamente la distribucion de  `duracion` según la persona que inscribió el matrimonio
 
-En el ejercicio anterior obtuvimos un gráfico con la distribución de `duracion` en forma de histograma, ahora vuelva a hacerlo pero esta vez diferenciando según la persona que inscribió el matrimonio, representado por la columna `person`. Recuerde utilizar `as.numeric(duracion)`. 
+En el ejercicio anterior obtuvimos un gráfico con la distribución de `duracion`
+en forma de histograma, ahora vuelva a hacerlo pero esta vez diferenciando
+según la persona que inscribió el matrimonio, representado por la columna 
+`person`. Recuerde utilizar `as.numeric(duracion)`. 
 
 ```{r graf2, exercise = TRUE}
 ggplot(marriage_duracion, aes()) +
@@ -166,10 +187,10 @@ ggplot(marriage_duracion, aes()) +
 
 ```{r graf2-check}
 grade_result(
-  pass_if(~ identical(.result, ggplot(marriage_duracion, aes(as.numeric(duracion),
+  pass_if(~ identical(.result, 
+                      ggplot(marriage_duracion, aes(as.numeric(duracion),
                                                              fill = person)) +
                         geom_histogram()),
           "¡Excelente!")
 )
 ```
-
