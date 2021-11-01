@@ -151,7 +151,7 @@ grade_result(
                       unlist(inner_join(directores, peliculas) %>% 
                              group_by(director) %>%
                              tally())),
-          "¡Excelente!")
+          "¡Bien hecho!")
 )
 ```
 
@@ -207,7 +207,8 @@ question("¿Qué resulta de un `full_join` entre directores y peliculas?",
   answer("Un conjunto de datos con solo las observaciones que coinciden en ambos casos"),
   answer("Un conjunto de datos con las observaciones de directores que coinciden en películas"),
   answer("Un conjunto de datos con las observaciones de películas que coinciden en directores"),
-  answer("Un conjunto de datos que contiene la información de ambos sets", correct = TRUE),
+  answer("Un conjunto de datos que contiene la información de ambos sets",
+         correct = TRUE),
   incorrect = "Incorrecto",
   correct = "Correcto")
 ```

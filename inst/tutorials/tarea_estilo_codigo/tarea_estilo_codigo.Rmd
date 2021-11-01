@@ -21,7 +21,9 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ```{r, echo=FALSE, out.width="35%", fig.align = "center"}
-knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")  
+knitr::include_graphics(
+  "https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png"
+  )  
 ```
 
 ## Introducción
@@ -56,7 +58,9 @@ question("¿Cuál (es) de estos nombres de archivos es (son) correcto (s)?",
   answer("caracterización.R"),
   answer("analisis_factorial.R", correct = TRUE),
   answer("análisis_confirmatorio.R"),
-  answer("eda.R", correct = TRUE)
+  answer("eda.R", correct = TRUE),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```
 
@@ -70,7 +74,9 @@ Si tu solución o estudio requiere que los archivos se corran en una secuencia p
 question("¿Cuál (es) de estos nombres de archivos es (son) correcto (s)?",
   answer("primer_script.R"),
   answer("1_analisis_exploratorio.R", correct = TRUE),
-  answer("dos-modelo-predictivo.R")
+  answer("dos-modelo-predictivo.R"),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```
 
@@ -89,7 +95,9 @@ question("¿Cuál (es) de estos nombres de objetos es (son) correcto (s)?",
   answer("primer_cuartil", correct = TRUE),
   answer("CuartilUno"),
   answer("C1"),
-  answer("cuartil_1", correct = TRUE)
+  answer("cuartil_1", correct = TRUE),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```
 
@@ -104,7 +112,9 @@ question("¿Cuál (es) de estos nombres de funciones es (son) correcto (s)?",
   answer("F <- function(x) read.table(x)"),
   answer("lee_tabla <- function(x) read.table(x)",
          correct = TRUE),
-  answer("ls <- function(x) read.table(x)")
+  answer("ls <- function(x) read.table(x)"),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```
 
@@ -126,7 +136,9 @@ question("¿Cuál (es) de estos comandos es (son) correcto (s)?",
   answer("profundidad<-round((pies+pulgadas/12), 2)"),
   answer("profundidad <- round((pies+pulgadas/12), 2)"),
   answer("profundidad <- round((pies + pulgadas / 12), 2)",
-         correct = TRUE)
+         correct = TRUE),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```
 
@@ -141,7 +153,9 @@ question("¿Cuál (es) de estos comandos es (son) correcto (s)?",
   answer("x <- 2:23", correct = TRUE),
   answer("base::round", correct = TRUE),
   answer("y <- 10 : 54"),
-  answer("dplyr :: select()")
+  answer("dplyr :: select()"),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```
 
@@ -157,7 +171,9 @@ question("¿Cuál (es) de estos comandos es (son) correcto (s)?",
   answer("qplot(x, y)", correct = TRUE),
   answer("plot (x, y)"),
   answer("if (debug) do(x)", correct = TRUE),
-  answer("if(condicion)function(x)")
+  answer("if(condicion)function(x)"),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```
 
@@ -179,7 +195,9 @@ question("¿Cuál (es) de estos comandos es (son) correcto (s)?",
   answer("if (depurando) x <- 34", correct = TRUE),
   answer("resultados[1,]"),
   answer("resultados[1 ,]"),
-  answer("resultados[5, 1]", correct = TRUE)
+  answer("resultados[5, 1]", correct = TRUE),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```
 
@@ -218,6 +236,8 @@ igualdad solamente para argumentos dentro de funciones.
 ```{r asigna}
 question("¿Cuál (es) de estos comandos es (son) correcto (s)?",
   answer("y <- 23", correct = TRUE) ,
-  answer("y = 23")
+  answer("y = 23"),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```

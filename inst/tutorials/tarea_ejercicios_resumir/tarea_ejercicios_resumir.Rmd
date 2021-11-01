@@ -140,7 +140,7 @@ ningún personaje y además agregar la columna de `anio_fundacion`.
 grade_result(
   pass_if(~ identical(unlist(.result),
                       unlist(left_join(superheroes, editores))),
-          "¡Muy bien!")
+          "¡Bien hecho!")
 )
 ```
 
@@ -162,7 +162,7 @@ Los demás deben de ser excluidos.
 grade_result(
   pass_if(~ identical(unlist(.result),
                       unlist(semi_join(superheroes, editores))),
-          "¡Muy bien!")
+          "¡Buenísimo!")
 )
 ```
 
@@ -185,7 +185,7 @@ aquellos personajes que tienen un editor que **NO** aparece en **editores**
 grade_result(
   pass_if(~ identical(unlist(.result),
                       unlist(anti_join(superheroes, editores))),
-          "¡Muy bien!")
+          "¡Genial!")
 )
 ```
 

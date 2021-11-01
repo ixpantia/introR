@@ -140,7 +140,7 @@ max()
 grade_result(
   pass_if(~ identical(unlist(.result), 
                       unlist(max(y))),
-          "¡Buenísimo!")
+          "¡Bien!")
 )
 ```
 
@@ -193,7 +193,7 @@ install.packages()
 ```{r library-check}
 grade_result(
   pass_if(~ identical(.result, library(learnr)),
-          "¡Buenísimo!")
+          "¡Muy bien!")
 )
 ```
 
@@ -203,7 +203,9 @@ grade_result(
 question("¿Cómo se intala el paquete `dplyr`?",
   answer("install_packages(dplyr)"),
   answer("installPackages(dplyr)"),
-  answer("install.packages(\"dplyr\")", correct = TRUE)
+  answer("install.packages(\"dplyr\")", correct = TRUE),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```
 
@@ -220,7 +222,7 @@ question("¿Cómo se intala el paquete `dplyr`?",
 ```{r class-check}
 grade_result(
   pass_if(~ identical(.result, class(y)),
-          "¡Buenísimo!")
+          "¡Excelente!")
 )
 ```
 
@@ -249,6 +251,8 @@ question("¿Porqué se da esta error?",
   answer("Porque no ha llamado la librería `ggplot2`", 
          correct = TRUE),
   answer("Porque los datos `ventas` no fueron cargados"),
-  answer("Porque hay un error ortográfico en la instrucción")
+  answer("Porque hay un error ortográfico en la instrucción"),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```

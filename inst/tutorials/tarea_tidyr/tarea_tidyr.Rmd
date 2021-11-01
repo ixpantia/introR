@@ -80,7 +80,6 @@ question("¿Cuál es el problema del conjunto de datos?",
   correct = "Correcto!")
 ```
 
-
 ### Separe la columa `id` en dos columnas distintas: `paricipante` y `numero`
 
 La columna `id` en **spirantization** identifica dos variables distintas, por
@@ -100,7 +99,8 @@ grade_result(
   pass_if(~ identical(unlist(.result), 
                       unlist(separate(spirantization, id, 
                                       into = c("participante", "numero"),
-                                      sep = "_"))), "Buenísimo!")
+                                      sep = "_"))),
+          "¡Buenísimo!")
 )
 ```
 
@@ -127,7 +127,7 @@ grade_result(
                       unlist(spread(
                         separado, key = participante,
                         value = vIntensity))),
-          "Excelente!")
+          "¡Excelente!")
 )
 ```
 
@@ -153,7 +153,7 @@ grade_result(
                         ancho, participante,
                         value = vIntensity,
                         adv:nat))),
-          "Excelente!")
+          "¡Genial!")
 )
 ```
 
@@ -182,6 +182,6 @@ grade_result(
                         participante, 
                         numero,
                         sep = "/"))),
-          "Excelente!")
+          "¡Muy bien!")
 )
 ```

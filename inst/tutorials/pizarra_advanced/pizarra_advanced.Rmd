@@ -128,7 +128,7 @@ grade_result(
                                summarize(
                                  promedio = mean(surface_total_in_m2,
                                                  na.rm = TRUE)))),
-          "¡Excelente!")
+          "¡Muy bien!")
 )
 ```
 

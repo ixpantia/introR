@@ -42,7 +42,9 @@ gap_largo <- gather(gap_ancho,
 ```
 
 ```{r, echo=FALSE, out.width="35%", fig.align = "center"}
-knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")   
+knitr::include_graphics(
+  "https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png"
+  )   
 ```
 
 ## Datos: **gap_ancho**
@@ -95,10 +97,12 @@ values_to = "obs_values"
 ```{r gather-check}
 grade_result(
   pass_if(~ identical(unlist(.result), 
-                      unlist(pivot_longer(gap_ancho,cols= gdpPercap_1952:pop_2007, 
-                      names_to =  "obstype_year",
-                      values_to = "obs_values")))
-                      , "¡Buenísimo!")
+                      unlist(
+                        pivot_longer(gap_ancho,
+                                     cols= gdpPercap_1952:pop_2007, 
+                                     names_to =  "obstype_year",
+                                     values_to = "obs_values"))),
+          "¡Buenísimo!")
         )
 ```
 
@@ -126,9 +130,11 @@ cols= gdpPercap_1952:pop_2007
 
 ```{r spread-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(pivot_wider(gap_largo,  
+  pass_if(~ identical(unlist(.result),
+                      unlist(pivot_wider(gap_largo,  
                        names_from = obstype_year, 
-                       values_from = obs_values))), "¡Excelente!")
+                       values_from = obs_values))),
+          "¡Excelente!")
 )
 ```
 
@@ -154,10 +160,12 @@ separate(data = gap_largo, )
 
 ```{r separate-check} 
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(separate(data = gap_largo,
-                     col = obstype_year, 
-                     into = c('obstype', 'year'),
-                     sep = '_'))), "¡Bien hecho!")
+  pass_if(~ identical(unlist(.result),
+                      unlist(separate(data = gap_largo,
+                                      col = obstype_year, 
+                                      into = c('obstype', 'year'),
+                                      sep = '_'))), 
+          "¡Bien hecho!")
 )
 ```
 

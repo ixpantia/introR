@@ -55,7 +55,9 @@ fecha_separada <- separate(data = planilla2, col = fecha,into = c("anio",
 ```
 
 ```{r, echo=FALSE, out.width="35%", fig.align = "center"}
-knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")   
+knitr::include_graphics(
+  "https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png"
+  )   
 ```
 
 ## Dispersar y reorganizar
@@ -99,7 +101,11 @@ pivot_wider()
 
 ```{r wider2-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(pivot_wider(data = planilla, names_from = Rubro, values_from = Monto))), "Muy bien!")
+  pass_if(~ identical(unlist(.result), 
+                      unlist(pivot_wider(data = planilla, 
+                                         names_from = Rubro, 
+                                         values_from = Monto))), 
+          "¡Muy bien!")
 )
 ```
 
@@ -142,7 +148,7 @@ grade_result(
                                    "SUBSIDIO ENFERMEDAD REG SERV CIVIL", 
                                    "SUBSIDIO ENFERMEDAD NO REG SERV CIVIL"),
                           names_to = "Rubro", values_to = "Monto")))), 
-          "Muy bien!")
+          "¡Excelente!")
 )
 ```
 
@@ -175,7 +181,7 @@ fill()
 grade_result(
   pass_if(~ identical(unlist(.result),
                       unlist(fill(planillaNAs, Monto, Cedula))),
-          "Muy bien!")
+          "¡Bien!")
 )
 ```
 
@@ -197,7 +203,7 @@ grade_result(
   pass_if(~ identical(unlist(.result),
                       unlist(replace_na(planillaNAs, 
                                         list(valor = 99)))),
-          "Muy bien!")
+          "¡Buenísimo!")
 )
 ```
 
@@ -234,7 +240,7 @@ grade_result(
                                       col = fecha,
                                       into = c("anio", "mes", "dia"),
                                       sep = "-"))),
-          "Muy bien!")
+          "¡Genial!")
 )
 ```
 
@@ -258,6 +264,6 @@ grade_result(
                       unlist(unite(data = fecha_separada , 
                                    col = "FechaPago",
                                    anio:dia, sep = "/"))),
-          "Muy bien!")
+          "¡Muy bien!")
 )
 ```

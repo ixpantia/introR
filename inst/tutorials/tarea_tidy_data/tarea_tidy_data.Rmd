@@ -45,7 +45,10 @@ knitr::include_graphics(
 
 ## Datos: **vocales**
 
-Este es un set de datos que contiene datos sobre la frecuencia del uso de las vocales en español de participantes un estudio en 1985. Contiene 750 observaciones y 4 variables. 
+Este es un set de datos que contiene datos sobre la frecuencia del uso de las 
+vocales en español de participantes un estudio en 1985. Contiene 750 
+observaciones y 4 variables. 
+
 ```{r}
 glimpse(vocales)
 ```
@@ -62,7 +65,8 @@ Descripción de las variables:
 
 ### Separe la columna `label` en `participante`, `sexo` y `vocal`
 
-La variable `label` en el conjunto de datos **vocales** está compuesta por tres elementos distintos, por ejemplo: `p01-male-a` se puede separar en `p01`, `male`
+La variable `label` en el conjunto de datos **vocales** está compuesta por tres
+elementos distintos, por ejemplo: `p01-male-a` se puede separar en `p01`, `male`
 y `a` y así obtenemos un conjunto de datos más ordenado y fácil de utilizar.
 Separe esta columna en tres nuevas columnas: `participante`, `sexo` y `vocal`
 
@@ -80,13 +84,16 @@ grade_result(
                       unlist(separate(data = vocales, col = label, 
                            into = c("participante", "sexo", "vocal"),
                            sep = "-"))),
-          "Muy bien!")
+          "¡Genial!")
 )
 ```
 
 ### Una las columnas `participante`, `sexo` y `vocal` en la columna original `label`
 
-Anteriormente separamos la columna `label` de **vocales** en tres columnas distintas, esto quedó guardado en el set de datos **separado**. Ahora una estas tres columnas de forma que volvamos a la columna `label` original pero esta vez separelo con un "_"
+Anteriormente separamos la columna `label` de **vocales** en tres columnas 
+distintas, esto quedó guardado en el set de datos **separado**. Ahora una estas
+tres columnas de forma que volvamos a la columna `label` original pero esta vez
+separelo con un "_"
 
 ```{r unite, exercise = TRUE}
 
@@ -102,14 +109,17 @@ grade_result(
                       unlist(unite(separado,
                                    col="label", participante:vocal,
                                    sep = "_"))), 
-          "Muy bien!")
+          "¡Bien hecho!")
 )
 ```
 
-
 ### Cree un set de datos ancho, donde cada vocal tenga su propia columna 
 
-Partiendo de **separado**, vea que este es un conjunto de datos muy largo ya que se repiten mucho las observaciones por participante, ahora, utilizando las herramientas de tidyr conviertalo en un set de datos ancho donde cada vocal represente una columna. 
+Partiendo de **separado**, vea que este es un conjunto de datos muy largo ya 
+que se repiten mucho las observaciones por participante, ahora, utilizando las
+herramientas de tidyr conviértalo en un set de datos ancho donde cada vocal
+represente una columna. 
+
 ```{r wider, exercise = TRUE}
 
 ```
@@ -129,7 +139,7 @@ grade_result(
                         pivot_wider(separado,
                                     names_from = vocal,
                                     values_from = f1))), 
-          "Excelente!")
+          "¡Excelente!")
 )
 ```
 
@@ -155,6 +165,6 @@ grade_result(
                         pivot_wider(separado,
                                     names_from = vocal,
                                     values_from = f1))), 
-          "Bien hecho!")
+          "¡Bien!")
 )
 ```

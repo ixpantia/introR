@@ -64,7 +64,9 @@ vector_1 <- c(10, 20, 30)
 question("¿Qué pasa con si le agregamos una letra al `vector_1`?",
   answer("Sigue siendo un vector numérico porque la mayoría de elementos son números"),
   answer("Se convierte en un `character`", correct = TRUE) ,
-  answer("Se convierte en un `logical`")
+  answer("Se convierte en un `logical`"),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```
 
@@ -81,7 +83,9 @@ vector_2 <- c("a", "b", "c")
 question("¿Qué ocurre con los datos del vector_2 si le agregamos un número? ¿En qué se convierten?",
   answer("Sigue siendo un `character`", correct = TRUE),
   answer("Se convierte en un `numeric`"),
-  answer("Se convierte en un `logical`")
+  answer("Se convierte en un `logical`"),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```
 
@@ -96,7 +100,9 @@ vector_3 <- c(TRUE, TRUE, FALSE, 0, 0, 1)
 question("¿Qué tipo es este nuevo vector_3_2?",
   answer("Sigue siendo un `logical`"),
   answer("Se convierte en un `numeric`", correct = TRUE),
-  answer("Se convierte en un `character`")
+  answer("Se convierte en un `character`"),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```
 
@@ -111,7 +117,9 @@ vector_4 <- c(2, FALSE, 5)
 question("¿Qué sucede con la expresion `FALSE` si aplicamos la función `as.numeric` al vector 4?",
   answer("Da un error"),
   answer("La convierte en un NA o valor faltante"),
-  answer("La convierte en 0", correct = TRUE)
+  answer("La convierte en 0", correct = TRUE),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```
 
@@ -128,6 +136,8 @@ vector_5 <- c("R","ixpantia", "RStudio", 2)
 question("¿Qué ocurre con los datos de vector_5 al aplicarle la función `as.logical`? ¿En qué se convierten?",
   answer("Se convierte en NAs o valores faltantes", correct = TRUE),
   answer("Se convierte en TRUE o FALSE"),
-  answer("Se convierte en un `character`")
+  answer("Se convierte en un `character`"),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```

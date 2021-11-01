@@ -114,7 +114,6 @@ ggplot(weather, aes(x = date, y = avg_temp)) +
   geom_smooth(se = FALSE)
 ```
 
-
 ### 3. Cree un gráfico de barras donde se muestre la velocidad promedio del viento por día para cada ciudad 
 
 Al variable `avg_wind` en **weather** muestra le velocidad promedio del viento 

@@ -111,7 +111,8 @@ question("¿Cuál es la diferencia entre `geom_point()` y `geom_jitter()`?",
          correct = TRUE),
   answer("geom_point es más ordenado ya que hace un espaciamiento uniforme entre los puntos"),
   answer("geom_point se ve mejor"),
-  incorrect = "Incorrecto.")
+  incorrect = "Incorrecto",
+  correct = "Correcto")
 ```
 
 ### 2. ¿Cómo podemos hacer para que el abline nos aparezca con los puntos?

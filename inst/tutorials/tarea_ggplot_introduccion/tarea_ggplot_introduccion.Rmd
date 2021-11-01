@@ -32,7 +32,7 @@ casas_texas <- txhousing %>%
 
 cities <- c("Austin", "Dallas", "El Paso", "Houston", "Irving", "San Antonio")
 
-casas_texas2 <- casas_texas %>% 
+casas_texas <- casas_texas %>% 
   filter(city %in% cities)
 ```
 
@@ -102,7 +102,7 @@ ggplot(casas_texas)
 
 ```{r point-solution}
 ggplot(casas_texas, aes(x = year, y = sales)) +
-geom_point()
+  geom_point()
 ```
 
 ### 3. Cree un gráfico que permita ver la relación entre `volume` y `sales` 
@@ -124,21 +124,23 @@ ggplot(casas_texas, aes(x = sales, y = volume)) +
 
 ### 4. Haga un gráfico que muestre la cantidad de listados por año para cada ciudad
 
-Para este ejercicio utilizaremos el set de datos **casas_texas2** para que sea visualmente más entendible ya que restringe la cantidad de datos.
+Para este ejercicio utilizaremos el set de datos **casas_texas** para que sea
+visualmente más entendible ya que restringe la cantidad de datos.
 
-La variable `listings` del conjunto de datos **casas_texas2** describe la 
-cantidad de listados activos, además, la variable `year` describe el año y la variable `city`, el nombre de la ciudad de Texas en cada caso. Utilizando estas 
+La variable `listings` del conjunto de datos **casas_texas** describe la 
+cantidad de listados activos, además, la variable `year` describe el año y la
+variable `city`, el nombre de la ciudad de Texas en cada caso. Utilizando estas 
 tres variables obtenga un gráfico que muestre la cantidad de listados por año
 para cada una de las ciudades. 
 
 ```{r fill, exercise = TRUE}
-ggplot(casas_texas2) 
+ggplot(casas_texas) 
 
 ```
 
 ```{r fill-solution}
-ggplot(casas_texas2) +
-geom_col(aes(year, listings, fill = city))
+ggplot(casas_texas, aes(x = year, y = listings, fill = city)) +
+  geom_col()
 ```
 
 ### 5. Haga un gráfico de cajas para las 6 ciudades de **casas_texas** según su cantidad de listados activos 
@@ -149,11 +151,11 @@ la cantidad de listados activos. Cree un gráfico de cajas que muestre la
 distribución de la variable `listings` para cada una de las ciudades.
 
 ```{r box, exercise = TRUE}
-ggplot(casas_texas2) 
+ggplot(casas_texas) 
 
 ```
 
 ```{r box-solution}
-ggplot(casas_texas2) +
+ggplot(casas_texas) +
   geom_boxplot(aes(x = city, y = listings))
 ```

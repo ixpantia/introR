@@ -48,7 +48,6 @@ knitr::include_graphics(
   )   
 ```
 
-
 ## Datos: **marriage**
 
 Este set de datos contiene información sobre matrimonios registrados en Alabama,
@@ -133,7 +132,7 @@ grade_result(
   pass_if(~ identical(unlist(.result), 
                       unlist(matrimonios %>% 
                                mutate(duracion = today() - ceremonydate))),
-          "¡Excelente!")
+          "¡Genial!")
 )
 ```
 
@@ -165,7 +164,7 @@ grade_result(
                       ggplot(marriage_duracion, 
                              aes(as.numeric(duracion))) +
                                 geom_histogram(aes(fill = ..count..))),
-          "¡Excelente!")
+          "¡Bien hecho!")
 )
 ```
 

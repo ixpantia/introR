@@ -65,6 +65,7 @@ Descripción de las variables:
 ## General
 
 ### ¿Qué tipo de objeto es "peajes"? (Responda la pregunta a través de código)
+
 ```{r peajes, exercise=TRUE, exercise.eval = FALSE}
 
 ```
@@ -75,7 +76,8 @@ Descripción de las variables:
 
 ```{r peajes-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(class(peajes))), "Buenísimo!")
+  pass_if(~ identical(unlist(.result), unlist(class(peajes))),
+          "¡Genial!")
 )
 ```
 
@@ -90,7 +92,8 @@ question(
   answer("Cada Valor debe de tener su propia celda", correct = TRUE),
   answer("Cada Valor debe tener varias celdas"),
   answer("Cada Observación debe tener su propia columna"),
-  incorrect = "Incorrecto.")
+  correct = "Correcto",
+  incorrect = "Incorrecto")
 ```
 
 ## Acceder valores
@@ -115,7 +118,8 @@ quinta fila solamente.
 
 ```{r quinta-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(peajes[5,])), "¡Buenísimo!")
+  pass_if(~ identical(unlist(.result), unlist(peajes[5,])),
+          "¡Buenísimo!")
 )
 ```
 
@@ -137,7 +141,7 @@ referente a aquellos peajes que se encuentran únicamente en la ruta 27.
 grade_result(
   pass_if(~ identical(unlist(.result), 
                       unlist(subset(peajes, numero_de_ruta == "27"))),
-          "¡Excelente!")
+          "¡Genial!")
 )
 ```
 

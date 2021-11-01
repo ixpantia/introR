@@ -232,7 +232,9 @@ ahorro_paises$pop15
 
 ```{r pob15-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(max(ahorro_paises$pop15))), "¡Buenísimo!")
+  pass_if(~ identical(unlist(.result),
+                      unlist(max(ahorro_paises$pop15))),
+          "¡Buenísimo!")
 )
 ```
 
@@ -254,7 +256,7 @@ población.
 grade_result(
   pass_if(~ identical(unlist(.result),
                       unlist(min(ahorro_paises$pop75))),
-          "¡Muy bien!")
+          "¡Bien!")
 )
 ```
 
@@ -277,10 +279,9 @@ grade_result(
   pass_if(~ identical(unlist(.result),
                       unlist(
                         colnames(ahorro_paises)[4] <- "disposable_income")),
-          "Bien hecho!")
+          "¡Muy bien!")
 )
 ```
-
 
 ### 5. ¿Por qué no es recomendable hacer subsets por posición?
 
@@ -295,7 +296,8 @@ question("¿Por qué no es recomendable hacer subsets por posición?",
   answer("Porque los datos pueden cambiar en el futuro y la posición de lo que buscabamos puede cambiar", 
          correct = TRUE),
   answer("Opcion al escribirlo me puedo equivocar y poner la posición que no es"),
-  incorrect = "Incorrecto.")
+  incorrect = "Incorrecto",
+  correct = "Correcto")
 ```
 
 ### 6. Generar nueva columna que contenga la suma de pop15 y pop75 
@@ -315,7 +317,11 @@ porcentajes. Llame a esta nueva columna "suma".
 
 ```{r suma-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(ahorro_paises$suma <- ahorro_paises$pop15 + ahorro_paises$pop75)), "Bien hecho!")
+  pass_if(~ identical(unlist(.result), 
+                      unlist(
+                        ahorro_paises$suma <- ahorro_paises$pop15 + ahorro_paises$pop75
+                        )),
+          "¡Excelente!")
 )
 ```
 
@@ -336,7 +342,11 @@ subset
 
 ```{r porc-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(subset(ahorro_paises, ahorro_paises$pop15 < 23 | ahorro_paises$pop75 > 47))), "Bien hecho!")
+  pass_if(~ identical(unlist(.result),
+                      unlist(subset(ahorro_paises,
+                                    ahorro_paises$pop15 < 23 |
+                                      ahorro_paises$pop75 > 47))), 
+          "Bien hecho!")
 )
 ```
 
