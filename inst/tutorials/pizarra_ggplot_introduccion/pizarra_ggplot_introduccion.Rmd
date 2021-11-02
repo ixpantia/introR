@@ -4,12 +4,15 @@ subtitle: "Ejercicios pizarra"
 output: 
   learnr::tutorial:
     language: es
-    css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/intro_r.css
 runtime: shiny_prerendered
 description: >
   Ejercicios de pizarra que se realizan durante la sesión para aprender sobre
   introducción a visualización de datos con ggplot2.
 ---
+
+<style type="text/css">
+@import url("https://storage.googleapis.com/datos_cursos/ixpantia_introR/intro_r.css");
+</style>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Slab&family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -26,28 +29,35 @@ library(readxl)
 library(readr)
 library(janitor)
 library(lubridate)
+library(tidyr)
+library(janitor)
 
 temp = tempfile(fileext = ".xlsx")
 dataURL <- "https://storage.googleapis.com/datos_cursos/SICOP_2.xlsx"
-download.file(dataURL, destfile=temp, mode='wb')
+download.file(dataURL, destfile = temp, mode = 'wb')
 SICOP_2 <- readxl::read_excel(temp)
 
-SICOP <- SICOP_2[1:1000,] %>% 
+SICOP <- SICOP_2 %>% 
+  slice_head(n = 1000) %>% 
   mutate(Fecha_Hora = dmy_hms(Fecha_notificacion)) %>% 
-  tidyr::separate(Fecha_Hora, c("fecha", "hora"), sep = " ") %>% 
+  separate(Fecha_Hora, c("fecha", "hora"), sep = " ") %>% 
   mutate(fecha = as.Date(fecha)) %>% 
   mutate(mes_dia = format(fecha, '%m-%d')) %>% 
-  janitor::clean_names() 
-
+  clean_names()
 ```
 
 ```{r, echo=FALSE, out.width="35%", fig.align = "center"}
-knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")    
+knitr::include_graphics(
+  "https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png"
+  )    
 ```
 
 ## Datos: **SICOP**
 
-El conjunto de datos que se usaran en la sesión se llama **SICOP** y contiene información de compras públicas en Costa Rica en el 2019. Tiene 1000 observaciones y 21 variables.
+El conjunto de datos que se usaran en la sesión se llama **SICOP** y contiene
+información de compras públicas en Costa Rica en el 2019. Tiene 1000 
+observaciones y 21 variables.
+
 ```{r}
 glimpse(SICOP)
 ```
@@ -78,12 +88,15 @@ Descripción de las columnas:
 | `hora` | Hora a la que se realiza la compra |
 | `mes_dia` | Mes y día donde se realiza la compra |
 
-
 ## Ejercicios 
 
 ### 1. ¿Cuál es la diferencia entre `geom_point()` y `geom_jitter()`?
 
-Dos de los `geom` que hemos visto son `geom_point()` y `geom_jitter()`, ambos parecen hacer gráficos de puntos, sin embargo, hay algo que los hace completamente diferentes. Viendo el siguiente gráfico, cuál diría que es esta diferencia?
+Dos de los `geom` que hemos visto son `geom_point()` y `geom_jitter()`, ambos
+parecen hacer gráficos de puntos, sin embargo, hay algo que los hace 
+completamente diferentes. Viendo el siguiente gráfico, cuál diría que es 
+esta diferencia?
+
 ```{r check, exercise = TRUE}
 check <- ggplot(data = SICOP, 
                 aes(x = tipo_procedimiento, y = fecha)) +
@@ -97,15 +110,18 @@ check + geom_jitter()
 ```{r check2, echo=FALSE}
 question("¿Cuál es la diferencia entre `geom_point()` y `geom_jitter()`?",
   answer("geom_jitter hace columnas no puntos"),
-  answer("geom_jitter agrega un poco de variacion aleatoria entre los puntos para evitar la sobreposicion", correct = TRUE),
+  answer("geom_jitter agrega un poco de variacion aleatoria entre los puntos para evitar la sobreposicion",
+         correct = TRUE),
   answer("geom_point es más ordenado ya que hace un espaciamiento uniforme entre los puntos"),
   answer("geom_point se ve mejor"),
-  incorrect = "Incorrecto.")
+  incorrect = "Incorrecto",
+  correct = "Correcto")
 ```
 
 ### 2. ¿Cómo podemos hacer para que el abline nos aparezca con los puntos?
 
-Haga un gráfico de puntos donde en el eje x esté la variable `mes_dia` y en el eje y: `monto` y luego agréguele un abline en "2e+08" 
+Haga un gráfico de puntos donde en el eje x esté la variable `mes_dia` y en el
+eje y: `monto` y luego agréguele un abline en "2e+08" 
 
 ```{r abline, exercise = TRUE}
 ggplot(data = SICOP)
@@ -117,32 +133,33 @@ ggplot(data = SICOP, aes(x = mes_dia, y = monto)) +
                         geom_abline(intercept = 2e+08)
 ```
 
-
 ### 3. Cambie el argumento position por fill y por stack en el gráfico de barras
 
-Hemos trabajado con `geom_bar()` anteriormente para hacer gráficos de barras. Ahora haga un gráfico de barras con `clasificacion_objeto` en el eje x y `tipo_modalidad` en el `fill` y en `position` primero utilice "fill" y luego haga otro con position = "stack" para ver la diferencia entre ambos. 
+Hemos trabajado con `geom_bar()` anteriormente para hacer gráficos de barras. 
+Ahora haga un gráfico de barras con `clasificacion_objeto` en el eje `x` y
+`tipo_modalidad` en el `fill` y en `position` primero utilice "fill" y luego
+haga otro con `position = "stack"` para ver la diferencia entre ambos. 
 
 #### fill
+
 ```{r fill, exercise = TRUE}
 ggplot(SICOP)
 
 ```
 
 ```{r fill-solution}
-ggplot(SICOP,aes(x = clasificacion_objeto, fill = tipo_modalidad)) +
-                        geom_bar(position = "fill")
+ggplot(SICOP, aes(x = clasificacion_objeto, fill = tipo_modalidad)) +
+  geom_bar(position = "fill")
 ```
 
-
 #### stack
+
 ```{r stack, exercise = TRUE}
 ggplot(SICOP)
 
 ```
 
 ```{r stack-solution}
-ggplot(SICOP,aes(x = clasificacion_objeto, fill = tipo_modalidad)) +
-                        geom_bar(position = "stack")
+ggplot(SICOP, aes(x = clasificacion_objeto, fill = tipo_modalidad)) +
+  geom_bar(position = "stack")
 ```
-
-

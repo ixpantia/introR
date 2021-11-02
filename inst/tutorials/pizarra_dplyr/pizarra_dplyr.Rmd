@@ -4,13 +4,16 @@ subtitle: "Ejercicios pizarra"
 output: 
   learnr::tutorial:
     language: es
-    css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/intro_r.css
 runtime: shiny_prerendered
 description: >
   Ejercicios de pizarra que se realizan durante la sesión para aprender sobre
   el proceso de resumir datos, específicamente aquellos que involucran el uso
   de dplyr.
 ---
+
+<style type="text/css">
+@import url("https://storage.googleapis.com/datos_cursos/ixpantia_introR/intro_r.css");
+</style>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Slab&family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -25,7 +28,9 @@ library(learnr)
 library(dplyr)
 library(gradethis)
 
-gapminder <- readr::read_csv('https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv')
+gapminder <- readr::read_csv(
+  'https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv'
+  )
 
 promedio <- gapminder %>%
     group_by(country) %>%
@@ -35,7 +40,9 @@ tutorial_options(exercise.checker = gradethis::grade_learnr)
 ```
 
 ```{r, echo=FALSE, out.width="35%", fig.align = "center"}
-knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")  
+knitr::include_graphics(
+  "https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png"
+  )  
 ```
 
 ## Datos: **gapminder**
@@ -182,8 +189,7 @@ gapminder %>%
 grade_result(
   pass_if(~ identical(unlist(.result),
                       unlist(gapminder %>% 
-                      mutate(multiplicacion = pop*gdpPercap))),
+                      mutate(multiplicacion = pop * gdpPercap))),
           "¡Buenisimo!")
 )
 ```
-

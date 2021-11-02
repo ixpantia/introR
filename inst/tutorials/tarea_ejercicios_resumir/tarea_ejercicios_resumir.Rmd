@@ -4,13 +4,16 @@ subtitle: "Tarea"
 output: 
   learnr::tutorial:
     language: es
-    css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/intro_r.css
 runtime: shiny_prerendered
 description: >
   Ejercicios de tarea que se pueden practicar fuera de la sesión del curso. Esta
   tarea tiene como objetivo repasar los conceptos de la sesión resumir datos.
   Combina elementos de cada todos los temas vistos durante la sesión.
 ---
+
+<style type="text/css">
+@import url("https://storage.googleapis.com/datos_cursos/ixpantia_introR/intro_r.css");
+</style>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Slab&family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -29,14 +32,14 @@ library(lubridate)
 library(gradethis)
 
 superheroes <- tibble::tribble(
-       ~nombre,   ~bando,     ~sexo,               ~editor,
-   "Magneto",     "villano",   "hombre",            "Marvel",
-     "Storm",     "heroe",     "mujer",            "Marvel",
-  "Mystique",     "villano",   "mujer",            "Marvel",
-    "Batman",     "heroe",     "hombre",                "DC",
-     "Joker",     "villano",   "hombre",                "DC",
-  "Catwoman",     "villano",   "mujer",                 "DC",
-   "Hellboy",     "heroe",     "hombre",         "Dark Horse"
+       ~nombre,   ~bando,     ~sexo,     ~editor,
+   "Magneto",     "villano",   "hombre",  "Marvel",
+     "Storm",     "heroe",     "mujer",   "Marvel",
+  "Mystique",     "villano",   "mujer",   "Marvel",
+    "Batman",     "heroe",     "hombre",  "DC",
+     "Joker",     "villano",   "hombre",  "DC",
+  "Catwoman",     "villano",   "mujer",   "DC",
+   "Hellboy",     "heroe",     "hombre",  "Dark Horse"
   )
 
 editores <- tibble::tribble(
@@ -50,7 +53,9 @@ tutorial_options(exercise.checker = gradethis::grade_learnr)
 ```
 
 ```{r, echo=FALSE, out.width="35%", fig.align = "center"}
-knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")  
+knitr::include_graphics(
+  "https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png"
+  )  
 ```
 
 ## Datos
@@ -61,6 +66,7 @@ Para esta tarea usaremos 2 conjuntos de datos distintos:
 
 Este conjunto de datos contiene datos sobre distintos superhéroes y villanos de
 distintas compañías. Contiene 7 observaciones y 4 variables. 
+
 ```{r}
 glimpse(superheroes)
 ```
@@ -76,7 +82,9 @@ Descripción de las columnas:
 
 ### **editores**
 
-Contiene información sobre tres compañías de comics. Tiene 3 observaciones y 2 variables. 
+Contiene información sobre tres compañías de comics. Tiene 3 observaciones y 2
+variables. 
+
 ```{r}
 glimpse(editores)
 ```
@@ -92,8 +100,14 @@ Descripción de las columnas:
 
 ### Haga un `join` de forma que aparezca el editor y el año de fundación de los superhéroes, pero solo de aquellos que tienen un editor en la base editores
 
-En el conjunto de datos **superheroes** tenemos datos sobre distintos superhéroes,
-incluyendo la compañía de donde provienen, mientras que en **editores** tenemos información sobre las compañías. Utilice alguno de los `joins` para unir ambos conjuntos de datos de forma que se obtenga un nuevo data frame con la información de los superhéroes, su editor y el año de fundación. Si un superhéroe tiene un editor que no aparece en **editores** debe de ser excluido.
+En el conjunto de datos **superheroes** tenemos datos sobre distintos 
+superhéroes, incluyendo la compañía de donde provienen, mientras que en
+**editores** tenemos información sobre las compañías. Utilice alguno de los 
+`joins` para unir ambos conjuntos de datos de forma que se obtenga un nuevo 
+data frame con la información de los superhéroes, su editor y el año de 
+fundación. Si un superhéroe tiene un editor que no aparece en **editores** debe
+de ser excluido.
+
 ```{r inner, exercise = TRUE}
 
 ```
@@ -112,9 +126,10 @@ grade_result(
 
 ### Realice un `join` de forma que a los datos de **superheroes** se les agrege la columna `anio_fundacion' sin excluir ningún superhéroe o villano
 
-Anteriormente hicimos un `join` que agregaba el año de fundación de los editores, excluyendo a aquellos personajes que no tenían un editor con observaciones en
-**editores**. Ahora debe de hacer otro `join` que no excluya a ningún personaje 
-y además agregar la columna de `anio_fundacion`.
+Anteriormente hicimos un `join` que agregaba el año de fundación de los 
+editores, excluyendo a aquellos personajes que no tenían un editor con 
+observaciones en **editores**. Ahora debe de hacer otro `join` que no excluya a
+ningún personaje y además agregar la columna de `anio_fundacion`.
 
 ```{r left, exercise = TRUE}
 
@@ -128,7 +143,7 @@ y además agregar la columna de `anio_fundacion`.
 grade_result(
   pass_if(~ identical(unlist(.result),
                       unlist(left_join(superheroes, editores))),
-          "¡Muy bien!")
+          "¡Bien hecho!")
 )
 ```
 
@@ -137,6 +152,7 @@ grade_result(
 En este ejercicio queremos obtener un conjunto de datos que contenga únicamente
 los personajes que tengan un editor dentro del conjunto de datos **editores**.
 Los demás deben de ser excluidos. 
+
 ```{r semi, exercise = TRUE}
 
 ```
@@ -149,14 +165,17 @@ Los demás deben de ser excluidos.
 grade_result(
   pass_if(~ identical(unlist(.result),
                       unlist(semi_join(superheroes, editores))),
-          "¡Muy bien!")
+          "¡Buenísimo!")
 )
 ```
 
 ### Realice un `join` de tal forma que resulte un conjunto de datos con aquellos superhéroes que tienen un editor que **NO** aparece en **editores**
 
 Anteriormente unimos los dos conjuntos de datos de tal forma que el resultado
-excluyera aquellos personajes que tuvieran un editor que no aparecía en **editores**. Ahora debe de hacer lo opuesto, el resultado debe incluir solo aquellos personajes que tienen un editor que **NO** aparece en **editores**
+excluyera aquellos personajes que tuvieran un editor que no aparecía en
+**editores**. Ahora debe de hacer lo opuesto, el resultado debe incluir solo
+aquellos personajes que tienen un editor que **NO** aparece en **editores**
+
 ```{r anti, exercise = TRUE}
 
 ```
@@ -169,13 +188,16 @@ excluyera aquellos personajes que tuvieran un editor que no aparecía en **edito
 grade_result(
   pass_if(~ identical(unlist(.result),
                       unlist(anti_join(superheroes, editores))),
-          "¡Muy bien!")
+          "¡Genial!")
 )
 ```
 
 ### Realice un `join` de tal forma que resulte un conjunto de datos con la información de ambos conjuntos de datos, sin excluir ninguna observación.
 
-En este ejercicio debe obtener un conjunto de datos que una la información de ambos conjuntos de datos sin excluir ninguna observación, aún si esto resulta en valores faltantes en algunas de las columnas. 
+En este ejercicio debe obtener un conjunto de datos que una la información de
+ambos conjuntos de datos sin excluir ninguna observación, aún si esto resulta 
+en valores faltantes en algunas de las columnas. 
+
 ```{r full, exercise = TRUE}
 
 ```
@@ -191,4 +213,3 @@ grade_result(
           "¡Muy bien!")
 )
 ```
-

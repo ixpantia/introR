@@ -4,13 +4,16 @@ subtitle: "Ejercicios pizarra"
 output: 
   learnr::tutorial:
     language: es
-    css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/intro_r.css
 runtime: shiny_prerendered
 description: >
   Ejercicios de pizarra que se realizan durante la sesión para aprender sobre
   el proceso de resumir datos tomando las herramientas necesarias vistas
   durante la sesión.
 ---
+
+<style type="text/css">
+@import url("https://storage.googleapis.com/datos_cursos/ixpantia_introR/intro_r.css");
+</style>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Slab&family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -73,7 +76,9 @@ premios <- tibble(
 ```
 
 ```{r, echo=FALSE, out.width="35%", fig.align = "center"}
-knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")    
+knitr::include_graphics(
+  "https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png"
+  )    
 ```
 
 ## Datos
@@ -82,7 +87,9 @@ Para la sesión utilizaremos tres conjuntos de datos distintos:
 
 ### **directores**
 
-Contiene información sobre 5 directores de cine. Consta de 2 variables y 5 observaciones.
+Contiene información sobre 5 directores de cine. Consta de 2 variables y 5
+observaciones.
+
 ```{r}
 glimpse(directores)
 ```
@@ -96,7 +103,9 @@ Descripción de las columnas:
 
 ### **peliculas**
 
-Contiene información sobre 5 películas conocidas. Consta de de 7 observaciones y 2 variables. 
+Contiene información sobre 5 películas conocidas. Consta de de 7 observaciones 
+y 2 variables. 
+
 ```{r}
 glimpse(peliculas)
 ```
@@ -143,9 +152,9 @@ de forma que podamos calcular el número de películas de cada director.
 grade_result(
   pass_if(~ identical(unlist(.result),
                       unlist(inner_join(directores, peliculas) %>% 
-                               group_by(director) %>%
-                               tally())),
-          "¡Excelente!")
+                             group_by(director) %>%
+                             tally())),
+          "¡Bien hecho!")
 )
 ```
 
@@ -201,14 +210,13 @@ question("¿Qué resulta de un `full_join` entre directores y peliculas?",
   answer("Un conjunto de datos con solo las observaciones que coinciden en ambos casos"),
   answer("Un conjunto de datos con las observaciones de directores que coinciden en películas"),
   answer("Un conjunto de datos con las observaciones de películas que coinciden en directores"),
-  answer("Un conjunto de datos que contiene la información de ambos sets", correct = TRUE),
+  answer("Un conjunto de datos que contiene la información de ambos sets",
+         correct = TRUE),
   incorrect = "Incorrecto",
   correct = "Correcto")
 ```
 
-### Ejercicio E: ¿Qué resultaría de un `anti_join` entre **peliculas** y **directores**? 
-
-¿Cuántas observaciones resultarían de aplicar un `anti_join` entre **peliculas** y **directores**?
+### Ejercicio E: ¿Cuántas observaciones resultarían de aplicar un `anti_join` entre **peliculas** y **directores**?
 
 ```{r E, echo = FALSE}
 question("¿Qué resultaría de un `anti_join` entre peliculas y directores? ",
@@ -219,4 +227,3 @@ question("¿Qué resultaría de un `anti_join` entre peliculas y directores? ",
   incorrect = "Incorrecto",
   correct = "Correcto")
 ```
-
