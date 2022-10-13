@@ -115,8 +115,7 @@ cuánta superficie tienen las propiedades de tipo casa y tipo apartamento en
 promedio.
 
 ```{r prom, exercise = TRUE, exercise.lines = 8}
-propiedades %>% 
-  
+propiedades %>%
 ```
 
 ```{r prom-hint-1}
@@ -125,7 +124,7 @@ propiedades %>%
 
 ```{r prom-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), 
+  pass_if(~ identical(unlist(.result),
                       unlist(propiedades %>%
                                group_by(property_type) %>%
                                summarize(
@@ -143,8 +142,7 @@ Utilizando esta variable, descubra cuál es el estado (`state_name`) más
 costoso en Argentina basado en propiedades. 
 
 ```{r costo, exercise = TRUE}
-propiedades %>% 
-  
+propiedades %>%
 ```
 
 ```{r costo-hint-1}
@@ -171,11 +169,10 @@ En el conjunto de datos que estamos trabajando hay una columna que se llama
 dólares y otra llamada `currency` con la moneda en la que se encuentra ese
 precio.  Utilizando estas dos columnas y otras herramientas descubra si las
 casas que se venden en dólares son más costosas que las que se venden en la
-moneda local (pesos argentinos)
+moneda local (pesos argentinos).
 
 ```{r pesos, exercise = TRUE}
-propiedades %>% 
-  
+propiedades %>%
 ```
 
 ```{r pesos-hint-1}
@@ -186,7 +183,7 @@ propiedades %>%
 grade_result(
   pass_if(~ identical(unlist(.result),
                       unlist(propiedades %>%
-                              group_by(currency) %>% 
+                              group_by(currency) %>%
                               summarise(promedio = mean(price_aprox_usd)))),
           "¡Excelente!")
 )
@@ -202,8 +199,7 @@ optimizar el valor por m2, es decir, para que este valor promedio sea el mayor
 posible. 
 
 ```{r vent, exercise = TRUE}
-propiedades %>% 
-  
+propiedades %>%
 ```
 
 ```{r vent-hint-1}

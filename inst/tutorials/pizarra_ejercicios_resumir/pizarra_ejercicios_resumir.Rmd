@@ -39,7 +39,7 @@ directores <- tibble(
                   "Scorsese",
                   "Hitchcock",
                   "Tarantino",
-                  "Polanski"),    
+                  "Polanski"),
     nacionalidad = c("EEUU",
                      "EEUU",
                      "RU",
@@ -53,7 +53,7 @@ peliculas <- tibble(
               	"Hitchcock",
                 "Spielberg",
                 "Tarantino",
-                "Polanski"),    
+                "Polanski"),
     pelicula = c("Super 8",
     		        "Taxi Driver",
     		        "Psycho",
@@ -119,7 +119,9 @@ Descripción de las columnas:
 
 ### **premios**
 
-Contiene información sobre los premios de cine ganados por distintas películas. Consta de 5 observaciones y 2 variables. 
+Contiene información sobre los premios de cine ganados por distintas películas.
+Consta de 5 observaciones y 2 variables. 
+
 ```{r}
 glimpse(premios)
 ```

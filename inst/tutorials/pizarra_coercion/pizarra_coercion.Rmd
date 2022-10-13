@@ -43,9 +43,8 @@ knitr::include_graphics(
 ```
 
 ## Datos
-
-Los datos en este caso son realmente vectores que tienen distintas 
-características útiles para los ejercicios que vienen más adelante. En cada 
+Los datos en este caso son realmente vectores que tienen distintas
+características útiles para los ejercicios que vienen más adelante. En cada
 pregunta se muestra la creación del vector que se utilizará.
 
 ## Preguntas
@@ -60,7 +59,6 @@ Observe el siguiente vector:
 
 ```{r v1_1, exercise = TRUE}
 vector_1 <- c(10, 20, 30)
-
 ```
 
 ```{r v1_2}
@@ -79,7 +77,6 @@ Observe el siguiente vector:
 
 ```{r v2_1, exercise = TRUE}
 vector_2 <- c("a", "b", "c")
-
 ```
 
 ```{r v2_2}
@@ -95,6 +92,7 @@ question("¿Qué ocurre con los datos del vector_2 si le agregamos un número? �
 ### Pregunta 3
 
 Observe el siguiente vector:
+
 ```{r v3_1, exercise = TRUE}
 vector_3 <- c(TRUE, TRUE, FALSE, 0, 0, 1)
 ```
@@ -112,6 +110,7 @@ question("¿Qué tipo es este nuevo vector_3_2?",
 ### Pregunta 4
 
 Observe el siguiente vector:
+
 ```{r v4_1, exercise = TRUE}
 vector_4 <- c(2, FALSE, 5)
 ```
@@ -132,7 +131,6 @@ Observe el siguiente vector:
 
 ```{r v5_1, exercise = TRUE}
 vector_5 <- c("R","ixpantia", "RStudio", 2)
-
 ```
 
 ```{r v5_2}
@@ -144,3 +142,4 @@ question("¿Qué ocurre con los datos de vector_5 al aplicarle la función `as.l
   incorrect = "Incorrecto"
 )
 ```
+

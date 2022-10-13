@@ -214,7 +214,7 @@ ahorro_paises$dpi
 ```{r med_dpi-check}
 grade_result(
   pass_if(~ identical(unlist(.result),
-                      unlist(mean(ahorro_paises$dpi))), 
+                      unlist(mean(ahorro_paises$dpi))),
           "¡Genial!")
 )
 ```
@@ -267,7 +267,7 @@ grade_result(
 
 En el set de datos hay una variable que se llama `dpi`, que representa el
 ingreso disponible per cápita, ahora cambie el nombre de esta variable a
-`diposable_income` 
+`diposable_income`.
 
 ```{r col_names, exercise=TRUE, exercise.eval = FALSE}
 ahorro_paises$dpi
@@ -348,7 +348,7 @@ grade_result(
   pass_if(~ identical(unlist(.result),
                       unlist(subset(ahorro_paises,
                                     ahorro_paises$pop15 < 23 |
-                                      ahorro_paises$pop75 > 47))), 
+                                      ahorro_paises$pop75 > 47))),
           "Bien hecho!")
 )
 ```
@@ -382,3 +382,4 @@ grade_result(
           "¡Bien hecho!")
   )
 ```
+
