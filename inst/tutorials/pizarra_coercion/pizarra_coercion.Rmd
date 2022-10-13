@@ -38,26 +38,28 @@ knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_in
 ```
 
 ## Datos
-
-Los datos en este caso son realmente vectores que tienen distintas características útiles para los ejercicios que vienen más adelante. En cada pregunta se muestra la creación del vector que se utilizará.
+Los datos en este caso son realmente vectores que tienen distintas
+características útiles para los ejercicios que vienen más adelante. En cada
+pregunta se muestra la creación del vector que se utilizará.
 
 
 ## Preguntas
-
-A continuación se muestran una serie de preguntas de selección única. Además se proporciona un espacio que usted puede utilizar para experimentar con los distintos vectores y poder responder las preguntas correctamente.
+A continuación se muestran una serie de preguntas de selección única. Además se
+proporciona un espacio que usted puede utilizar para experimentar con los
+distintos vectores y poder responder las preguntas correctamente.
 
 ### Pregunta 1
 
 Observe el siguiente vector:
+
 ```{r v1_1, exercise = TRUE}
 vector_1 <- c(10, 20, 30)
-
 ```
 
 ```{r v1_2}
 question("¿Qué pasa con si le agregamos una letra al `vector_1`?",
   answer("Sigue siendo un vector numérico porque la mayoría de elementos son números"),
-  answer("Se convierte en un `character`", correct = TRUE) ,
+  answer("Se convierte en un `character`", correct = TRUE),
   answer("Se convierte en un `logical`")
 )
 ```
@@ -65,9 +67,9 @@ question("¿Qué pasa con si le agregamos una letra al `vector_1`?",
 ### Pregunta 2
 
 Observe el siguiente vector:
+
 ```{r v2_1, exercise = TRUE}
 vector_2 <- c("a", "b", "c")
-
 ```
 
 ```{r v2_2}
@@ -81,6 +83,7 @@ question("¿Qué ocurre con los datos del vector_2 si le agregamos un número? �
 ### Pregunta 3
 
 Observe el siguiente vector:
+
 ```{r v3_1, exercise = TRUE}
 vector_3 <- c(TRUE, TRUE, FALSE, 0, 0, 1)
 ```
@@ -96,6 +99,7 @@ question("¿Qué tipo es este nuevo vector_3_2?",
 ### Pregunta 4
 
 Observe el siguiente vector:
+
 ```{r v4_1, exercise = TRUE}
 vector_4 <- c(2, FALSE, 5)
 ```
@@ -111,9 +115,9 @@ question("¿Qué sucede con la expresion `FALSE` si aplicamos la función `as.nu
 ### Pregunta 5
 
 Observe el siguiente vector:
+
 ```{r v5_1, exercise = TRUE}
 vector_5 <- c("R","ixpantia", "RStudio", 2)
-
 ```
 
 ```{r v5_2}
@@ -123,3 +127,4 @@ question("¿Qué ocurre con los datos de vector_5 al aplicarle la función `as.l
   answer("Se convierte en un `character`")
 )
 ```
+

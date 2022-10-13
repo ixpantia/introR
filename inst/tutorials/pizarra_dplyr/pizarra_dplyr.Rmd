@@ -41,8 +41,8 @@ knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_in
 ## Datos: **gapminder**
 
 Este conjunto de datos contiene información sobre distintos países tales como
-características demográficas o económicas. Incluye 1704 observaciones y
-6 variables. 
+características demográficas o económicas. Incluye 1704 observaciones y 6
+variables. 
 
 ```{r}
 glimpse(gapminder)
@@ -69,7 +69,7 @@ Filtre de forma que sólo muestre los datos correspondientes a Oceanía usando
 `filter()`.
 
 ```{r filter, exercise = TRUE}
-gapminder %>% 
+gapminder %>%
   filter()
 ```
 
@@ -79,7 +79,7 @@ gapminder %>%
 
 ```{r filter-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), 
+  pass_if(~ identical(unlist(.result),
                       unlist(gapminder %>%
                                filter(continent == 'Oceania'))),
           "¡Muy bien!")
@@ -95,14 +95,14 @@ los distintos países en los años registrados. Para lograr esto, seleccione las
 columnas `country`, `year` y `pop` utilizando `select()`.
 
 ```{r select, exercise = TRUE}
-gapminder %>% 
+gapminder %>%
   select()
 ```
 
 ```{r select-check}
 grade_result(
   pass_if(~ identical(unlist(.result),
-                      unlist(gapminder %>% 
+                      unlist(gapminder %>%
                                select(country, year, pop))),
           "¡Muy bien!")
 )
@@ -117,8 +117,8 @@ el promedio de gdpPercap por país. Llame a la nueva variable con los datos del
 promedio `promedio_pib`.
 
 ```{r summarise, exercise = TRUE}
-gapminder %>% 
-  group_by() %>% 
+gapminder %>%
+  group_by() %>%
   summarise()
 ```
 
@@ -155,8 +155,8 @@ promedio %>%
 ```{r arrange-check}
 grade_result(
   pass_if(~ identical(unlist(.result),
-                      unlist(promedio %>% 
-                      arrange(promedio_pib))), 
+                      unlist(promedio %>%
+                      arrange(promedio_pib))),
           "¡Bien hecho!")
 )
 ```

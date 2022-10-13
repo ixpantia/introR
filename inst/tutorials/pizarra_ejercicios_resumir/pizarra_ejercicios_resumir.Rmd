@@ -36,7 +36,7 @@ directores <- tibble(
                   "Scorsese",
                   "Hitchcock",
                   "Tarantino",
-                  "Polanski"),    
+                  "Polanski"),
     nacionalidad = c("EEUU",
                      "EEUU",
                      "RU",
@@ -50,7 +50,7 @@ peliculas <- tibble(
               	"Hitchcock",
                 "Spielberg",
                 "Tarantino",
-                "Polanski"),    
+                "Polanski"),
     pelicula = c("Super 8",
     		        "Taxi Driver",
     		        "Psycho",
@@ -82,7 +82,9 @@ Para la sesión utilizaremos tres conjuntos de datos distintos:
 
 ### **directores**
 
-Contiene información sobre 5 directores de cine. Consta de 2 variables y 5 observaciones.
+Contiene información sobre 5 directores de cine. Consta de 2 variables y 5
+observaciones.
+
 ```{r}
 glimpse(directores)
 ```
@@ -96,7 +98,9 @@ Descripción de las columnas:
 
 ### **peliculas**
 
-Contiene información sobre 5 películas conocidas. Consta de de 7 observaciones y 2 variables. 
+Contiene información sobre 5 películas conocidas. Consta de de 7 observaciones
+y 2 variables. 
+
 ```{r}
 glimpse(peliculas)
 ```
@@ -110,7 +114,9 @@ Descripción de las columnas:
 
 ### **premios**
 
-Contiene información sobre los premios de cine ganados por distintas películas. Consta de 5 observaciones y 2 variables. 
+Contiene información sobre los premios de cine ganados por distintas películas.
+Consta de 5 observaciones y 2 variables. 
+
 ```{r}
 glimpse(premios)
 ```
@@ -142,7 +148,7 @@ de forma que podamos calcular el número de películas de cada director.
 ```{r A-check}
 grade_result(
   pass_if(~ identical(unlist(.result),
-                      unlist(inner_join(directores, peliculas) %>% 
+                      unlist(inner_join(directores, peliculas) %>%
                                group_by(director) %>%
                                tally())),
           "¡Excelente!")

@@ -123,7 +123,9 @@ grade_result(
 
 ### 4. ¿Cómo obtener lo referente a aquellas regiones donde los montos son mayores 3000?
 
-En el set de datos hay una columna llamada `valor`, donde se encuentra el monto recolectado en cada región. Ahora obtenga la información referente a las regiones que tienen montos recolectados mayores de 3000. 
+En el set de datos hay una columna llamada `valor`, donde se encuentra el monto
+recolectado en cada región. Ahora obtenga la información referente a las
+regiones que tienen montos recolectados mayores de 3000. 
 
 ```{r 3000, exercise=TRUE, exercise.eval = FALSE}
 
@@ -156,8 +158,10 @@ regiones
 
 ```{r difB-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(subset(regiones, tipo != "B"))), "¡Buenísimo!")
-)
+    pass_if(~ identical(unlist(.result),
+                        unlist(subset(regiones, tipo != "B"))),
+            "¡Buenísimo!")
+  )
 ```
 
 ## Datos: **LifeCycleSavings** 
@@ -198,8 +202,10 @@ LifeCycleSavings$dpi
 
 ```{r med_dpi-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(mean(LifeCycleSavings$dpi))), "¡Genial!")
-)
+  pass_if(~ identical(unlist(.result),
+                      unlist(mean(LifeCycleSavings$dpi))),
+          "¡Genial!")
+  )
 ```
 
 ### 2. ¿Cuál país tiene mayor porcentaje de población menor a 15? 
@@ -218,8 +224,10 @@ LifeCycleSavings$pop15
 
 ```{r pob15-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(max(LifeCycleSavings$pop15))), "¡Buenísimo!")
-)
+  pass_if(~ identical(unlist(.result),
+                      unlist(max(LifeCycleSavings$pop15))),
+          "¡Buenísimo!")
+  )
 ```
 
 ### 3. ¿Cuál país tiene menor porcentaje de población mayor a 75? 
@@ -238,15 +246,17 @@ población.
 
 ```{r pob15_2-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(min(LifeCycleSavings$pop75))), "¡Muy bien!")
-)
+  pass_if(~ identical(unlist(.result),
+                      unlist(min(LifeCycleSavings$pop75))),
+          "¡Muy bien!")
+  )
 ```
 
 ### 4. Cambiar nombre dpi a disposable_income
 
 En el set de datos hay una variable que se llama dpi, que representa el ingreso
 disponible per cápita, ahora cambie el nombre de esta variable a
-`diposable_income` 
+`diposable_income`.
 
 ```{r col_names, exercise=TRUE, exercise.eval = FALSE}
 LifeCycleSavings$dpi
@@ -258,8 +268,10 @@ LifeCycleSavings$dpi
 
 ```{r col_names-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(colnames(LifeCycleSavings)[4] <- "disposable_income")), "Bien hecho!")
-)
+  pass_if(~ identical(unlist(.result),
+            unlist(colnames(LifeCycleSavings)[4] <- "disposable_income")),
+            "Bien hecho!")
+  )
 ```
 
 
@@ -296,8 +308,10 @@ porcentajes. Llame a esta nueva columna "suma".
 
 ```{r suma-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(LifeCycleSavings$suma <- LifeCycleSavings$pop15 + LifeCycleSavings$pop75)), "Bien hecho!")
-)
+  pass_if(~ identical(unlist(.result), unlist(
+          LifeCycleSavings$suma <- LifeCycleSavings$pop15 + LifeCycleSavings$pop75)
+          ), "Bien hecho!")
+  )
 ```
 
 
@@ -318,7 +332,9 @@ subset
 
 ```{r porc-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(subset(LifeCycleSavings, LifeCycleSavings$pop15 < 23 | LifeCycleSavings$pop75 > 47))), "Bien hecho!")
+  pass_if(~ identical(unlist(.result), 
+            unlist(subset(LifeCycleSavings, LifeCycleSavings$pop15 < 23 | LifeCycleSavings$pop75 > 47))),
+          "Bien hecho!")
 )
 ```
 
@@ -339,13 +355,13 @@ contenga los 6 países con mayor porcentaje de población mayor a 75 años.
 
 ```{r 6pai-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(top_n(LifeCycleSavings, 6 , pop75) %>% 
-                                                arrange(desc(pop75)))),"Bien hecho!"),
-  pass_if(~ identical(unlist(.result), 
+  pass_if(~ identical(unlist(.result),
+            unlist(top_n(LifeCycleSavings, 6, pop75) %>%
+                            arrange(desc(pop75)))), "Bien hecho!"),
+  pass_if(~ identical(unlist(.result),
                       unlist(LifeCycleSavings[order(LifeCycleSavings$pop75,
-                                                    decreasing = TRUE)[1:6],])),
+                                               decreasing = TRUE)[1:6], ])),
           "¡Bien hecho!")
   )
 ```
-
 
