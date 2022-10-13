@@ -4,12 +4,15 @@ subitle: "Ejercicios pizarra"
 output: 
   learnr::tutorial:
     language: es
-    css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/intro_r.css
 runtime: shiny_prerendered
 description: >
   Ejercicios de pizarra que se realizan durante la sesión para aprender sobre
   temas de R más avanzados.
 ---
+
+<style type="text/css">
+@import url("https://storage.googleapis.com/datos_cursos/ixpantia_introR/intro_r.css");
+</style>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Slab&family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -31,16 +34,14 @@ library(tidyr)
 library(gradethis)
 tutorial_options(exercise.checker = gradethis::grade_learnr)
 
-
-
 temp = tempfile(fileext = ".xlsx")
 dataURL <- "https://storage.googleapis.com/datos_cursos/properati-AR-2017-08-01-properties_short.xlsx"
-download.file(dataURL, destfile = temp, mode='wb')
+download.file(dataURL, destfile = temp, mode = 'wb')
 sell_0217 <- readxl::read_excel(temp)
 
-propiedades <- sell_0217[1:1000,] %>% 
+propiedades <- sell_0217 %>% 
+  slice_head(n = 1000)
   select(-c(operation, country_name, geonames_id, lat, lon))
-
 
 sell_0217 %>%
   rename(id_nuevo = id)
@@ -48,18 +49,22 @@ sell_0217 %>%
 rm(sell_0217)
 
 prueba <- propiedades %>%
-  select(property_type, currency, price, surface_total_in_m2, surface_covered_in_m2) %>%
+  select(property_type, currency, price,
+         surface_total_in_m2, surface_covered_in_m2) %>%
   sample_frac(0.1)
 
 prueba <- propiedades %>%
   sample_frac(0.01) %>%
   mutate(mes = month(created_on)) %>%
   mutate(property_factor = as.factor(property_type)) %>%
-  select(property_factor, mes, price_aprox_usd, surface_total_in_m2, surface_covered_in_m2)
+  select(property_factor, mes, price_aprox_usd, 
+         surface_total_in_m2, surface_covered_in_m2)
 ```
 
 ```{r, echo=FALSE, out.width="35%", fig.align = "center"}
-knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")   
+knitr::include_graphics(
+  "https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png"
+  )   
 ```
 
 ## Datos: **propiedades**
@@ -70,6 +75,7 @@ Argentina en el 2017 de la compañía **Properati**.
 ```{r}
 glimpse(propiedades)
 ```
+
 Descripción de las variables
 
 | Variable                     | Descripción                                           |
@@ -104,9 +110,9 @@ Descripción de las variables
 
 En el conjunto de datos **propiedades** hay una variable llamada
 `surface_total_in_m2` que describe la superficie total de la propiedad. Una
-segunda variable, `property_type`, contiene el tipo de propiedad. Ahora
-descubra cuánta superficie tienen las propiedades de tipo casa y tipo
-apartamento en promedio.
+segunda variable, `property_type`, contiene el tipo de propiedad. Ahora descubra
+cuánta superficie tienen las propiedades de tipo casa y tipo apartamento en
+promedio.
 
 ```{r prom, exercise = TRUE, exercise.lines = 8}
 propiedades %>%
@@ -124,16 +130,16 @@ grade_result(
                                summarize(
                                  promedio = mean(surface_total_in_m2,
                                                  na.rm = TRUE)))),
-          "¡Excelente!")
+          "¡Muy bien!")
 )
 ```
 
 ### ¿Cuál es el estado más costoso en Argentina en dólares?
 
-En el conjunto de datos **propiedades** hay una variable llamada `price_aprox_usd`
-que contiene el precio aproximado en dólares de la propiedad. Utilizando esta
-variable, descubra cuál es el estado (`state_name`) más costoso en Argentina
-basado en propiedades. 
+En el conjunto de datos **propiedades** hay una variable llamada 
+`price_aprox_usd` que contiene el precio aproximado en dólares de la propiedad. 
+Utilizando esta variable, descubra cuál es el estado (`state_name`) más 
+costoso en Argentina basado en propiedades. 
 
 ```{r costo, exercise = TRUE}
 propiedades %>%
@@ -149,7 +155,8 @@ grade_result(
                       unlist(propiedades %>%
                                group_by(state_name) %>%
                                summarise(precio_promedio = mean(price_aprox_usd,
-                                                                na.rm = TRUE)) %>%
+                                                                na.rm = TRUE)
+                                         ) %>%
                                arrange(desc(precio_promedio)))),
           "¡Excelente!")
 )
@@ -210,4 +217,3 @@ grade_result(
           "¡Bien hecho!")
 )
 ```
-
