@@ -36,6 +36,11 @@ jobs:
 
       - uses: r-lib/actions/setup-pandoc@v1
 
+      - name: Install gradethis
+        run: |
+          remotes::install_github("rstudio/gradethis")
+        shell: Rscript {0}
+
       - name: Install dependencies
         run: |
           install.packages('remotes')
