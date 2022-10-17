@@ -4,12 +4,15 @@ subtitle: "Ejercicios pizarra"
 output: 
   learnr::tutorial:
     language: es
-    css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/intro_r.css
 runtime: shiny_prerendered
 description: >
   Ejercicios de pizarra que se realizan durante la sesión para aprender sobre
   coerciones en R.
 ---
+
+<style type="text/css">
+@import url("https://storage.googleapis.com/datos_cursos/ixpantia_introR/intro_r.css");
+</style>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Slab&family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -34,53 +37,62 @@ vector_5 <- c("R","ixpantia", "RStudio", 2)
 ```
 
 ```{r, echo=FALSE, out.width="35%", fig.align = "center"}
-knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")   
+knitr::include_graphics(
+  "https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png"
+  )   
 ```
 
 ## Datos
-
-Los datos en este caso son realmente vectores que tienen distintas características útiles para los ejercicios que vienen más adelante. En cada pregunta se muestra la creación del vector que se utilizará.
-
+Los datos en este caso son realmente vectores que tienen distintas
+características útiles para los ejercicios que vienen más adelante. En cada
+pregunta se muestra la creación del vector que se utilizará.
 
 ## Preguntas
 
-A continuación se muestran una serie de preguntas de selección única. Además se proporciona un espacio que usted puede utilizar para experimentar con los distintos vectores y poder responder las preguntas correctamente.
+A continuación se muestran una serie de preguntas de selección única. Además se
+proporciona un espacio que usted puede utilizar para experimentar con los
+distintos vectores y poder responder las preguntas correctamente.
 
 ### Pregunta 1
 
 Observe el siguiente vector:
+
 ```{r v1_1, exercise = TRUE}
 vector_1 <- c(10, 20, 30)
-
 ```
 
 ```{r v1_2}
 question("¿Qué pasa con si le agregamos una letra al `vector_1`?",
   answer("Sigue siendo un vector numérico porque la mayoría de elementos son números"),
   answer("Se convierte en un `character`", correct = TRUE) ,
-  answer("Se convierte en un `logical`")
+  answer("Se convierte en un `logical`"),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```
 
 ### Pregunta 2
 
 Observe el siguiente vector:
+
 ```{r v2_1, exercise = TRUE}
 vector_2 <- c("a", "b", "c")
-
 ```
 
 ```{r v2_2}
 question("¿Qué ocurre con los datos del vector_2 si le agregamos un número? ¿En qué se convierten?",
   answer("Sigue siendo un `character`", correct = TRUE),
   answer("Se convierte en un `numeric`"),
-  answer("Se convierte en un `logical`")
+  answer("Se convierte en un `logical`"),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```
 
 ### Pregunta 3
 
 Observe el siguiente vector:
+
 ```{r v3_1, exercise = TRUE}
 vector_3 <- c(TRUE, TRUE, FALSE, 0, 0, 1)
 ```
@@ -89,13 +101,16 @@ vector_3 <- c(TRUE, TRUE, FALSE, 0, 0, 1)
 question("¿Qué tipo es este nuevo vector_3_2?",
   answer("Sigue siendo un `logical`"),
   answer("Se convierte en un `numeric`", correct = TRUE),
-  answer("Se convierte en un `character`")
+  answer("Se convierte en un `character`"),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```
 
 ### Pregunta 4
 
 Observe el siguiente vector:
+
 ```{r v4_1, exercise = TRUE}
 vector_4 <- c(2, FALSE, 5)
 ```
@@ -104,22 +119,27 @@ vector_4 <- c(2, FALSE, 5)
 question("¿Qué sucede con la expresion `FALSE` si aplicamos la función `as.numeric` al vector 4?",
   answer("Da un error"),
   answer("La convierte en un NA o valor faltante"),
-  answer("La convierte en 0", correct = TRUE)
+  answer("La convierte en 0", correct = TRUE),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```
 
 ### Pregunta 5
 
 Observe el siguiente vector:
+
 ```{r v5_1, exercise = TRUE}
 vector_5 <- c("R","ixpantia", "RStudio", 2)
-
 ```
 
 ```{r v5_2}
 question("¿Qué ocurre con los datos de vector_5 al aplicarle la función `as.logical`? ¿En qué se convierten?",
   answer("Se convierte en NAs o valores faltantes", correct = TRUE),
   answer("Se convierte en TRUE o FALSE"),
-  answer("Se convierte en un `character`")
+  answer("Se convierte en un `character`"),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```
+

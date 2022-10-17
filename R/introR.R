@@ -1,4 +1,4 @@
-#' \code{ixpantia.introR} package
+#' \code{introR} package
 #'
 #' Aprenda R con ejercicios interactivos del curso introducción a R de ixpantia
 #'
@@ -6,7 +6,7 @@
 #' que aparece aqui abajo.
 #'
 #' @docType package
-#' @name ixpantia.introR
+#' @name introR
 #' @importFrom utils install.packages
 NULL
 

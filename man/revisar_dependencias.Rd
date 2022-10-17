@@ -10,11 +10,11 @@ revisar_dependencias(instalar = FALSE)
 \item{instalar}{Indicar si quieres instalar las dependencias al revisar}
 }
 \description{
-Muestra las dependencias del paquete ixpantia.introR que son
+Muestra las dependencias del paquete introR que son
 necesarias para poder practicar con los tutoriales interactivos
 }
 \details{
-El paquete ixpantia.introR toma en cuenta una cantidad de paquetes
+El paquete introR toma en cuenta una cantidad de paquetes
 que son necesarios para practicar con los tutoriales interactivos. Sino
 tenemos estos paquetes instalados en nuestro computador, no podremos hacer
 uso de los tutoriales. Si en algún caso no sabemos cuál paquete nos falta,
