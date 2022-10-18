@@ -38,25 +38,24 @@ Depends:
 VignetteBuilder: knitr
 Imports: 
     learnr,
-    rsconnect, 
-    ggplot2,
     dplyr,
-    tibble,
+    tibble
+RoxygenNote: 7.1.1
+Suggests: 
+    testthat (>= 3.0.0),
+    rmarkdown,
+    ggplot2,
+    datos,
     tidyr,
+    hflights,
+    janitor,
     mosaicData,
     visdat,
     plotly,
     readxl,
-    janitor,
     lubridate,
     readr,
-    hflights,
-    datos
-RoxygenNote: 7.1.1
-Suggests: 
-    testthat (>= 3.0.0),
-    knitr,
-    rmarkdown
+    knitr
 Remotes: rstudio/gradethis
 Config/testthat/edition: 3
 
