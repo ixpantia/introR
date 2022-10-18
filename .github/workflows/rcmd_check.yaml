@@ -42,10 +42,9 @@ jobs:
           remotes::install_github("rstudio/gradethis")
         shell: Rscript {0}
 
-      - name: Install dependencies
+      - name: Check
         run: |
           install.packages('remotes')
-          remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 
