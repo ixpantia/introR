@@ -41,6 +41,7 @@ jobs:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
           NOT_CRAN: true
         run: |
+          install.packages('remotes')
           remotes::install_cran("rcmdcheck")
           options(crayon.enabled = TRUE)
           rcmdcheck::rcmdcheck(args = c("--no-manual"), error_on = "warning", check_dir = "check")
