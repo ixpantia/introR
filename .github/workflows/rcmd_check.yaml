@@ -38,6 +38,7 @@ jobs:
 
       - name: Install gradethis
         run: |
+          install.packages('remotes')
           remotes::install_github("rstudio/gradethis")
         shell: Rscript {0}
 
