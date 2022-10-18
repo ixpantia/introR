@@ -3,11 +3,14 @@ title: "Sesión 1: Introducción"
 output: 
   learnr::tutorial:
     language: es
-    css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/intro_r.css
 runtime: shiny_prerendered
 description: >
   Introducción general a R y RStudio acompañada de ejercicios rápidos.
 ---
+
+<style type="text/css">
+@import url("https://storage.googleapis.com/datos_cursos/ixpantia_introR/intro_r.css");
+</style>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Slab&family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -29,17 +32,17 @@ tutorial_options(exercise.checker = gradethis::grade_learnr)
 
 ## Descripción general 
 
-R es uno de los lenguajes de programación estadística más populares en
-el mundo. Permite hacer una gran variedad de análisis y productos 
-de datos, por lo que resulta ser una herramienta muy poderosa para
-profesionales en diversas áreas. 
+R es uno de los lenguajes de programación estadística más populares en el
+mundo. Permite hacer una gran variedad de análisis y productos de datos, por lo
+que resulta ser una herramienta muy poderosa para profesionales en diversas
+áreas. 
 
 A continuación mostramos los conceptos básicos de R:
 
 ### Crear objetos
 
-En R para crear un objeto utilizamos el símbolo `<-` (también se 
-puede utilizar `=`). 
+En R para crear un objeto utilizamos el símbolo `<-` (también se puede utilizar
+`=`). 
 
 **Ejemplo**: crear un objeto llamado "temperatura" que contenga el número 36.
 
@@ -49,28 +52,30 @@ temperatura <- 36
 
 ### Funciones
 
-Las funciones son una serie de pasos o procedimientos que se
-encapsulan en un mismo lugar para que escribir código sea más
-eficiente. Una función siempre es precedida por un paréntesis. Dentro
-de los paréntesis colocamos la información requerida para que la
-función haga su trabajo.
+Las funciones son una serie de pasos o procedimientos que se encapsulan en un
+mismo lugar para que escribir código sea más eficiente. Una función siempre es
+precedida por un paréntesis. Dentro de los paréntesis colocamos la información
+requerida para que la función haga su trabajo.
 
-Un ejemplo de una función de R es `mean()`, para obtener rápidamente el 
+Un ejemplo de una función de R es `mean()`, para obtener rápidamente el
 promedio de algún objeto. 
 
-Podemos utilizarla para obtener el promedio de las notas de un curso que 
+Podemos utilizarla para obtener el promedio de las notas de un curso que
 tenemos guardadas en el objeto `notas`.
+
 ```{r ver_notas}
 notas
 ```
 
 Se utiliza de la siguiente forma:
+
 ```{r ejemplo_funcion}
 mean(notas)
 ```
 
 ### Data frames
-Una de las estructuras más comunes en R son los data frames o conjuntos de 
+
+Una de las estructuras más comunes en R son los *data frames* o conjuntos de 
 datos. En palabras simples estos son tablas que contienen datos y están 
 formadas por filas y columnas. Para crear uno de estos objetos en R podemos 
 hacer lo siguiente:
@@ -80,10 +85,9 @@ df <- data.frame(x1 = c("A", "B", "C"),
                  x2 = c(1, 2, 3))
 ```
 
-Para poder acceder las columnas y las filas de estos objetos
-se utiliza la siguiente lógica: `datos[fila, columa]`. Es decir, si
-quiero obtener la segunda fila del conjunto anterior (y todas las
-columnas) puedo utilizar:
+Para poder acceder las columnas y las filas de estos objetos se utiliza la
+siguiente lógica: `datos[fila, columa]`. Es decir, si quiero obtener la segunda
+fila del conjunto anterior (y todas las columnas) puedo utilizar:
 
 ```{r}
 df[2, ]
@@ -91,8 +95,7 @@ df[2, ]
 
 Para obtener la segunda columna y todas las filas:
 
-```{r}
-df[, 2]
+```{r} df[, 2]
 ```
 
 Y para obtener la segunda columna de la segunda fila solamente:
@@ -103,9 +106,8 @@ df[2, 2]
 
 ### Ayuda
 
-Para buscar ayuda o documentación sobre una función o paquete de R 
-se utiliza el signo de pregunta (?). Para la ayuda de una función 
-hacemos lo siguiente:
+Para buscar ayuda o documentación sobre una función o paquete de R se utiliza
+el signo de pregunta (?). Para la ayuda de una función hacemos lo siguiente:
 
 ```{r}
 ?class
@@ -120,9 +122,8 @@ Para buscar la ayuda de un paquete:
 ## Ejercicios 
 
 ### Utilice la función `max()`
-La función `max` como es de esperar, nos devuelve el número máximo 
-del objeto que le indiquemos. Utilícela para obtener el máximo de 
-`y <- 10:100`
+La función `max` como es de esperar, nos devuelve el número máximo del objeto
+que le indiquemos. Utilícela para obtener el máximo de `y <- 10:100`.
 
 ```{r max, exercise = TRUE}
  
@@ -136,10 +137,9 @@ max()
 grade_result(
   pass_if(~ identical(unlist(.result), 
                       unlist(max(y))),
-          "¡Buenísimo!")
+          "¡Bien!")
 )
 ```
-
 
 ### Busque la ayuda o documentación de la función `mean()`
 
@@ -166,7 +166,7 @@ grade_result(
 ```
 
 ```{r seg_col-hint-1}
-[, 2]
+"[, 2]"
 ```
 
 ```{r seg_col-check}
@@ -190,7 +190,7 @@ install.packages()
 ```{r library-check}
 grade_result(
   pass_if(~ identical(.result, library(learnr)),
-          "¡Buenísimo!")
+          "¡Muy bien!")
 )
 ```
 
@@ -200,7 +200,9 @@ grade_result(
 question("¿Cómo se intala el paquete `dplyr`?",
   answer("install_packages(dplyr)"),
   answer("installPackages(dplyr)"),
-  answer("install.packages(\"dplyr\")", correct = TRUE)
+  answer("install.packages(\"dplyr\")", correct = TRUE),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```
 
@@ -211,20 +213,20 @@ question("¿Cómo se intala el paquete `dplyr`?",
 ```
 
 ```{r class-hint-1}
-class()
+"class()"
 ```
 
 ```{r class-check}
 grade_result(
   pass_if(~ identical(.result, class(y)),
-          "¡Buenísimo!")
+          "¡Excelente!")
 )
 ```
 
 ### Resolviendo errores
 
-Imaginemos que comienzo a hacer un análisis de datos exploratorio en R y lo 
-primero que quiero hacer es un gráfico con `ggplot`. Para esto escribo lo 
+Imaginemos que comienzo a hacer un análisis de datos exploratorio en R y lo
+primero que quiero hacer es un gráfico con `ggplot`. Para esto escribo lo
 siguiente:
 
 ```{r codigo_ggplot, eval=FALSE}
@@ -233,8 +235,11 @@ ggplot(ventas, aes(x = tipo_producto, y = total_ganancias)) +
 ```
 
 Al hacerlo, obtengo el siguiente error:
+
 ```{r error, echo=FALSE, out.width="65%", fig.align = "center"}
-knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/error_libreria.png")  
+knitr::include_graphics(
+  "https://storage.googleapis.com/datos_cursos/ixpantia_introR/error_libreria.png"
+  )  
 ```
 
 ```{r error_ejercicio, echo=FALSE}
@@ -243,6 +248,9 @@ question("¿Porqué se da esta error?",
   answer("Porque no ha llamado la librería `ggplot2`", 
          correct = TRUE),
   answer("Porque los datos `ventas` no fueron cargados"),
-  answer("Porque hay un error ortográfico en la instrucción")
+  answer("Porque hay un error ortográfico en la instrucción"),
+  correct = "Correcto",
+  incorrect = "Incorrecto"
 )
 ```
+

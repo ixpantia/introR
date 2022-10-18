@@ -4,12 +4,15 @@ subtitle: "Ejercicios pizarra"
 output: 
   learnr::tutorial:
     language: es
-    css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/intro_r.css
 runtime: shiny_prerendered
 description: >
   Ejercicios de pizarra que se realizan durante la sesión para aprender sobre
   datos ordenados (tidy data).
 ---
+
+<style type="text/css">
+@import url("https://storage.googleapis.com/datos_cursos/ixpantia_introR/intro_r.css");
+</style>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Slab&family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -32,40 +35,47 @@ tutorial_options(exercise.checker = gradethis::grade_learnr)
 
 temp = tempfile(fileext = ".xlsx")
 dataURL <- "https://storage.googleapis.com/datos_cursos/Planilla%20presidencia.xlsx"
-download.file(dataURL, destfile=temp, mode='wb')
+download.file(dataURL, destfile = temp, mode = 'wb')
 planilla <- readxl::read_excel(temp)
-
 
 planilla2 <- planilla %>% 
   mutate(fecha = dmy_hms(planilla$FechaPago)) %>% 
   select(Nombre, Cedula, Institucion, Rubro, Monto, fecha)
 
-separados <- pivot_wider(data = planilla, names_from = Rubro, values_from = Monto)
-
+separados <- pivot_wider(data = planilla, 
+                         names_from = Rubro, 
+                         values_from = Monto)
 
 temp2 = tempfile(fileext = ".xlsx")
 dataURL2 <- "https://storage.googleapis.com/datos_cursos/planillaNAs.xlsx"
 download.file(dataURL2, destfile=temp2, mode='wb')
 planillaNAs <- readxl::read_excel(temp2)
 
-
-fecha_separada <- separate(data = planilla2, col = fecha,into = c("anio", "mes", "dia"), sep = "-")
+fecha_separada <- separate(data = planilla2, col = fecha,into = c("anio",
+                                                                  "mes",
+                                                                  "dia"),
+                           sep = "-")
 ```
 
 ```{r, echo=FALSE, out.width="35%", fig.align = "center"}
-knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")   
+knitr::include_graphics(
+  "https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png"
+  )   
 ```
 
 ## Dispersar y reorganizar
 
 ### Datos: **planilla**
 
-Este set de datos incluye información sobre los trabajadores de Presidencia Costa Rica en el segundo cuatrimestre del 2019. Contiene 6 variables o columnas y 230 observaciones. 
+Este set de datos incluye información sobre los trabajadores de Presidencia 
+Costa Rica en el segundo cuatrimestre del 2019. Contiene 6 variables o columnas 
+y 230 observaciones. 
+
 ```{r exercise.eval = FALSE}
 glimpse(planilla) 
 ```
 
-Descripcion de las variables
+Descripción de las variables
 
 | Variable | Descripcion |
 |:--------:|:-----------:|
@@ -80,7 +90,10 @@ Descripcion de las variables
 ### Función dispersar
 ### 1. Cree un nuevo set de datos "disperso" utilizando la columna `Nombre` 
 
-El set de datos incluye varias observaciones para el mismo trabajador ya que el pago de cada trabajador se puede dividir en varios rubros. Utilice pivot_wider de tal forma que cree una columna para cada rubro o tipo de pago. 
+El set de datos incluye varias observaciones para el mismo trabajador ya que el
+pago de cada trabajador se puede dividir en varios rubros. Utilice `pivot_wider`
+de tal forma que cree una columna para cada rubro o tipo de pago. 
+
 ```{r wider2, exercise=TRUE, exercise.eval = FALSE}
 pivot_wider()
 ```
@@ -91,21 +104,33 @@ pivot_wider()
 
 ```{r wider2-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(pivot_wider(data = planilla, names_from = Rubro, values_from = Monto))), "Muy bien!")
+  pass_if(~ identical(unlist(.result), 
+                      unlist(pivot_wider(data = planilla, 
+                                         names_from = Rubro, 
+                                         values_from = Monto))), 
+          "¡Muy bien!")
 )
 ```
-
 
 ### Función reorganizar
 ### 2. Partiendo del set de datos disperso creado anteriormente vuelva al set de datos original
 
-En el paso anterior creamos una base de datos donde se creo una columna para cada rubro de pago, este set de datos se llama **separados**. Ahora utilice pivot_longer() para volver al set de datos original. En la pista puede encontrar los nombres de las columnas escritos para facilitarle la escritura del código. 
+En el paso anterior creamos una base de datos donde se creo una columna para 
+cada rubro de pago, este set de datos se llama **separados**. Ahora utilice
+`pivot_longer()` para volver al set de datos original. En la pista puede 
+encontrar los nombres de las columnas escritos para facilitarle la escritura 
+del código.
+
 ```{r longer1, exercise=TRUE, exercise.eval = FALSE}
 pivot_longer(data = separados, )
 ```
 
 ```{r longer1-hint-1}
-cols = c("CARRERA PROFESIONAL", "DISCRECIONALIDAD Y CONFIDENCIALIDAD COL 108", "DEDICACION EXCLUSIVA", "SALARIO BASE", "AUMENTOS ANUALES", "HORAS EXTRA-P.Adeudados", "PROHIBICION", "SOBREPAGO POR ASIGNACION", "SUBSIDIO ENFERMEDAD REG SERV CIVIL", "SUBSIDIO ENFERMEDAD NO REG SERV CIVIL")
+cols = c("CARRERA PROFESIONAL", "DISCRECIONALIDAD Y CONFIDENCIALIDAD COL 108",
+         "DEDICACION EXCLUSIVA", "SALARIO BASE", "AUMENTOS ANUALES", 
+         "HORAS EXTRA-P.Adeudados", "PROHIBICION", "SOBREPAGO POR ASIGNACION",
+         "SUBSIDIO ENFERMEDAD REG SERV CIVIL", 
+         "SUBSIDIO ENFERMEDAD NO REG SERV CIVIL")
 ```
  
 ```{r longer1-hint-2}
@@ -114,24 +139,39 @@ cols = c("CARRERA PROFESIONAL", "DISCRECIONALIDAD Y CONFIDENCIALIDAD COL 108", "
 
 ```{r longer1-check} 
 grade_result(
-  pass_if(~ identical(unlist(unname(.result)), unlist(unname(pivot_longer(data = separados, cols = c("CARRERA PROFESIONAL", "DISCRECIONALIDAD Y CONFIDENCIALIDAD COL 108", "DEDICACION EXCLUSIVA", "SALARIO BASE", "AUMENTOS ANUALES", "HORAS EXTRA-P.Adeudados", "PROHIBICION", "SOBREPAGO POR ASIGNACION", "SUBSIDIO ENFERMEDAD REG SERV CIVIL", "SUBSIDIO ENFERMEDAD NO REG SERV CIVIL"),names_to = "Rubro", values_to = "Monto")))), "Muy bien!")
+  pass_if(~ identical(unlist(unname(.result)), 
+                      unlist(unname(
+                        pivot_longer(
+                          data = separados,
+                          cols = c("CARRERA PROFESIONAL", 
+                                   "DISCRECIONALIDAD Y CONFIDENCIALIDAD COL 108",
+                                   "DEDICACION EXCLUSIVA", "SALARIO BASE", 
+                                   "AUMENTOS ANUALES", "HORAS EXTRA-P.Adeudados",
+                                   "PROHIBICION", "SOBREPAGO POR ASIGNACION",
+                                   "SUBSIDIO ENFERMEDAD REG SERV CIVIL", 
+                                   "SUBSIDIO ENFERMEDAD NO REG SERV CIVIL"),
+                          names_to = "Rubro", values_to = "Monto")))), 
+          "¡Excelente!")
 )
 ```
-
 
 ## Manejo de NA´s
 
 ### Datos: **planillaNAs2**
 
-Este set de datos es similar al visto anteriormente, solo que le faltan algunos datos, por lo que tiene NAs en distintas columnas. 
+Este set de datos es similar al visto anteriormente, solo que le faltan algunos
+datos, por lo que tiene NAs en distintas columnas. 
+
 ```{r}
 glimpse(planillaNAs)
 ```
 
-
 ### 3. Complete los NAs de Monto y de Cedula
 
-El set de datos *planillaNAs* tiene valores faltantes (NAs) en varias columnas, en este ejercicio debes reeplazar los valores faltantes de las variable `Monto` y `Cedula`
+El set de datos *planillaNAs* tiene valores faltantes (NAs) en varias columnas,
+en este ejercicio debes reeplazar los valores faltantes de las variable `Monto`
+y `Cedula`
+
 ```{r fill2, exercise=TRUE}
 fill()
 ```
@@ -142,14 +182,17 @@ fill()
 
 ```{r fill2-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(fill(planillaNAs, Monto, Cedula))), "Muy bien!")
+  pass_if(~ identical(unlist(.result),
+                      unlist(fill(planillaNAs, Monto, Cedula))),
+          "¡Bien!")
 )
 ```
 
-
 ### 4. Reemplace los NAs con 99
 
-Los valores faltantes del set de datos están identificados con un "NA", pero esto puede complicar las cosas en algunos procesos. Cambie los "NAs" por 99. 
+Los valores faltantes del set de datos están identificados con un "NA", pero
+esto puede complicar las cosas en algunos procesos. Cambie los "NAs" por 99. 
+
 ```{r NA99, exercise=TRUE}
 replace_na()
 ```
@@ -160,7 +203,10 @@ replace_na()
 
 ```{r NA99-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(replace_na(planillaNAs, list(valor = 99)))), "Muy bien!")
+  pass_if(~ identical(unlist(.result),
+                      unlist(replace_na(planillaNAs, 
+                                        list(valor = 99)))),
+          "¡Buenísimo!")
 )
 ```
 
@@ -168,16 +214,19 @@ grade_result(
 
 ### Datos: **planilla2** 
 
-Este set de datos es similar a *planilla2* con la excepcion que en lugar de la columna `FechaPago` tiene l columna `fecha` que solo contiene la fecha del pago, no la hora. 
+Este set de datos es similar a *planilla2* con la excepcion que en lugar de la
+columna `FechaPago` tiene l columna `fecha` que solo contiene la fecha del 
+pago, no la hora. 
 
 ```{r}
 glimpse(planilla2)
 ```
 
-
 ### 5. Separe la fecha en año, mes y dia
 
-El set de datos contiene una columna llamada `fecha`, la cual representa la fecha completa al momento del pago. Ahora utilice la funcion `separate()` para separar esta variable en tres columnas distintas, año, mes y dia. 
+El set de datos contiene una columna llamada `fecha`, la cual representa la
+fecha completa al momento del pago. Ahora utilice la funcion `separate()` para
+separar esta variable en tres columnas distintas, año, mes y dia. 
 
 ```{r separate, exercise=TRUE}
 separate(data = planilla2, )
@@ -189,13 +238,20 @@ sep = "-"
 
 ```{r separate-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(separate(data = planilla2, col = fecha, into = c("anio", "mes", "dia"), sep = "-"))), "Muy bien!")
+  pass_if(~ identical(unlist(.result), 
+                      unlist(separate(data = planilla2,
+                                      col = fecha,
+                                      into = c("anio", "mes", "dia"),
+                                      sep = "-"))),
+          "¡Genial!")
 )
 ```
 
 ### 6. Una la fecha que separamos en una sola columna
 
-Anteriormente separamos la fecha en año, mes y dia. Este set de datos quedó guardado como **fecha_separada**. Ahora utilice la función `unite()` para unir la fecha en una sola columna, como estaba anteriormente. 
+Anteriormente separamos la fecha en año, mes y dia. Este set de datos quedó 
+guardado como **fecha_separada**. Ahora utilice la función `unite()` para unir
+la fecha en una sola columna, como estaba anteriormente. 
 
 ```{r unite, exercise=TRUE}
 unite(data = fecha_separada,  )
@@ -207,7 +263,10 @@ sep = "/"
 
 ```{r}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(unite(data = fecha_separada , col = "FechaPago", anio:dia, sep = "/"))), "Muy bien!")
+  pass_if(~ identical(unlist(.result),
+                      unlist(unite(data = fecha_separada , 
+                                   col = "FechaPago",
+                                   anio:dia, sep = "/"))),
+          "¡Muy bien!")
 )
 ```
-

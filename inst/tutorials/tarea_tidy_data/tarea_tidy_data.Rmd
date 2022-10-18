@@ -4,12 +4,15 @@ subtitle: "Tarea"
 output: 
   learnr::tutorial:
     language: es
-    css: https://storage.googleapis.com/datos_cursos/ixpantia_introR/intro_r.css
 runtime: shiny_prerendered
 description: >
   Ejercicios de tarea que se pueden practicar fuera de la sesión del curso. Esta
   tarea tiene como objetivo repasar los conceptos de la sesión de datos ordenados.
 ---
+
+<style type="text/css">
+@import url("https://storage.googleapis.com/datos_cursos/ixpantia_introR/intro_r.css");
+</style>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Roboto+Slab&family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -27,25 +30,30 @@ library(tidyr)
 library(untidydata)
 tutorial_options(exercise.checker = gradethis::grade_learnr)
 
-
-vowels <- spanish_vowels %>% 
+vocales <- spanish_vowels %>% 
   select(-f2)
 
-separado <- separate(data = vowels, col = label, 
-                           into = c("participante", "sexo", "vocal"), sep = "-")
+separado <- separate(data = vocales, col = label, 
+                           into = c("participante", "sexo", "vocal"),
+                     sep = "-")
 
 ancho <- pivot_wider(separado, names_from = vocal, values_from = f1)
 ```
 
 ```{r, echo=FALSE, out.width="35%", fig.align = "center"}
-knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")    
+knitr::include_graphics(
+  "https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png"
+  )    
 ```
 
-## Datos: **vowels**
+## Datos: **vocales**
 
-Este es un set de datos que contiene datos sobre la frecuencia del uso de las vocales en español de participantes un estudio en 1985. Contiene 750 observaciones y 4 variables. 
+Este es un set de datos que contiene datos sobre la frecuencia del uso de las 
+vocales en español de participantes un estudio en 1985. Contiene 750 
+observaciones y 4 variables. 
+
 ```{r}
-glimpse(spanish_vowels)
+glimpse(vocales)
 ```
 
 Descripción de las variables:
@@ -60,7 +68,10 @@ Descripción de las variables:
 
 ### Separe la columna `label` en `participante`, `sexo` y `vocal`
 
-La variable `label` en el conjunto de datos **vowels** está compuesta por tres elementos distintos, por ejemplo: `p01-male-a` se puede separar en `p01`, `male` y `a` y así obtenemos un conjunto de datos más ordenado y fácil de utilizar. Separe esta columna en tres nuevas columnas: `participante`, `sexo` y `vocal`
+La variable `label` en el conjunto de datos **vocales** está compuesta por tres
+elementos distintos, por ejemplo: `p01-male-a` se puede separar en `p01`, `male`
+y `a` y así obtenemos un conjunto de datos más ordenado y fácil de utilizar.
+Separe esta columna en tres nuevas columnas: `participante`, `sexo` y `vocal`
 
 ```{r separate, exercise = TRUE}
 
@@ -72,14 +83,20 @@ into = c("participante", "sexo", "vocal"), sep = "-"
 
 ```{r separate-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(separate(data = vowels, col = label, 
-                           into = c("participante", "sexo", "vocal"), sep = "-"))), "Muy bien!")
+  pass_if(~ identical(unlist(.result),
+                      unlist(separate(data = vocales, col = label, 
+                           into = c("participante", "sexo", "vocal"),
+                           sep = "-"))),
+          "¡Genial!")
 )
 ```
 
 ### Una las columnas `participante`, `sexo` y `vocal` en la columna original `label`
 
-Anteriormente separamos la columna `label` de **vowels** en tres columnas distintas, esto quedó guardado en el set de datos **separado**. Ahora una estas tres columnas de forma que volvamos a la columna `label` original pero esta vez separelo con un "_"
+Anteriormente separamos la columna `label` de **vocales** en tres columnas 
+distintas, esto quedó guardado en el set de datos **separado**. Ahora una estas
+tres columnas de forma que volvamos a la columna `label` original pero esta vez
+separelo con un "_"
 
 ```{r unite, exercise = TRUE}
 
@@ -91,14 +108,21 @@ sep = "_"
 
 ```{r unite-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(unite(separado, col="label", participante:vocal, sep = "_"))), "Muy bien!")
+  pass_if(~ identical(unlist(.result),
+                      unlist(unite(separado,
+                                   col="label", participante:vocal,
+                                   sep = "_"))), 
+          "¡Bien hecho!")
 )
 ```
 
-
 ### Cree un set de datos ancho, donde cada vocal tenga su propia columna 
 
-Partiendo de **separado**, vea que este es un conjunto de datos muy largo ya que se repiten mucho las observaciones por participante, ahora, utilizando las herramientas de tidyr conviertalo en un set de datos ancho donde cada vocal represente una columna. 
+Partiendo de **separado**, vea que este es un conjunto de datos muy largo ya 
+que se repiten mucho las observaciones por participante, ahora, utilizando las
+herramientas de tidyr conviértalo en un set de datos ancho donde cada vocal
+represente una columna. 
+
 ```{r wider, exercise = TRUE}
 
 ```
@@ -113,14 +137,21 @@ values_from = f1
 
 ```{r wider-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(pivot_wider(separado, names_from = vocal, values_from = f1))), "Excelente!")
+  pass_if(~ identical(unlist(.result),
+                      unlist(
+                        pivot_wider(separado,
+                                    names_from = vocal,
+                                    values_from = f1))), 
+          "¡Excelente!")
 )
 ```
 
 
 ### Vuelva al set de datos original (**separado**)
 
-En el ejercicio anterior creamos un conjunto de datos ancho el cuál quedó guardado como **ancho**, ahora utilizando alguna herramienta de tidyr, vuelva al conjunto original desde donde partimos: **separado**
+En el ejercicio anterior creamos un conjunto de datos ancho el cuál quedó 
+guardado como **ancho**, ahora utilizando alguna herramienta de tidyr, vuelva 
+al conjunto original desde donde partimos: **separado**
 
 ```{r longer, exercise = TRUE}
 
@@ -132,7 +163,11 @@ En el ejercicio anterior creamos un conjunto de datos ancho el cuál quedó guar
 
 ```{r longer-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), unlist(pivot_wider(separado, names_from = vocal, values_from = f1))), "Bien hecho!")
+  pass_if(~ identical(unlist(.result),
+                      unlist(
+                        pivot_wider(separado,
+                                    names_from = vocal,
+                                    values_from = f1))), 
+          "¡Bien!")
 )
 ```
-

@@ -1,15 +1,15 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# ixpantia.introR <a href="url"><img src="man/figures/introR_logo.png" align="right" width="30%"></a>
+# introR <a href="url"><img src="man/figures/introR_logo.png" align="right" width="30%"></a>
 
 <!-- badges: start -->
 
 [![CRAN
-status](https://www.r-pkg.org/badges/version/ixpantia.introR)](https://cran.r-project.org/package=ixpantia.introR)
+status](https://www.r-pkg.org/badges/version/introR)](https://cran.r-project.org/package=introR)
 <!-- badges: end -->
 
-El paquete `ixpantia.introR` le permitirá hacer uso de los tutoriales
+El paquete `introR` le permitirá hacer uso de los tutoriales
 interactivos en su IDE de RStudio. Una forma para estudiar y practicar
 conceptos de R aprendidos en los cursos de ixpantia.
 
@@ -18,7 +18,7 @@ conceptos de R aprendidos en los cursos de ixpantia.
 Antes de instalar este paquete, primero debemos de realizar la
 instalación del paquete que se llama `gradethis`.
 
-Esto porque uno de los componentes del `ixpantia.introR` es el paquete
+Esto porque uno de los componentes del `introR` es el paquete
 [gradethis](https://github.com/rstudio-education/gradethis), sin embargo
 este no se encuentra publicado aún en el CRAN y por ende debemos de
 instalarlo desde su versión en desarrollo en Github. Podemos correr el
@@ -32,22 +32,22 @@ Recuerda que **necesitamos** además tener las **versiones más
 recientes** de **R ( \>=4.0.2) y RStudio (\>=1.3.959)** para tener la
 funcionalidad de los tutoriales dinámicos.
 
-Una vez instalado el `gradethis` podemos proceder a instalar
-`ixpantia.introR`. Hay dos formas de instalar el paquete en su
-computador. Una es hacerlo directamente del repositorio en GitHub
-(versión en desarrollo) con el siguiente comando.
+Una vez instalado el `gradethis` podemos proceder a instalar `introR`.
+Hay dos formas de instalar el paquete en su computador. Una es hacerlo
+directamente del repositorio en GitHub (versión en desarrollo) con el
+siguiente comando.
 
 Este comando lo puedes copiar y pegar en la consola de RStudio. Una vez
 pegado se presiona la tecla **Enter** para que se ejecute e
 inmediatamente iniciará el proceso de la descarga.
 
 ``` r
-remotes::install_github("ixpantia/ixpantia.introR")
+remotes::install_github("ixpantia/introR")
 ```
 
 Una segunda forma es que cuente con el archivo `.tar.gz` en su
 computador. Cuando lo haya descargado, abra RStudio y desde la pestaña
-de **Tools** haga click en **Install packages**
+de **Tools** haga click en **Install packages**.
 
 Una vez que se despliega el cuadro de diálogo, debe de elegir que la
 instalación se hará desde un archivo local (el archivo .tar.gz) e
@@ -56,7 +56,7 @@ inmediatamente se abrirá una nueva ventana para que busque el archivo.
 Una vez seleccionado el archivo, hay que dar click en **Install** e
 iniciará el proceso de instalación.
 
-**Errores de instalación**
+## **Errores de instalación**
 
 En caso de que aparezcan mensajes como por ejemplo:
 
@@ -66,15 +66,15 @@ Warning in install.packages :
 ```
 
 Lo que debemos hacer es instalar el paquete que nos indica (en el
-ejemplo anterior sería el paquete remotes que no tenemos instalado).
-Esto lo hacemos con la función
+ejemplo anterior sería el paquete `remotes` que no tenemos instalado).
+Esto lo hacemos con la siguiente función:
 
 ``` r
 install.packages("remotes")
 ```
 
-En caso de que no nos siga funcionando problamente nos faltan las
-comillas o bien estamos escribiendo mal el nombre.
+En caso de que esto no funcione, revisa si no faltan las comillas o si
+el nombre del paquete está mal escrito.
 
 ## Usando los tutoriales dinámicos
 
@@ -83,8 +83,8 @@ en la interfaz de RStudio llamada **Tutorial**. Al abrirla vamos a
 encontrar distintos tutoriales, entre estos los de ixpantia. Deberíamos
 de poder visualizar algo similar a la imagen siguiente:
 
-![](man/figures/tutoriales_ixpantia.png) Para usar uno de los tutoriales
-nada mas debes presionar el botón `Start Tutorial` y se desplegará ell
+![](man/figures/tutoriales_ejemplo.png) Para usar uno de los tutoriales
+nada mas debes presionar el botón `Start Tutorial` y se desplegará el
 tutorial en tu RStudio o en tu navegador.
 
 Notarás que hay en algunos casos dos tutoriales por sesión. Ambos son
@@ -102,5 +102,5 @@ referencia rápida si posteriormente no recuerdas cómo hacerlo.
 ## Ayuda o sugerencias
 
 Si tenés dudas sobre el uso del paquete o sugerencias para mejorarlo,
-por favor escríbanos a *<hola@ixpantia.com>* o bien podés abrirnos un
-[tiquete](https://github.com/ixpantia/ixpantia.introR/issues)
+por favor escríbenos a *<hola@ixpantia.com>* o bien podés abrirnos un
+[tiquete](https://github.com/ixpantia/introR/issues)
