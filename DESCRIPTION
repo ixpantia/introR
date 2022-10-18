@@ -39,7 +39,8 @@ VignetteBuilder: knitr
 Imports: 
     learnr,
     dplyr,
-    tibble
+    tibble,
+    knitr
 RoxygenNote: 7.1.1
 Suggests: 
     testthat (>= 3.0.0),
