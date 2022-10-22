@@ -73,12 +73,12 @@ glimpse(superheroes)
 
 Descripción de las columnas:
 
-| Variable   | Descripción                      |
-|:----------:|:--------------------------------:|
-| `nombre`    | Nombre del superhéroe o villano  |
-| `bando`     | Indica si es un villano o un héroe   |
-| `sexo`      | Sexo del superhéroe o villano  |
-| `editor`    | Indica la compañia de donde proviene el personaje |
+| Variable     | Descripción                                       |
+| :----------: | :--------------------------------:                |
+| `nombre`     | Nombre del superhéroe o villano                   |
+| `bando`      | Indica si es un villano o un héroe                |
+| `sexo`       | Sexo del superhéroe o villano                     |
+| `editor`     | Indica la compañia de donde proviene el personaje |
 
 ### **editores**
 
@@ -213,3 +213,4 @@ grade_result(
           "¡Muy bien!")
 )
 ```
+

@@ -46,9 +46,9 @@ separados <- pivot_wider(data = planilla,
                          names_from = Rubro, 
                          values_from = Monto)
 
-temp2 = tempfile(fileext = ".xlsx")
+temp2 <- tempfile(fileext = ".xlsx")
 dataURL2 <- "https://storage.googleapis.com/datos_cursos/planillaNAs.xlsx"
-download.file(dataURL2, destfile=temp2, mode='wb')
+download.file(dataURL2, destfile = temp2, mode = 'wb')
 planillaNAs <- readxl::read_excel(temp2)
 
 fecha_separada <- separate(data = planilla2, col = fecha,into = c("anio",
@@ -60,7 +60,7 @@ fecha_separada <- separate(data = planilla2, col = fecha,into = c("anio",
 ```{r, echo=FALSE, out.width="35%", fig.align = "center"}
 knitr::include_graphics(
   "https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png"
-  )   
+  )
 ```
 
 ## Dispersar y reorganizar
@@ -77,14 +77,14 @@ glimpse(planilla)
 
 Descripción de las variables
 
-| Variable | Descripcion |
-|:--------:|:-----------:|
-| `Nombre` | Nommbre del empleado |
-| `Cedula` | Cedula del empleado |
+| Variable      | Descripcion                                                         |
+| :--------:    | :-----------:                                                       |
+| `Nombre`      | Nommbre del empleado                                                |
+| `Cedula`      | Cedula del empleado                                                 |
 | `Institucion` | Institucion en la que trabaja el empleado, en este caso Presidencia |
-| `FechaPago` | Fecha y hora de realizacion del pago |
-| `Rubro` | Rubro especifico de pago |
-| `Monto` | Monto girado al empleado |
+| `FechaPago`   | Fecha y hora de realizacion del pago                                |
+| `Rubro`       | Rubro especifico de pago                                            |
+| `Monto`       | Monto girado al empleado                                            |
 
 
 ### Función dispersar
@@ -104,10 +104,10 @@ pivot_wider()
 
 ```{r wider2-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), 
-                      unlist(pivot_wider(data = planilla, 
-                                         names_from = Rubro, 
-                                         values_from = Monto))), 
+  pass_if(~ identical(unlist(.result),
+                      unlist(pivot_wider(data = planilla,
+                                         names_from = Rubro,
+                                         values_from = Monto))),
           "¡Muy bien!")
 )
 ```
@@ -139,18 +139,18 @@ cols = c("CARRERA PROFESIONAL", "DISCRECIONALIDAD Y CONFIDENCIALIDAD COL 108",
 
 ```{r longer1-check} 
 grade_result(
-  pass_if(~ identical(unlist(unname(.result)), 
+  pass_if(~ identical(unlist(unname(.result)),
                       unlist(unname(
                         pivot_longer(
                           data = separados,
-                          cols = c("CARRERA PROFESIONAL", 
+                          cols = c("CARRERA PROFESIONAL",
                                    "DISCRECIONALIDAD Y CONFIDENCIALIDAD COL 108",
-                                   "DEDICACION EXCLUSIVA", "SALARIO BASE", 
+                                   "DEDICACION EXCLUSIVA", "SALARIO BASE",
                                    "AUMENTOS ANUALES", "HORAS EXTRA-P.Adeudados",
                                    "PROHIBICION", "SOBREPAGO POR ASIGNACION",
-                                   "SUBSIDIO ENFERMEDAD REG SERV CIVIL", 
+                                   "SUBSIDIO ENFERMEDAD REG SERV CIVIL",
                                    "SUBSIDIO ENFERMEDAD NO REG SERV CIVIL"),
-                          names_to = "Rubro", values_to = "Monto")))), 
+                          names_to = "Rubro", values_to = "Monto")))),
           "¡Excelente!")
 )
 ```
@@ -204,7 +204,7 @@ replace_na()
 ```{r NA99-check}
 grade_result(
   pass_if(~ identical(unlist(.result),
-                      unlist(replace_na(planillaNAs, 
+                      unlist(replace_na(planillaNAs,
                                         list(valor = 99)))),
           "¡Buenísimo!")
 )
@@ -238,7 +238,7 @@ sep = "-"
 
 ```{r separate-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), 
+  pass_if(~ identical(unlist(.result),
                       unlist(separate(data = planilla2,
                                       col = fecha,
                                       into = c("anio", "mes", "dia"),
@@ -264,9 +264,10 @@ sep = "/"
 ```{r}
 grade_result(
   pass_if(~ identical(unlist(.result),
-                      unlist(unite(data = fecha_separada , 
+                      unlist(unite(data = fecha_separada,
                                    col = "FechaPago",
                                    anio:dia, sep = "/"))),
           "¡Muy bien!")
 )
 ```
+

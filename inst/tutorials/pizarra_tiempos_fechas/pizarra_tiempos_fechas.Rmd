@@ -35,13 +35,13 @@ tutorial_options(exercise.checker = gradethis::grade_learnr)
 
 marriage <- mosaicData::Marriage
 
-matrimonios <- marriage %>% 
+matrimonios <- marriage %>%
   mutate(appdate = mdy(appdate),
          ceremonydate = mdy(ceremonydate),
          dob = format(as.Date(dob, "%m/%d/%y"), "19%y-%m-%d")
 )
 
-marriage_duracion <- matrimonios %>% 
+marriage_duracion <- matrimonios %>%
   mutate(duracion = today() - ceremonydate)
 ```
 
@@ -60,23 +60,23 @@ Estados Unidos entre 1996 y 1999.
 glimpse(marriage)
 ```
 
-| Variable | Descripción |
-|:--------:|:-----------:|
-| `bookpageID` | Identificador |
-| `appdate` | Fecha en que se presentó la aplicación |
-| `ceremonydate` |  Fecha de la ceremonia | 
-| `delay` | Número de días entre la aplicación y la ceremonia |
-| `officialTitle` | "Título" de la persona que inscribe el matrimonio |
-| `person` | Indica si el novio o la novia inscribió el matrimonio |
-| `dob` | Fecha de nacimiento de la persona que inscribe |
-| `age` | Años de la persona que inscribe |
-| `race` | Etnia de la persona que inscribe |
-| `prevcount` | Número de matrimonios previos de la persona que inscribe |
-| `prevconc` | Forma en la que el último matrimonio terminó |
-| `hs` | Número de años de colegio aprobados |
-| `college` | Número de años de universidad aprobados |
-| `dayOfBirth` | Día de nacimiento |
-| `sign` | Signo astrológico de quien inscribe |
+| Variable        | Descripción                                              |
+| :--------:      | :-----------:                                            |
+| `bookpageID`    | Identificador                                            |
+| `appdate`       | Fecha en que se presentó la aplicación                   |
+| `ceremonydate`  | Fecha de la ceremonia                                    |
+| `delay`         | Número de días entre la aplicación y la ceremonia        |
+| `officialTitle` | "Título" de la persona que inscribe el matrimonio        |
+| `person`        | Indica si el novio o la novia inscribió el matrimonio    |
+| `dob`           | Fecha de nacimiento de la persona que inscribe           |
+| `age`           | Años de la persona que inscribe                          |
+| `race`          | Etnia de la persona que inscribe                         |
+| `prevcount`     | Número de matrimonios previos de la persona que inscribe |
+| `prevconc`      | Forma en la que el último matrimonio terminó             |
+| `hs`            | Número de años de colegio aprobados                      |
+| `college`       | Número de años de universidad aprobados                  |
+| `dayOfBirth`    | Día de nacimiento                                        |
+| `sign`          | Signo astrológico de quien inscribe                      |
 
 ### Columnas de fechas
 
@@ -96,9 +96,9 @@ funciones vistas anteriormente para convertirlas en el formato que les
 pertenece. 
 
 ```{r convertir, exercise = TRUE}
-appdate <- 
-ceremonydate <- 
-dob <- 
+appdate <-
+ceremonydate <-
+dob <-
 ```
 
 ```{r convertir-hint-1}
@@ -196,3 +196,4 @@ grade_result(
           "¡Excelente!")
 )
 ```
+

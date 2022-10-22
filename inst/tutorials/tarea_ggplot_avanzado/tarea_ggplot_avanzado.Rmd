@@ -33,7 +33,7 @@ library(mosaicData)
 library(visdat)
 library(plotly)
 
-weather <- Weather %>% 
+weather <- Weather %>%
   mutate(month = as.factor(month))
 ```
 
@@ -56,40 +56,40 @@ glimpse(weather)
 
 Descripción de las variables 
 
-| Variable   | Descripción           |
-|:----------:|:---------------------:|
-| `city`     | Nombre de la ciudad |
-| `date`  | Fecha |
-| `year` | Año |
-| `month` | Mes |
-| `day` | Día |
-| `high_temp` | Temperatura más alta del dia en F  |
-| `avg_temp` | Temperatura promedio del dia en F  |
-| `low_temp` | Temperatura más baja del dia en F  |
-| `high_dewpt` | Punto de rocío más alto del dia en F  |
-| `avg_dewpt` | Punto de rocío promedio del dia en F |
-| `low_dewpt` | Punto de rocío más bajo del dia en F |
-| `high_humidity` | Humedad relativa más alta del dia |
-| `avg_humidity` | Humedad relativa promedio del dia |
-| `low_humidity` | Humedad relativa más baja del dia |
-| `high_hg` | Presión del nivel del mar más alta en pulgadas de mercurio |
-| `avg_hg` | Presión del nivel del mar promedio en pulgadas de mercurio |
-| `low_hg` | Presión del nivel del mar más baja en pulgadas de mercurio |
-| `high_vis` | Visibilidad más alta del día en millas |
-| `avg_vis` | Visibilidad promedio del día en millas |
-| `low_vis` | Visibilidad más baja del día en millas |
-| `high_wind` | Velocidad del viento más alta en el día en mph |
-| `avg_wind` | Velocidad del viento promedio en el día en mph |
-| `low_wind` | Velocidad del viento más baja en el día en mph
-| `precip` | Precipitación presentada en el día |
-| `events` | Evento meteorológico que ocurrió en el día |
+| Variable        | Descripción                                                |
+| :----------:    | :---------------------:                                    |
+| `city`          | Nombre de la ciudad                                        |
+| `date`          | Fecha                                                      |
+| `year`          | Año                                                        |
+| `month`         | Mes                                                        |
+| `day`           | Día                                                        |
+| `high_temp`     | Temperatura más alta del dia en F                          |
+| `avg_temp`      | Temperatura promedio del dia en F                          |
+| `low_temp`      | Temperatura más baja del dia en F                          |
+| `high_dewpt`    | Punto de rocío más alto del dia en F                       |
+| `avg_dewpt`     | Punto de rocío promedio del dia en F                       |
+| `low_dewpt`     | Punto de rocío más bajo del dia en F                       |
+| `high_humidity` | Humedad relativa más alta del dia                          |
+| `avg_humidity`  | Humedad relativa promedio del dia                          |
+| `low_humidity`  | Humedad relativa más baja del dia                          |
+| `high_hg`       | Presión del nivel del mar más alta en pulgadas de mercurio |
+| `avg_hg`        | Presión del nivel del mar promedio en pulgadas de mercurio |
+| `low_hg`        | Presión del nivel del mar más baja en pulgadas de mercurio |
+| `high_vis`      | Visibilidad más alta del día en millas                     |
+| `avg_vis`       | Visibilidad promedio del día en millas                     |
+| `low_vis`       | Visibilidad más baja del día en millas                     |
+| `high_wind`     | Velocidad del viento más alta en el día en mph             |
+| `avg_wind`      | Velocidad del viento promedio en el día en mph             |
+| `low_wind`      | Velocidad del viento más baja en el día en mph             |
+| `precip`        | Precipitación presentada en el día                         |
+| `events`        | Evento meteorológico que ocurrió en el día                 |
 
 ## Ejercicios 
 
 ### 1. Visualice los NAs
 
 Es importante conocer dónde y cuántos valores faltantes tenemos en un set de 
-datos. Visualice los NAs de la base de datos **weather**
+datos. Visualice los NAs de la base de datos **weather**.
 
 ```{r vis, exercise = TRUE}
 
@@ -105,7 +105,7 @@ En **weather** tenemos una variable llamada `avg_temp` que contiene la
 temperatura promedio presentada cada día y además el día se ve reflejado en la
 variable `date`. Cree un gráfico que muestre una línea de regresión suavizada 
 para la temperatura promedio a través del tiempo contemplado. Excluya el error
-estándar
+estándar.
 
 ```{r smooth, exercise = TRUE}
 ggplot(weather)
@@ -132,7 +132,7 @@ ggplot(weather)
 ```
 
 ```{r bar-solution}
-ggplot(data = weather, aes(x = date, y = avg_wind, 
+ggplot(data = weather, aes(x = date, y = avg_wind,
                                      group = city,
                                      fill = city)) +
   geom_bar(stat = "identity") +
@@ -143,9 +143,11 @@ ggplot(data = weather, aes(x = date, y = avg_wind,
 
 ### 4. Cree un gráfico de barras apiladas que muestre la humedad promedio en cada mes según los eventos meteotológicos que se presentaron
 
-En **weather** tenemos una variable llamada `avg_humidity` con el promedio de humedad que se presentó cada día. Además, la variable `month` con solamente el
-mes de la fecha registrada y `events` con el o los eventos meteorológicos que se presentaron cada día. Ustede debe crear un gráfico que muestre la relación entre 
-los eventos meteorológicos y la humedad promedio en cada mes. Coloque las 
+En **weather** tenemos una variable llamada `avg_humidity` con el promedio de
+humedad que se presentó cada día. Además, la variable `month` con solamente el
+mes de la fecha registrada y `events` con el o los eventos meteorológicos que
+se presentaron cada día. Ustede debe crear un gráfico que muestre la relación
+entre los eventos meteorológicos y la humedad promedio en cada mes. Coloque las
 etiquetas correspondientes a cada eje, título, leyenda y subtítulo. Además,
 utilice un "tema" (`theme_`) y controle el tamaño de las letras.
 
@@ -155,7 +157,7 @@ ggplot(weather)
 ```
 
 ```{r bar2-solution}
-ggplot(weather, aes(x = month, y = avg_humidity, 
+ggplot(weather, aes(x = month, y = avg_humidity,
                                    group = events,
                                    fill = events)) +
   geom_bar(stat = "summary") +
@@ -202,21 +204,22 @@ correspondientes.
 
 ```{r plotly, exercise = TRUE}
 interactivo <- ggplot(weather)
-                      
+
 ```
 
 ```{r plotly-solution}
 interactivo <- ggplot(weather,
                       aes(x = date,
-                          y = avg_dewpt, 
+                          y = avg_dewpt,
                           color = city)) +
   geom_line() +
   scale_color_viridis_d() +
   scale_x_date(date_labels = "%Y-%d-%m", date_breaks = "2 month") +
-  xlab("Fecha") + 
+  xlab("Fecha") +
   ylab("Punto de rocío (grados F)") +
   labs(title = "Punto de rocío promedio", color = "Ciudad") +
   theme(axis.text.x = element_text(angle = 45))
 
 ggplotly(interactivo)
 ```
+

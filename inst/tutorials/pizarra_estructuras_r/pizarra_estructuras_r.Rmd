@@ -34,7 +34,7 @@ regiones <- data.frame(id = c(254, 369, 147, 852),
                 valor = c(2500, 3700, 4200, 1200),
                 tipo = c("A", "A", "C", "B"))
 
-ahorro_paises <- LifeCycleSavings %>% 
+ahorro_paises <- LifeCycleSavings %>%
   mutate(pais = row.names(LifeCycleSavings))
 ```
 
@@ -57,10 +57,10 @@ Descripción de las columnas:
 
 | Variable   | Descripción                      |
 |:----------:|:--------------------------------:|
-| `id`         | identificación de la región      |
-| `region`     | punto cardinal de la región      |
-| `valor`      | monto recolectado en la región   |
-| `tipo`       | A,B o C                          |
+| `id`       | identificación de la región      |
+| `region`   | punto cardinal de la región      |
+| `valor`    | monto recolectado en la región   |
+| `tipo`     | A,B o C                          |
 
 ## Ejercicios: **regiones**
 
@@ -99,7 +99,7 @@ regiones
 ```
 
 ```{r 2da_col-solution}
-regiones[ ,2]
+regiones[ , 2]
 ```
 
 ```{r 2da_col-check}
@@ -320,9 +320,9 @@ porcentajes. Llame a esta nueva columna "suma".
 
 ```{r suma-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), 
+  pass_if(~ identical(unlist(.result),
                       unlist(
-                        ahorro_paises$suma <- ahorro_paises$pop15 + ahorro_paises$pop75
+              ahorro_paises$suma <- ahorro_paises$pop15 + ahorro_paises$pop75
                         )),
           "¡Excelente!")
 )
@@ -371,11 +371,11 @@ contenga los 6 países con mayor porcentaje de población mayor a 75 años.
 grade_result(
   pass_if(~ identical(unlist(.result),
                       unlist(
-                        ahorro_paises %>% 
+                        ahorro_paises %>%
                         slice_max(pop75, n = 6) %>%
                           arrange(desc(pop75)))),
           "Bien hecho!"),
-  pass_if(~ identical(unlist(.result), 
+  pass_if(~ identical(unlist(.result),
                       unlist(
                         ahorro_paises[order(ahorro_paises$pop75,
                                             decreasing = TRUE)[1:6],])),

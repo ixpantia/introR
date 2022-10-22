@@ -57,14 +57,14 @@ glimpse(gapminder)
 
 Descripción de las variables:
 
-| Variable | Descripción |
-|:--------:|:-----------:|
-| `country` | Nombre del país | 
-| `year` | Año de registro |
-| `pop`|  Población del país | 
+| Variable    | Descripción                       |
+| :--------:  | :-----------:                     |
+| `country`   | Nombre del país                   |
+| `year`      | Año de registro                   |
+| `pop`       | Población del país                |
 | `continent` | Continente donde se ubica el país |
-| `lifeExp` | Esperanza de vida del país |
-| `gdpPercap` | PIB per cápita del país |
+| `lifeExp`   | Esperanza de vida del país        |
+| `gdpPercap` | PIB per cápita del país           |
 
 ## Ejercicios 
 

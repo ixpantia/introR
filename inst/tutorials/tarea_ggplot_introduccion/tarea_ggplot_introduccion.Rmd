@@ -57,17 +57,17 @@ glimpse(casas_texas)
 
 Descripción de las variables 
 
-| Variable   | Descripción           |
-|:----------:|:---------------------:|
-| `city`     | Ciudad de Texas |
-| `year`  | Año en estudio |
-| `month` | Mes en estudio|
-| `sales` | Número de ventas realizadas |
-| `volume` | Valor total de las ventas |
-| `median` | Mediana del precio de las ventas |
-| `listings` | Número de listados activos |
-| `inventory` | Tiempo necesario para que se vendan todos los listados activos al paso actual de las ventas |
-| `date` | Fecha en estudio |
+| Variable     | Descripción                                                                                 |
+| :----------: | :---------------------:                                                                     |
+| `city`       | Ciudad de Texas                                                                             |
+| `year`       | Año en estudio                                                                              |
+| `month`      | Mes en estudio                                                                              |
+| `sales`      | Número de ventas realizadas                                                                 |
+| `volume`     | Valor total de las ventas                                                                   |
+| `median`     | Mediana del precio de las ventas                                                            |
+| `listings`   | Número de listados activos                                                                  |
+| `inventory`  | Tiempo necesario para que se vendan todos los listados activos al paso actual de las ventas |
+| `date`       | Fecha en estudio                                                                            |
 
 ## Ejercicios
 
@@ -94,9 +94,10 @@ ggplot(casas_texas, aes(volume)) +
 
 ### 2. Cree un gráfico de puntos sencillo que represente la cantidad de ventas sobre los años
 
-En **casas_texas** tenemos una variables llamada `year` que tiene los años del 
-2000 al 2015 en que se dieron ests ventas y otra variable, `sales` con la 
-cantidad de ventas hechas en la ciudad a la fecha indicada. Ahora utilice estas variables para hacer un gráfico que muestres la cantidad de ventas realizadas 
+En **casas_texas** tenemos una variables llamada `year` que tiene los años del
+2000 al 2015 en que se dieron ests ventas y otra variable, `sales` con la
+cantidad de ventas hechas en la ciudad a la fecha indicada. Ahora utilice estas
+variables para hacer un gráfico que muestres la cantidad de ventas realizadas
 para cada año en forma de puntos. 
 
 ```{r point, exercise = TRUE}
@@ -110,7 +111,9 @@ ggplot(casas_texas, aes(x = year, y = sales)) +
 
 ### 3. Cree un gráfico que permita ver la relación entre `volume` y `sales` 
 
-En `casas_texas` hay una variable que se llama `volume` que representa el valor total de las ventas realizadas y otra llamada `sales` que contiene el número de ventas realizadas. Grafique la relación de estas variables utilizando 
+En `casas_texas` hay una variable que se llama `volume` que representa el valor
+total de las ventas realizadas y otra llamada `sales` que contiene el número de
+ventas realizadas. Grafique la relación de estas variables utilizando
 `geom_smooth` y `geom_point`. Utilice el método "lm" y una confianza del 90%.
 
 ```{r lm, exercise = TRUE}
@@ -137,7 +140,7 @@ tres variables obtenga un gráfico que muestre la cantidad de listados por año
 para cada una de las ciudades. 
 
 ```{r fill, exercise = TRUE}
-ggplot(casas_texas) 
+ggplot(casas_texas)
 
 ```
 
@@ -154,7 +157,7 @@ la cantidad de listados activos. Cree un gráfico de cajas que muestre la
 distribución de la variable `listings` para cada una de las ciudades.
 
 ```{r box, exercise = TRUE}
-ggplot(casas_texas) 
+ggplot(casas_texas)
 
 ```
 
@@ -162,3 +165,4 @@ ggplot(casas_texas)
 ggplot(casas_texas) +
   geom_boxplot(aes(x = city, y = listings))
 ```
+

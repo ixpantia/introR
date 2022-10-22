@@ -30,10 +30,10 @@ library(tidyr)
 library(untidydata)
 tutorial_options(exercise.checker = gradethis::grade_learnr)
 
-vocales <- spanish_vowels %>% 
+vocales <- spanish_vowels %>%
   select(-f2)
 
-separado <- separate(data = vocales, col = label, 
+separado <- separate(data = vocales, col = label,
                            into = c("participante", "sexo", "vocal"),
                      sep = "-")
 
@@ -43,7 +43,7 @@ ancho <- pivot_wider(separado, names_from = vocal, values_from = f1)
 ```{r, echo=FALSE, out.width="35%", fig.align = "center"}
 knitr::include_graphics(
   "https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png"
-  )    
+  )
 ```
 
 ## Datos: **vocales**
@@ -58,11 +58,11 @@ glimpse(vocales)
 
 Descripción de las variables:
 
-| Variable | Descripcion |
-|:--------:|:-----------:|
-| `label` | Código del participante | 
-| `rep` | Repetición |
-| `f1`| Vector numérico indicando la vocal F1 en Hz  | 
+| Variable   | Descripcion                                 |
+| :--------: | :-----------:                               |
+| `label`    | Código del participante                     |
+| `rep`      | Repetición                                  |
+| `f1`       | Vector numérico indicando la vocal F1 en Hz |
 
 ## Ejercicios:
 
@@ -71,7 +71,7 @@ Descripción de las variables:
 La variable `label` en el conjunto de datos **vocales** está compuesta por tres
 elementos distintos, por ejemplo: `p01-male-a` se puede separar en `p01`, `male`
 y `a` y así obtenemos un conjunto de datos más ordenado y fácil de utilizar.
-Separe esta columna en tres nuevas columnas: `participante`, `sexo` y `vocal`
+Separe esta columna en tres nuevas columnas: `participante`, `sexo` y `vocal`.
 
 ```{r separate, exercise = TRUE}
 
@@ -84,7 +84,7 @@ into = c("participante", "sexo", "vocal"), sep = "-"
 ```{r separate-check}
 grade_result(
   pass_if(~ identical(unlist(.result),
-                      unlist(separate(data = vocales, col = label, 
+                      unlist(separate(data = vocales, col = label,
                            into = c("participante", "sexo", "vocal"),
                            sep = "-"))),
           "¡Genial!")
@@ -96,7 +96,7 @@ grade_result(
 Anteriormente separamos la columna `label` de **vocales** en tres columnas 
 distintas, esto quedó guardado en el set de datos **separado**. Ahora una estas
 tres columnas de forma que volvamos a la columna `label` original pero esta vez
-separelo con un "_"
+separelo con un "_".
 
 ```{r unite, exercise = TRUE}
 
@@ -111,7 +111,7 @@ grade_result(
   pass_if(~ identical(unlist(.result),
                       unlist(unite(separado,
                                    col="label", participante:vocal,
-                                   sep = "_"))), 
+                                   sep = "_"))),
           "¡Bien hecho!")
 )
 ```
@@ -141,7 +141,7 @@ grade_result(
                       unlist(
                         pivot_wider(separado,
                                     names_from = vocal,
-                                    values_from = f1))), 
+                                    values_from = f1))),
           "¡Excelente!")
 )
 ```
@@ -167,7 +167,8 @@ grade_result(
                       unlist(
                         pivot_wider(separado,
                                     names_from = vocal,
-                                    values_from = f1))), 
+                                    values_from = f1))),
           "¡Bien!")
 )
 ```
+
