@@ -60,11 +60,11 @@ glimpse(spirantization)
 
 Descripcion de las variables
 
-| Variable | Descripcion |
-|:--------:|:-----------:|
-| `id` | Identificación del participante y repetición |
-| `position` | Posición de la inicial intervocálica |
-| `vIntensity` | Intensidad de la siguiente vocal (en dB) |
+| Variable     | Descripcion                                  |
+| :--------:   | :-----------:                                |
+| `id`         | Identificación del participante y repetición |
+| `position`   | Posición de la inicial intervocálica         |
+| `vIntensity` | Intensidad de la siguiente vocal (en dB)     |
 
 ## Ejercicios
 
@@ -99,8 +99,8 @@ esta columna.
 
 ```{r separate-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), 
-                      unlist(separate(spirantization, id, 
+  pass_if(~ identical(unlist(.result),
+                      unlist(separate(spirantization, id,
                                       into = c("participante", "numero"),
                                       sep = "_"))),
           "¡Buenísimo!")
@@ -126,7 +126,7 @@ participante represente una columna.
 
 ```{r spread-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), 
+  pass_if(~ identical(unlist(.result),
                       unlist(spread(
                         separado, key = participante,
                         value = vIntensity))),
@@ -151,7 +151,7 @@ nuevo set, regrese al conjunto de datos original.
 
 ```{r gather-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), 
+  pass_if(~ identical(unlist(.result),
                       unlist(gather(
                         ancho, participante,
                         value = vIntensity,
@@ -182,9 +182,10 @@ grade_result(
                       unlist(unite(
                         data = separado,
                         col = id,
-                        participante, 
+                        participante,
                         numero,
                         sep = "/"))),
           "¡Muy bien!")
 )
 ```
+

@@ -67,13 +67,13 @@ Nota: algunas variables comparten la primera palabra de su nombre con otras,
 por lo que solo se describen estos inicios de nombres ya que son muchas 
 variables y describir todas resultaría muy largo y repetitivo. 
 
-| Variable | Descripción |
-|:--------:|:-----------:|
-| `continent` | Continente al que pertenece el país |
-| `country` | Nombre del país |
-| `gdpPercap_` | PIB per cápita del país para el año indicado | 
-| `lifeExp_` | Esperanza de vida del país para el año indicado |
-| `pop_` | Población del país para el año indicado |
+| Variable    | Descripción                                     |
+| :--------:  | :-----------:                                   |
+| `continent` | Continente al que pertenece el país             |
+| `country`   | Nombre del país                                 |
+| `gdpPercap` | PIB per cápita del país para el año indicado    |
+| `lifeExp`   | Esperanza de vida del país para el año indicado |
+| `pop`       | Población del país para el año indicado         |
 
 
 ## Ejercicios 
@@ -83,7 +83,7 @@ variables y describir todas resultaría muy largo y repetitivo.
 El conjunto de datos *gap_ancho* no está ordenado, es más ancho de lo que 
 debería. Utilizando la función `pivot_longer` convierta *gap_ancho* en un 
 conjunto de datos con una nueva columna *obstype_year* con los nombres de 
-las variables y *obs_values* con sus valores 
+las variables y *obs_values* con sus valores.
 
 ```{r gather, exercise = TRUE}
 pivot_longer(gap_ancho,  )
@@ -102,7 +102,7 @@ grade_result(
   pass_if(~ identical(unlist(.result), 
                       unlist(
                         pivot_longer(gap_ancho,
-                                     cols= gdpPercap_1952:pop_2007, 
+                                     cols= gdpPercap_1952:pop_2007,
                                      names_to =  "obstype_year",
                                      values_to = "obs_values"))),
           "¡Buenísimo!")
@@ -134,8 +134,8 @@ cols= gdpPercap_1952:pop_2007
 ```{r spread-check}
 grade_result(
   pass_if(~ identical(unlist(.result),
-                      unlist(pivot_wider(gap_largo,  
-                       names_from = obstype_year, 
+                      unlist(pivot_wider(gap_largo,
+                       names_from = obstype_year,
                        values_from = obs_values))),
           "¡Excelente!")
 )
@@ -165,9 +165,9 @@ separate(data = gap_largo, )
 grade_result(
   pass_if(~ identical(unlist(.result),
                       unlist(separate(data = gap_largo,
-                                      col = obstype_year, 
+                                      col = obstype_year,
                                       into = c('obstype', 'year'),
-                                      sep = '_'))), 
+                                      sep = '_'))),
           "¡Bien hecho!")
 )
 ```

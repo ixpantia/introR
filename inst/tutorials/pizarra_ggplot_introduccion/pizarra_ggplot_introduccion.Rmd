@@ -64,29 +64,29 @@ glimpse(SICOP)
 
 Descripción de las columnas:
 
-| Variable   | Descripción           |
-|:----------:|:---------------------:|
-| `no`         | Número de compra |
-| `fecha_notificacion`  | Fecha y hora en la que se publica la posible compra |
-| `descripcion`  | Descripción de la compra realizada |
-| `numero_procedimiento`  | Identificador del procedimiento |
-| `institucion` | Institución pública que realizó la compra |
-| `numero_contrato` | Identificador del contrato |
-| `adjudicatario` | Proveedor del producto |
-| `cedula_adjudicatario` | Cédula jurídica o física del proveedor |
-| `moneda` | Moneda en la que se hizo la compra |
-| `monto` | Monto cancelado por la compra |
-| `modificaciones` | Indica si se hicieron modificaciones a la compra original |
-| `vigencia_contrato` | Meses de vigencia del contrato |
-| `clasificacion_objeto` | Clasificación del producto comprado |
-| `tipo_modalidad` | Tipo de la modalidad de la compra |
-| `tipo_procedimiento` | Tipo de procedimiento de la compra |
-| `firma_contrato` | Fecha en la que se firmó el contrato de la compra |
-| `moneda_monto_estimado` | Moneda en la que está el monto estimado de la compra |
-| `monto_estimado` | Monto estimado de la compra |
-| `fecha` | Fecha en la que se realiza la compra |
-| `hora` | Hora a la que se realiza la compra |
-| `mes_dia` | Mes y día donde se realiza la compra |
+| Variable                | Descripción                                               |
+| :----------------------:| :--------------------------------------------------------:|
+| `no`                    | Número de compra                                          |
+| `fecha_notificacion`    | Fecha y hora en la que se publica la posible compra       |
+| `descripcion`           | Descripción de la compra realizada                        |
+| `numero_procedimiento`  | Identificador del procedimiento                           |
+| `institucion`           | Institución pública que realizó la compra                 |
+| `numero_contrato`       | Identificador del contrato                                |
+| `adjudicatario`         | Proveedor del producto                                    |
+| `cedula_adjudicatario`  | Cédula jurídica o física del proveedor                    |
+| `moneda`                | Moneda en la que se hizo la compra                        |
+| `monto`                 | Monto cancelado por la compra                             |
+| `modificaciones`        | Indica si se hicieron modificaciones a la compra original |
+| `vigencia_contrato`     | Meses de vigencia del contrato                            |
+| `clasificacion_objeto`  | Clasificación del producto comprado                       |
+| `tipo_modalidad`        | Tipo de la modalidad de la compra                         |
+| `tipo_procedimiento`    | Tipo de procedimiento de la compra                        |
+| `firma_contrato`        | Fecha en la que se firmó el contrato de la compra         |
+| `moneda_monto_estimado` | Moneda en la que está el monto estimado de la compra      |
+| `monto_estimado`        | Monto estimado de la compra                               |
+| `fecha`                 | Fecha en la que se realiza la compra                      |
+| `hora`                  | Hora a la que se realiza la compra                        |
+| `mes_dia`               | Mes y día donde se realiza la compra                      |
 
 ## Ejercicios 
 
@@ -98,7 +98,7 @@ completamente diferentes. Viendo el siguiente gráfico, cuál diría que es
 esta diferencia?
 
 ```{r check, exercise = TRUE}
-check <- ggplot(data = SICOP, 
+check <- ggplot(data = SICOP,
                 aes(x = tipo_procedimiento, y = fecha)) +
   coord_flip()
 
@@ -163,3 +163,4 @@ ggplot(SICOP)
 ggplot(SICOP, aes(x = clasificacion_objeto, fill = tipo_modalidad)) +
   geom_bar(position = "stack")
 ```
+

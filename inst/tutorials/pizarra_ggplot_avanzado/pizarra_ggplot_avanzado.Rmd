@@ -33,56 +33,56 @@ library(janitor)
 library(lubridate)
 library(visdat)
 
-vuelos <- hflights %>% 
+vuelos <- hflights %>%
   clean_names()
 
 vuelos <- vuelos %>% 
-  unite(year, month, dayof_month, col = "fecha", sep = "-") %>% 
+  unite(year, month, dayof_month, col = "fecha", sep = "-") %>%
   mutate(fecha = ymd(fecha))
 
 mayores_atrasos <- vuelos %>%
-  group_by(dest) %>% 
+  group_by(dest) %>%
   summarise(
     promedio = mean(arr_delay, na.rm = TRUE)
   ) %>% 
-  arrange(desc(promedio)) %>% 
-  slice(1:10) %>% 
-  select(dest) %>% 
+  arrange(desc(promedio)) %>%
+  slice(1:10) %>%
+  select(dest) %>%
   pull()
 
-destinos_atrasos <- vuelos %>% 
+destinos_atrasos <- vuelos %>%
   filter(dest %in% mayores_atrasos)
 
 sfo <- vuelos %>% 
   filter(dest ==  "SFO")
 
-vuelos_cancelados <- vuelos %>% 
-  group_by(unique_carrier) %>% 
+vuelos_cancelados <- vuelos %>%
+  group_by(unique_carrier) %>%
   summarise(
     total = sum(cancelled, na.rm = TRUE)
   ) %>% 
-  arrange(desc(total)) %>% 
+  arrange(desc(total)) %>%
   slice(1:5) %>% 
-  select(unique_carrier) %>% 
+  select(unique_carrier) %>%
   pull()
 
-vuelos_cancelados <- vuelos %>% 
-  filter(unique_carrier %in% vuelos_cancelados) 
+vuelos_cancelados <- vuelos %>%
+  filter(unique_carrier %in% vuelos_cancelados)
 
-vuelos_por_aerolinea <- vuelos_cancelados %>% 
-  mutate(mes = month(fecha)) %>% 
-  group_by(unique_carrier, mes) %>% 
+vuelos_por_aerolinea <- vuelos_cancelados %>%
+  mutate(mes = month(fecha)) %>%
+  group_by(unique_carrier, mes) %>%
   tally()
 
-vuelos_cancelados_mes <- vuelos_cancelados %>% 
+vuelos_cancelados_mes <- vuelos_cancelados %>%
   mutate(mes = month(fecha))
 
 aerolineas_vuelos <- vuelos_cancelados_mes %>%
   left_join(vuelos_por_aerolinea, by = c("unique_carrier", "mes"))
 
-cancelaciones_por_aerolinea <- vuelos_cancelados %>% 
-  mutate(mes = month(fecha)) %>% 
-  group_by(unique_carrier, mes) %>% 
+cancelaciones_por_aerolinea <- vuelos_cancelados %>%
+  mutate(mes = month(fecha)) %>%
+  group_by(unique_carrier, mes) %>%
   summarise(total_cancelaciones = sum(cancelled)
   )
 
@@ -90,11 +90,11 @@ aerolineas_vuelos <- aerolineas_vuelos %>%
   left_join(cancelaciones_por_aerolinea, by = c("unique_carrier", "mes"))
 
 aerolineas_vuelos <- aerolineas_vuelos %>% 
-  mutate(cancelaciones_proporcional = total_cancelaciones / n) 
+  mutate(cancelaciones_proporcional = total_cancelaciones / n)
 ```
 
 ```{r, echo=FALSE, out.width="35%", fig.align = "center"}
-knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")  
+knitr::include_graphics("https://storage.googleapis.com/datos_cursos/ixpantia_introR/ixpantia_logo.png")
 ```
 
 ## Datos: **hfligths** -> **vuelos_cancelados**
@@ -151,14 +151,14 @@ agrupe por aerolínea (`unique_carrier`) y por `mes`. Por último debe "contar"
 los vuelos que resultan usando `tally()`.
 
 ```{r vpa, exercise = TRUE}
-vuelos_por_aerolinea <- vuelos_cancelados %>% 
- 
+vuelos_por_aerolinea <- vuelos_cancelados %>%
+
 ```
 
 ```{r vpa-solution}
-vuelos_por_aerolinea <- vuelos_cancelados %>% 
-  mutate(mes = month(fecha)) %>% 
-  group_by(unique_carrier, mes) %>% 
+vuelos_por_aerolinea <- vuelos_cancelados %>%
+  mutate(mes = month(fecha)) %>%
+  group_by(unique_carrier, mes) %>%
   tally()
 ```
 
@@ -168,12 +168,11 @@ Cree un nuevo conjunto de datos que le agregue la columna `mes` creada en el
 ejercicio anterior a **vuelos_cancelados**
 
 ```{r vcm, exercise = TRUE}
-vuelos_cancelados_mes <- vuelos_cancelados %>% 
-  
+vuelos_cancelados_mes <- vuelos_cancelados %>%
 ```
 
 ```{r vcm-solution}
-vuelos_cancelados_mes <- vuelos_cancelados %>% 
+vuelos_cancelados_mes <- vuelos_cancelados %>%
   mutate(mes = month(fecha))
 ```
 
@@ -199,14 +198,14 @@ Partiendo de **vuelos cancelados**, cree un nuevo conjunto de datos donde hayan
 (`total_cancelaciones`).
 
 ```{r cancelaciones, exercise = TRUE}
-cancelaciones_por_aerolinea <- vuelos_cancelados %>% 
+cancelaciones_por_aerolinea <- vuelos_cancelados %>%
 
 ```
 
 ```{r cancelaciones-solution}
-cancelaciones_por_aerolinea <- vuelos_cancelados %>% 
-  mutate(mes = month(fecha)) %>% 
-  group_by(unique_carrier, mes) %>% 
+cancelaciones_por_aerolinea <- vuelos_cancelados %>%
+  mutate(mes = month(fecha)) %>%
+  group_by(unique_carrier, mes) %>%
   summarise(total_cancelaciones = sum(cancelled))
 
 ```
@@ -219,7 +218,7 @@ con lo que tenia **aerolineas_vuelos** más el total de cancelaciones por
 aerolínea. Llámelo **aerolineas_vuelos** nuevamente. 
 
 ```{r av2, exercise = TRUE}
-aerolineas_vuelos <- 
+aerolineas_vuelos <-
 ```
 
 ```{r av2-solution}
@@ -234,12 +233,12 @@ agregarle una columna que sea la proporción del total de cancelaciones para cad
 aerolínea. Llame a esta nueva variable `cancelaciones_proporcional`.
 
 ```{r av3, exercise = TRUE}
-aerolineas_vuelos <- aerolineas_vuelos %>% 
+aerolineas_vuelos <- aerolineas_vuelos %>%
 
 ```
 
 ```{r av3-solution}
-aerolineas_vuelos <- aerolineas_vuelos %>% 
+aerolineas_vuelos <- aerolineas_vuelos %>%
   mutate(cancelaciones_proporcional = total_cancelaciones / n)
 ```
 
@@ -262,3 +261,4 @@ ggplot(aerolineas_vuelos, aes(
     fill = unique_carrier)) +
   geom_bar(stat = "summary", fun.y = "mean", position = "dodge") 
 ```
+

@@ -61,11 +61,11 @@ glimpse(estaciones)
 
 Descripción de las variables:
 
-| Variable | Descripcion |
-|:--------:|:-----------:|
-| `anio` | Año en estudio |
-| `temporada` | Estación en estudio, 4 categorías |
-| `temperatura` | Temperatura percibida | 
+| Variable      | Descripcion                       |
+| :--------:    | :-----------:                     |
+| `anio`        | Año en estudio                    |
+| `temporada`   | Estación en estudio, 4 categorías |
+| `temperatura` | Temperatura percibida             |
 
 ## Ejercicios
 
@@ -85,8 +85,8 @@ estaciones %>%
 
 ```{r filter-check}
 grade_result(
-  pass_if(~ identical(unlist(.result), 
-                      unlist(estaciones %>% 
+  pass_if(~ identical(unlist(.result),
+                      unlist(estaciones %>%
                                filter(temporada == "invierno"))),
           "¡Buenísimo!")
 )
@@ -130,8 +130,8 @@ ordenadas según la temperatura reportada de mayor a menor, es decir, en forma
 descendiente.
 
 ```{r arrange, exercise = TRUE}
-estaciones %>% 
-  group_by() %>% 
+estaciones %>%
+  group_by() %>%
 ```
 
 ```{r arrange-hint-1}
@@ -152,3 +152,4 @@ grade_result(
           "¡Bien hecho!")
 )
 ```
+
