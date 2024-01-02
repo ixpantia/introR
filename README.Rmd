@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# introR <a href="url"><img src="man/figures/introR_logo.png" align="right" width="30%"></a>
+# introR <a><img src="https://storage.googleapis.com/ix-paquetes-internos/logo-introR.png" align="right" width="30%"></a>
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/introR)](https://cran.r-project.org/package=introR)
